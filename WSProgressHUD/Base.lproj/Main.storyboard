@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfU-PC-bCE">
+                                <rect key="frame" x="173" y="473" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="b0N-kC-otA"/>
+                                </constraints>
+                                <state key="normal" title="ShowWithString">
+                                    <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.62837357954545459" green="0.1702536656212936" blue="0.20819928553108161" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6FN-zj-A8p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8m-Cd-Je5">
+                                <rect key="frame" x="173" y="511" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="QKz-Ur-ggU"/>
+                                </constraints>
+                                <state key="normal" title="dismiss">
+                                    <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.62837357954545459" green="0.1702536656212936" blue="0.20819928553108161" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Js-Y5-3ee"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNp-eu-l5J">
+                                <rect key="frame" x="173" y="435" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="FtL-Gq-UjC"/>
+                                </constraints>
+                                <state key="normal" title="show">
+                                    <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.62837357949999995" green="0.17025366559999999" blue="0.2081992855" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showNoString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rID-Qu-UN6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BfU-PC-bCE" secondAttribute="bottom" constant="97" id="Cen-Ix-3m8"/>
+                            <constraint firstItem="BfU-PC-bCE" firstAttribute="top" secondItem="FNp-eu-l5J" secondAttribute="bottom" constant="8" id="Di5-gZ-GsH"/>
+                            <constraint firstAttribute="centerX" secondItem="FNp-eu-l5J" secondAttribute="centerX" id="jbJ-o2-MLZ"/>
+                            <constraint firstAttribute="centerX" secondItem="BfU-PC-bCE" secondAttribute="centerX" id="u3F-DZ-RTX"/>
+                            <constraint firstItem="D8m-Cd-Je5" firstAttribute="top" secondItem="BfU-PC-bCE" secondAttribute="bottom" constant="8" id="wdf-vT-KwG"/>
+                            <constraint firstItem="D8m-Cd-Je5" firstAttribute="centerX" secondItem="BfU-PC-bCE" secondAttribute="centerX" id="zcV-db-i1M"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

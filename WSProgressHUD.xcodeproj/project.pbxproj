@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */; };
+		FEDB74A11B593589003DDB79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A01B593589003DDB79 /* main.m */; };
+		FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A31B593589003DDB79 /* AppDelegate.m */; };
+		FEDB74A71B593589003DDB79 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A61B593589003DDB79 /* ViewController.m */; };
+		FEDB74AA1B593589003DDB79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74A81B593589003DDB79 /* Main.storyboard */; };
+		FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74AB1B593589003DDB79 /* Images.xcassets */; };
+		FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74AD1B593589003DDB79 /* LaunchScreen.xib */; };
+		FEDB74BB1B593589003DDB79 /* WSProgressHUDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */; };
+		FEDB74C61B5935C4003DDB79 /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74C51B5935C4003DDB79 /* WSProgressHUD.m */; };
+		FEDB74CE1B593E1C003DDB79 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74CB1B593E1C003DDB79 /* FBShimmeringLayer.m */; };
+		FEDB74CF1B593E1C003DDB79 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74CD1B593E1C003DDB79 /* FBShimmeringView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FEDB74B51B593589003DDB79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FEDB74931B593589003DDB79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEDB749A1B593589003DDB79;
+			remoteInfo = WSProgressHUD;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = SOURCE_ROOT; };
+		FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = SOURCE_ROOT; };
+		FEDB749B1B593589003DDB79 /* WSProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEDB749F1B593589003DDB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEDB74A01B593589003DDB79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FEDB74A21B593589003DDB79 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FEDB74A31B593589003DDB79 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FEDB74A51B593589003DDB79 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FEDB74A61B593589003DDB79 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FEDB74A91B593589003DDB79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FEDB74AB1B593589003DDB79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FEDB74AE1B593589003DDB79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSProgressHUDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEDB74B91B593589003DDB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUDTests.m; sourceTree = "<group>"; };
+		FEDB74C41B5935C4003DDB79 /* WSProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		FEDB74C51B5935C4003DDB79 /* WSProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUD.m; sourceTree = SOURCE_ROOT; };
+		FEDB74C81B593E1C003DDB79 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
+		FEDB74C91B593E1C003DDB79 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		FEDB74CA1B593E1C003DDB79 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		FEDB74CB1B593E1C003DDB79 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		FEDB74CC1B593E1C003DDB79 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		FEDB74CD1B593E1C003DDB79 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FEDB74981B593589003DDB79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEDB74B11B593589003DDB79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FEDB74921B593589003DDB79 = {
+			isa = PBXGroup;
+			children = (
+				FEDB749D1B593589003DDB79 /* WSProgressHUD */,
+				FEDB74B71B593589003DDB79 /* WSProgressHUDTests */,
+				FEDB749C1B593589003DDB79 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FEDB749C1B593589003DDB79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FEDB749B1B593589003DDB79 /* WSProgressHUD.app */,
+				FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FEDB749D1B593589003DDB79 /* WSProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FEDB74A21B593589003DDB79 /* AppDelegate.h */,
+				FEDB74A31B593589003DDB79 /* AppDelegate.m */,
+				FEDB74A51B593589003DDB79 /* ViewController.h */,
+				FEDB74A61B593589003DDB79 /* ViewController.m */,
+				FEDB74C41B5935C4003DDB79 /* WSProgressHUD.h */,
+				FEDB74C51B5935C4003DDB79 /* WSProgressHUD.m */,
+				FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */,
+				FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */,
+				FEDB74A81B593589003DDB79 /* Main.storyboard */,
+				FEDB74C71B593E1C003DDB79 /* FBShimmering */,
+				FEDB74AB1B593589003DDB79 /* Images.xcassets */,
+				FEDB74AD1B593589003DDB79 /* LaunchScreen.xib */,
+				FEDB749E1B593589003DDB79 /* Supporting Files */,
+			);
+			path = WSProgressHUD;
+			sourceTree = "<group>";
+		};
+		FEDB749E1B593589003DDB79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEDB749F1B593589003DDB79 /* Info.plist */,
+				FEDB74A01B593589003DDB79 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEDB74B71B593589003DDB79 /* WSProgressHUDTests */ = {
+			isa = PBXGroup;
+			children = (
+				FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */,
+				FEDB74B81B593589003DDB79 /* Supporting Files */,
+			);
+			path = WSProgressHUDTests;
+			sourceTree = "<group>";
+		};
+		FEDB74B81B593589003DDB79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEDB74B91B593589003DDB79 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEDB74C71B593E1C003DDB79 /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				FEDB74C81B593E1C003DDB79 /* FBShimmering-Prefix.pch */,
+				FEDB74C91B593E1C003DDB79 /* FBShimmering.h */,
+				FEDB74CA1B593E1C003DDB79 /* FBShimmeringLayer.h */,
+				FEDB74CB1B593E1C003DDB79 /* FBShimmeringLayer.m */,
+				FEDB74CC1B593E1C003DDB79 /* FBShimmeringView.h */,
+				FEDB74CD1B593E1C003DDB79 /* FBShimmeringView.m */,
+			);
+			path = FBShimmering;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FEDB749A1B593589003DDB79 /* WSProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEDB74BE1B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUD" */;
+			buildPhases = (
+				FEDB74971B593589003DDB79 /* Sources */,
+				FEDB74981B593589003DDB79 /* Frameworks */,
+				FEDB74991B593589003DDB79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WSProgressHUD;
+			productName = WSProgressHUD;
+			productReference = FEDB749B1B593589003DDB79 /* WSProgressHUD.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FEDB74B31B593589003DDB79 /* WSProgressHUDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEDB74C11B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUDTests" */;
+			buildPhases = (
+				FEDB74B01B593589003DDB79 /* Sources */,
+				FEDB74B11B593589003DDB79 /* Frameworks */,
+				FEDB74B21B593589003DDB79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEDB74B61B593589003DDB79 /* PBXTargetDependency */,
+			);
+			name = WSProgressHUDTests;
+			productName = WSProgressHUDTests;
+			productReference = FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FEDB74931B593589003DDB79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "wilson-yuan";
+				TargetAttributes = {
+					FEDB749A1B593589003DDB79 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					FEDB74B31B593589003DDB79 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = FEDB749A1B593589003DDB79;
+					};
+				};
+			};
+			buildConfigurationList = FEDB74961B593589003DDB79 /* Build configuration list for PBXProject "WSProgressHUD" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FEDB74921B593589003DDB79;
+			productRefGroup = FEDB749C1B593589003DDB79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FEDB749A1B593589003DDB79 /* WSProgressHUD */,
+				FEDB74B31B593589003DDB79 /* WSProgressHUDTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FEDB74991B593589003DDB79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEDB74AA1B593589003DDB79 /* Main.storyboard in Resources */,
+				FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */,
+				FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEDB74B21B593589003DDB79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FEDB74971B593589003DDB79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEDB74A71B593589003DDB79 /* ViewController.m in Sources */,
+				FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */,
+				FEDB74CF1B593E1C003DDB79 /* FBShimmeringView.m in Sources */,
+				FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */,
+				FEDB74CE1B593E1C003DDB79 /* FBShimmeringLayer.m in Sources */,
+				FEDB74C61B5935C4003DDB79 /* WSProgressHUD.m in Sources */,
+				FEDB74A11B593589003DDB79 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEDB74B01B593589003DDB79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEDB74BB1B593589003DDB79 /* WSProgressHUDTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FEDB74B61B593589003DDB79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEDB749A1B593589003DDB79 /* WSProgressHUD */;
+			targetProxy = FEDB74B51B593589003DDB79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FEDB74A81B593589003DDB79 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEDB74A91B593589003DDB79 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FEDB74AD1B593589003DDB79 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FEDB74AE1B593589003DDB79 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FEDB74BC1B593589003DDB79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FEDB74BD1B593589003DDB79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FEDB74BF1B593589003DDB79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WSProgressHUD/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FEDB74C01B593589003DDB79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WSProgressHUD/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FEDB74C21B593589003DDB79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WSProgressHUDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSProgressHUD.app/WSProgressHUD";
+			};
+			name = Debug;
+		};
+		FEDB74C31B593589003DDB79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WSProgressHUDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSProgressHUD.app/WSProgressHUD";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FEDB74961B593589003DDB79 /* Build configuration list for PBXProject "WSProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEDB74BC1B593589003DDB79 /* Debug */,
+				FEDB74BD1B593589003DDB79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEDB74BE1B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEDB74BF1B593589003DDB79 /* Debug */,
+				FEDB74C01B593589003DDB79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEDB74C11B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEDB74C21B593589003DDB79 /* Debug */,
+				FEDB74C31B593589003DDB79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FEDB74931B593589003DDB79 /* Project object */;
+}
