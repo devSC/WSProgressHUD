@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 
 @property (strong, nonatomic) UIImageView *imageView;
 
+@property (strong, nonatomic) NSTimer *timer;
 //@property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimatedView;
 
 
@@ -223,6 +224,10 @@ static CGRect stringRect;
     [self updateSubviewsPositionWithString:title];
     
     [self showHUDViewWithAnimation];
+    
+    self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 
@@ -339,7 +344,6 @@ static CGRect stringRect;
         case WSProgressHUDTypeStatus: {
             if (string) {
                 
-                
                 self.labelView.hidden = NO;
                 self.indicatorView.hidden = NO;
                 
@@ -351,7 +355,6 @@ static CGRect stringRect;
                 self.labelView.hidden = YES;
                 self.indicatorView.hidden = NO;
             }
-            
             
         } break;
             
@@ -382,14 +385,11 @@ static CGRect stringRect;
                 if (hudHeight < 100) {
                     hudHeight = 100;
                 }
-
-                
-                
+   
             } else {
-                hudHeight = stringHeight + edgeOffset + 20;
+                hudHeight = stringHeight + edgeOffset + 15;
                 hudWidth = stringWidth + edgeOffset + 20;
             }
-            
             
         } break;
             
@@ -456,7 +456,6 @@ static CGRect stringRect;
                 
                 
             } else {
-//                self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
                 self.labelView.center = CGPointMake(hudCenterX, hudCenterY);
             }
 
@@ -465,131 +464,9 @@ static CGRect stringRect;
         default:
             break;
     }
-//    if ([self onlyShowTitle]) {
-//        self.shimmeringView.frame = stringRect;//设置完hud的frame后需要重新设置
-//        [self setShimmeringLabelSize:stringRect.size];
-//    } else {
-//        if (self.imageView.image) {
-//            
-//            stringRect.origin.y = imageOffset;
-//            
-//            self.imageView.frame = CGRectMake(0, 0, 30, 30);
-//            
-//        } else {
-//            self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
-//        }
-//    }
-//
 
-//    if (string) {
-//        if ([self onlyShowTitle]) {
-//            self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
-//            [self.indicatorView stopAnimating];
-//            
-//        } else {
-//            if (self.imageView.image) {
-//                [self.indicatorView stopAnimating];
-//                
-//                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY + 20);
-//                [self.indicatorView startAnimating];
-//                self.imageView.center = CGPointMake(hudCenterX, hudCenterY - 10);
-//
-//            } else {
-//                self.indicatorView.center = CGPointMake(15, hudCenterY);
-//                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-//                [self.indicatorView startAnimating];
-//
-//            }
-//        }
-//    } else {
-//        self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
-//        [self.indicatorView startAnimating];
-//    }
 }
 
-/*
- //    if (titleString) {
- //
- //        UILabel *contentLabel = self.onlyShowTitle ? self.shimmeringLabel : self.labelView;
- //
- //        CGSize constraintSize = CGSizeMake(200.0f, 300.0f);
- ////        stringRect.origin = CGPointMake(30, 0);
- //
- //        // > iOS7
- //        if ([titleString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
- //            stringRect.size = [titleString boundingRectWithSize:constraintSize
- //                                                        options:(NSStringDrawingOptions)(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin)
- //                                                     attributes:@{NSFontAttributeName: contentLabel.font}
- //                                                        context:NULL].size;
- //
- //        } else {
- //            CGSize stringSize;
- //            if ([titleString respondsToSelector:@selector(sizeWithAttributes:)]){
- //                stringSize = [titleString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:contentLabel.font.fontName size:contentLabel.font.pointSize]}];
- //            } else {
- //#pragma clang diagnostic push
- //#pragma clang diagnostic ignored "-Wdeprecated"
- //                stringSize = [titleString sizeWithFont:contentLabel.font constrainedToSize:constraintSize];
- //#pragma clang diagnostic pop
- //            }
- //            stringRect.size = stringSize;
- //        }
- //
- //        stringWidth =  ceilf(stringRect.size.width);
- //        stringHeight = ceilf(stringRect.size.height);
- //
- //        switch (self.hudType) {
- //            case WSProgressHUDTypeStatus: {
- //                self.shimmeringView.hidden = YES;
- //                self.labelView.hidden = NO;
- //                self.indicatorView.hidden = NO;
- //
- //                self.labelView.text = string;
- //                hudWidth = stringWidth + 40; // indicationWidth = 40
- //            } break;
- //
- //            case WSProgressHUDTypeString: {
- //                hudWidth = stringWidth + edgeOffset; // indicationWidth = 40
- //                hudHeight = stringHeight + edgeOffset;
- //
- //                self.shimmeringView.hidden = NO;
- //                self.labelView.hidden = YES;
- //                self.indicatorView.hidden = YES;
- //                self.shimmeringLabel.text = string;
- //                self.imageView.hidden = YES;
- //
- //            } break;
- //            case WSProgressHUDTypeImage: {
- //                self.shimmeringView.hidden = YES;
- //                self.labelView.hidden = NO;
- //                self.indicatorView.hidden = NO;
- //                self.labelView.text = string;
- //                hudWidth = stringWidth + 40; // indicationWidth = 40
- //
- //                if (self.imageView.image) {
- //                    hudHeight = stringHeight + imageOffset + edgeOffset;
- //                    self.imageView.hidden = NO;
- //
- //                    if (hudWidth < 50) {
- //                        hudWidth = hudWidth + 30; //设置最小
- //                    }
- //                } else {
- //                    hudHeight = stringHeight + edgeOffset;
- //                    self.imageView.hidden = YES;
- //                }
- //
- //            } break;
- //
- //            default:
- //                break;
- //        }
- //    } else {
- //        self.shimmeringView.hidden = YES;
- //        self.labelView.hidden = YES;
- //        self.indicatorView.hidden = NO;
- //    }
-
- */
 - (void)setShimmeringLabelSize: (CGSize)size
 {
     CGRect bounds = self.shimmeringLabel.bounds;
@@ -643,6 +520,15 @@ static CGRect stringRect;
     return slice;
 }
 
+- (void)setTimer:(NSTimer *)timer
+{
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+        
+    }
+    _timer = timer;
+}
 
 #pragma mark - INIT View
 

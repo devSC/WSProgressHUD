@@ -34,14 +34,14 @@
 }
 
 - (IBAction)showOnlyString:(id)sender {
-    [WSProgressHUD showOnlyString:@" WSProgressHUD正在刷新..."];
+    [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..."];
     
 }
 - (IBAction)show:(id)sender {
-    [WSProgressHUD showWithString:@"刷新中..."];
+    [WSProgressHUD showWithString:@"WSProgressHUD刷新中..."];
 }
 - (IBAction)showImage:(id)sender {
-    [WSProgressHUD showImage:nil title:@"获取成功"];
+    [WSProgressHUD showImage:nil title:@"WSProgressHUD获取成功"];
 }
 
 - (IBAction)dismiss:(id)sender {
