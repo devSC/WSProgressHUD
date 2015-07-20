@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52038DED1B5CA67400F37CEE /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */; };
+		52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */; };
 		FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */; };
 		FEDB74A11B593589003DDB79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A01B593589003DDB79 /* main.m */; };
 		FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A31B593589003DDB79 /* AppDelegate.m */; };
@@ -15,7 +17,6 @@
 		FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74AB1B593589003DDB79 /* Images.xcassets */; };
 		FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74AD1B593589003DDB79 /* LaunchScreen.xib */; };
 		FEDB74BB1B593589003DDB79 /* WSProgressHUDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */; };
-		FEDB74C61B5935C4003DDB79 /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74C51B5935C4003DDB79 /* WSProgressHUD.m */; };
 		FEDB74CE1B593E1C003DDB79 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74CB1B593E1C003DDB79 /* FBShimmeringLayer.m */; };
 		FEDB74CF1B593E1C003DDB79 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74CD1B593E1C003DDB79 /* FBShimmeringView.m */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSProgressHUD.h; sourceTree = "<group>"; };
+		52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUD.m; sourceTree = "<group>"; };
+		52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_6584.png; sourceTree = "<group>"; };
 		FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = SOURCE_ROOT; };
 		FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = SOURCE_ROOT; };
 		FEDB749B1B593589003DDB79 /* WSProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,8 +50,6 @@
 		FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSProgressHUDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDB74B91B593589003DDB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUDTests.m; sourceTree = "<group>"; };
-		FEDB74C41B5935C4003DDB79 /* WSProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSProgressHUD.h; sourceTree = SOURCE_ROOT; };
-		FEDB74C51B5935C4003DDB79 /* WSProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		FEDB74C81B593E1C003DDB79 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
 		FEDB74C91B593E1C003DDB79 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
 		FEDB74CA1B593E1C003DDB79 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
@@ -74,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52038DEA1B5CA67400F37CEE /* WSProgress */ = {
+			isa = PBXGroup;
+			children = (
+				52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */,
+				52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */,
+			);
+			path = WSProgress;
+			sourceTree = "<group>";
+		};
 		FEDB74921B593589003DDB79 = {
 			isa = PBXGroup;
 			children = (
@@ -95,14 +106,14 @@
 		FEDB749D1B593589003DDB79 /* WSProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				52038DEA1B5CA67400F37CEE /* WSProgress */,
 				FEDB74A21B593589003DDB79 /* AppDelegate.h */,
 				FEDB74A31B593589003DDB79 /* AppDelegate.m */,
 				FEDB74A51B593589003DDB79 /* ViewController.h */,
 				FEDB74A61B593589003DDB79 /* ViewController.m */,
-				FEDB74C41B5935C4003DDB79 /* WSProgressHUD.h */,
-				FEDB74C51B5935C4003DDB79 /* WSProgressHUD.m */,
 				FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */,
 				FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */,
+				52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */,
 				FEDB74A81B593589003DDB79 /* Main.storyboard */,
 				FEDB74C71B593E1C003DDB79 /* FBShimmering */,
 				FEDB74AB1B593589003DDB79 /* Images.xcassets */,
@@ -233,6 +244,7 @@
 			files = (
 				FEDB74AA1B593589003DDB79 /* Main.storyboard in Resources */,
 				FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */,
+				52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */,
 				FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,10 +265,10 @@
 			files = (
 				FEDB74A71B593589003DDB79 /* ViewController.m in Sources */,
 				FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */,
+				52038DED1B5CA67400F37CEE /* WSProgressHUD.m in Sources */,
 				FEDB74CF1B593E1C003DDB79 /* FBShimmeringView.m in Sources */,
 				FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */,
 				FEDB74CE1B593E1C003DDB79 /* FBShimmeringLayer.m in Sources */,
-				FEDB74C61B5935C4003DDB79 /* WSProgressHUD.m in Sources */,
 				FEDB74A11B593589003DDB79 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

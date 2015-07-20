@@ -14,11 +14,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_6584.png" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfU-PC-bCE">
-                                <rect key="frame" x="173" y="473" width="254" height="30"/>
+                                <rect key="frame" x="61" y="540" width="254" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="b0N-kC-otA"/>
@@ -35,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8m-Cd-Je5">
-                                <rect key="frame" x="173" y="511" width="254" height="30"/>
+                                <rect key="frame" x="61" y="578" width="254" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="QKz-Ur-ggU"/>
@@ -52,10 +55,27 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNp-eu-l5J">
-                                <rect key="frame" x="173" y="435" width="254" height="30"/>
+                                <rect key="frame" x="61" y="502" width="254" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="FtL-Gq-UjC"/>
+                                </constraints>
+                                <state key="normal" title="OnlyString">
+                                    <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.62837357949999995" green="0.17025366559999999" blue="0.2081992855" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showOnlyString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kXb-SB-MF8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keO-NK-Whb">
+                                <rect key="frame" x="61" y="464" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="6ie-EA-o8I"/>
                                 </constraints>
                                 <state key="normal" title="show">
                                     <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,23 +85,33 @@
                                     <color key="titleColor" red="0.62837357949999995" green="0.17025366559999999" blue="0.2081992855" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="showNoString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rID-Qu-UN6"/>
+                                    <action selector="showNoString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ish-fx-jKc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FNp-eu-l5J" firstAttribute="centerX" secondItem="keO-NK-Whb" secondAttribute="centerX" id="AZv-d9-Uj8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="BfU-PC-bCE" secondAttribute="bottom" constant="97" id="Cen-Ix-3m8"/>
                             <constraint firstItem="BfU-PC-bCE" firstAttribute="top" secondItem="FNp-eu-l5J" secondAttribute="bottom" constant="8" id="Di5-gZ-GsH"/>
+                            <constraint firstItem="FNp-eu-l5J" firstAttribute="top" secondItem="keO-NK-Whb" secondAttribute="bottom" constant="8" id="PqB-Gd-7HO"/>
                             <constraint firstAttribute="centerX" secondItem="FNp-eu-l5J" secondAttribute="centerX" id="jbJ-o2-MLZ"/>
+                            <constraint firstItem="hGQ-C6-fit" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="l25-yN-vWg"/>
+                            <constraint firstAttribute="trailing" secondItem="hGQ-C6-fit" secondAttribute="trailing" id="oFZ-Dp-oH4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hGQ-C6-fit" secondAttribute="bottom" id="rTf-AB-ObT"/>
                             <constraint firstAttribute="centerX" secondItem="BfU-PC-bCE" secondAttribute="centerX" id="u3F-DZ-RTX"/>
                             <constraint firstItem="D8m-Cd-Je5" firstAttribute="top" secondItem="BfU-PC-bCE" secondAttribute="bottom" constant="8" id="wdf-vT-KwG"/>
+                            <constraint firstItem="hGQ-C6-fit" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zHN-7r-8ha"/>
                             <constraint firstItem="D8m-Cd-Je5" firstAttribute="centerX" secondItem="BfU-PC-bCE" secondAttribute="centerX" id="zcV-db-i1M"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="IMG_6584.png" width="750" height="1334"/>
+    </resources>
 </document>

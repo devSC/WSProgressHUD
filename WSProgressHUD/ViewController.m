@@ -25,15 +25,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)show:(id)sender {
-//    [WSProgressHUD showWithString:@"获取城市数据..."];
-    [WSProgressHUD showOnlyString:@"获取城市数据..."];
-}
-- (IBAction)dismiss:(id)sender {
-    [WSProgressHUD dismiss];
-}
 - (IBAction)showNoString:(id)sender {
     [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeGradient];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WSProgressHUD dismiss];
+    });
+    
+}
+
+- (IBAction)showOnlyString:(id)sender {
+    [WSProgressHUD showOnlyString:@"获取城市数据..."];
+    
+}
+- (IBAction)show:(id)sender {
+    [WSProgressHUD showWithString:@"获取城市数据..."];
+}
+
+- (IBAction)dismiss:(id)sender {
+    [WSProgressHUD dismiss];
 }
 
 @end
