@@ -587,7 +587,8 @@ static CGRect stringRect;
     if (!_shimmeringView) {
         _shimmeringView = [[FBShimmeringView alloc] initWithFrame:CGRectZero];
         _shimmeringView.shimmering = YES;
-        _shimmeringView.shimmeringBeginFadeDuration = 0.3;
+        _shimmeringView.shimmeringBeginFadeDuration = 0.8;
+//        _shimmeringView.shimmeringPauseDuration = 0.2;
         _shimmeringView.shimmeringSpeed = 100;
         _shimmeringView.shimmeringOpacity = 1;
         _shimmeringView.shimmeringAnimationOpacity = 0.3;

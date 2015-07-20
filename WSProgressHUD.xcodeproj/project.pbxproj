@@ -11,6 +11,8 @@
 		52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */; };
 		52038DFF1B5CD3E100F37CEE /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFD1B5CD3E100F37CEE /* error@2x.png */; };
 		52038E001B5CD3E100F37CEE /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFE1B5CD3E100F37CEE /* success@2x.png */; };
+		52038E021B5CFAD200F37CEE /* angle-mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038E011B5CFAD200F37CEE /* angle-mask@3x.png */; };
+		52038E041B5CFADB00F37CEE /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52038E031B5CFADB00F37CEE /* image1.jpg */; };
 		FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */; };
 		FEDB74A11B593589003DDB79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A01B593589003DDB79 /* main.m */; };
 		FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A31B593589003DDB79 /* AppDelegate.m */; };
@@ -39,6 +41,8 @@
 		52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_6584.png; sourceTree = "<group>"; };
 		52038DFD1B5CD3E100F37CEE /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		52038DFE1B5CD3E100F37CEE /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
+		52038E011B5CFAD200F37CEE /* angle-mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask@3x.png"; sourceTree = "<group>"; };
+		52038E031B5CFADB00F37CEE /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = SOURCE_ROOT; };
 		FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = SOURCE_ROOT; };
 		FEDB749B1B593589003DDB79 /* WSProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,7 @@
 			children = (
 				52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */,
 				52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */,
+				52038E011B5CFAD200F37CEE /* angle-mask@3x.png */,
 				52038DFD1B5CD3E100F37CEE /* error@2x.png */,
 				52038DFE1B5CD3E100F37CEE /* success@2x.png */,
 			);
@@ -121,6 +126,7 @@
 				FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */,
 				52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */,
 				FEDB74A81B593589003DDB79 /* Main.storyboard */,
+				52038E031B5CFADB00F37CEE /* image1.jpg */,
 				FEDB74C71B593E1C003DDB79 /* FBShimmering */,
 				FEDB74AB1B593589003DDB79 /* Images.xcassets */,
 				FEDB74AD1B593589003DDB79 /* LaunchScreen.xib */,
@@ -253,6 +259,8 @@
 				52038E001B5CD3E100F37CEE /* success@2x.png in Resources */,
 				FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */,
 				52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */,
+				52038E041B5CFADB00F37CEE /* image1.jpg in Resources */,
+				52038E021B5CFAD200F37CEE /* angle-mask@3x.png in Resources */,
 				FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

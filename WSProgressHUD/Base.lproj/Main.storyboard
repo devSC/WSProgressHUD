@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_6584.png" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDa-Uw-ahE">
@@ -25,18 +25,6 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Jlu-IK-Ssn">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bki-4Y-PKr">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3tm-aj-iE5">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
-                                    </subviews>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
@@ -155,6 +143,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IMG_6584.png" width="750" height="1334"/>
+        <image name="image1.jpg" width="962" height="624"/>
     </resources>
 </document>
