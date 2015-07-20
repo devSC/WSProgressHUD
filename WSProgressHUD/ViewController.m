@@ -34,11 +34,14 @@
 }
 
 - (IBAction)showOnlyString:(id)sender {
-    [WSProgressHUD showOnlyString:@"获取城市数据..."];
+    [WSProgressHUD showOnlyString:@" WSProgressHUD正在刷新..."];
     
 }
 - (IBAction)show:(id)sender {
-    [WSProgressHUD showWithString:@"获取城市数据..."];
+    [WSProgressHUD showWithString:@"刷新中..."];
+}
+- (IBAction)showImage:(id)sender {
+    [WSProgressHUD showImage:nil title:@"获取成功"];
 }
 
 - (IBAction)dismiss:(id)sender {

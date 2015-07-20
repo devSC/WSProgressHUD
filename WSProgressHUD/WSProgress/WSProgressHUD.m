@@ -12,6 +12,12 @@
 #import <objc/runtime.h>
 //#import "WSIndefiniteAnimationView.h"
 
+typedef NS_ENUM(NSInteger, WSProgressHUDType) {
+    WSProgressHUDTypeStatus,
+    WSProgressHUDTypeString,
+    WSProgressHUDTypeImage,
+};
+
 @interface WSProgressHUD ()
 
 @property (nonatomic, strong) UIControl *overlayView;
@@ -28,6 +34,8 @@
 
 @property (strong, nonatomic) CAShapeLayer *ringLayer;
 
+@property (strong, nonatomic) UIImageView *imageView;
+
 //@property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimatedView;
 
 
@@ -38,7 +46,17 @@
 //static const CGFloat WSProgressHUDRingRadius = 10;
 //static const CGFloat WSProgressHUDRingNoTextRadius = 17;
 
-static const char *onlyShowTitle;
+static CGFloat hudWidth = 50;
+static CGFloat hudHeight = 50;
+
+static CGFloat stringWidth = 0.0f;
+static CGFloat stringHeight = 0.0f;
+
+static CGFloat const edgeOffset = 10;
+static CGFloat const imageOffset = 40;
+
+static CGRect stringRect;
+
 @implementation WSProgressHUD
 {
     WSProgressHUDMaskType _maskType;
@@ -127,6 +145,10 @@ static const char *onlyShowTitle;
                          self.hudView.transform = CGAffineTransformIdentity;
                         [self.overlayView removeFromSuperview];
                          
+                         objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
+                         objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
+                         
+                         
                      }];
 }
 
@@ -152,8 +174,7 @@ static const char *onlyShowTitle;
 - (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
 {
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
-    
-    objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeStatus), OBJC_ASSOCIATION_ASSIGN);
     
     [self addOverlayViewToWindow];
     
@@ -170,6 +191,7 @@ static const char *onlyShowTitle;
 {
 
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
     
     if (string) {
         objc_setAssociatedObject(self, @selector(onlyShowTitle), @(1), OBJC_ASSOCIATION_ASSIGN);
@@ -190,11 +212,17 @@ static const char *onlyShowTitle;
 {
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     
-    objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(showImage), @(1), OBJC_ASSOCIATION_ASSIGN);
+    
+    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
+    
+    self.imageView.image = image;
     
     [self addOverlayViewToWindow];
     
     [self updateSubviewsPositionWithString:title];
+    
+    [self showHUDViewWithAnimation];
 }
 
 
@@ -265,113 +293,303 @@ static const char *onlyShowTitle;
     }
 }
 
+- (CGSize)hudSizeWithString: (NSString *)string
+{
+    
+    stringRect = CGRectZero;
+    
+    hudHeight = 50;
+    hudWidth = 50;
+    
+    UILabel *contentLabel = self.onlyShowTitle ? self.shimmeringLabel : self.labelView;
+    
+    CGSize constraintSize = CGSizeMake(200.0f, 300.0f);
+    
+    // > iOS7
+    if ([string respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        stringRect.size = [string boundingRectWithSize:constraintSize
+                                               options:(NSStringDrawingOptions)(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin)
+                                            attributes:@{NSFontAttributeName: contentLabel.font}
+                                               context:NULL].size;
+        
+    } else {
+        CGSize stringSize;
+        if ([string respondsToSelector:@selector(sizeWithAttributes:)]){
+            stringSize = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:contentLabel.font.fontName size:contentLabel.font.pointSize]}];
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+            stringSize = [string sizeWithFont:contentLabel.font constrainedToSize:constraintSize];
+#pragma clang diagnostic pop
+        }
+        stringRect.size = stringSize;
+    }
+    
+    stringWidth =  ceilf(stringRect.size.width);
+    stringHeight = ceilf(stringRect.size.height);
+    
+    
+    self.shimmeringView.hidden = YES;
+    self.labelView.hidden = YES;
+    self.indicatorView.hidden = YES;
+    self.imageView.hidden = YES;
+    
+    
+    switch (self.hudType) {
+        case WSProgressHUDTypeStatus: {
+            if (string) {
+                
+                
+                self.labelView.hidden = NO;
+                self.indicatorView.hidden = NO;
+                
+                self.labelView.text = string;
+                hudWidth = stringWidth + 40; // indicationWidth = 40
+                hudHeight = stringHeight + edgeOffset;
+            }  else {
+                self.shimmeringView.hidden = YES;
+                self.labelView.hidden = YES;
+                self.indicatorView.hidden = NO;
+            }
+            
+            
+        } break;
+            
+        case WSProgressHUDTypeString: {
+            hudWidth = stringWidth + edgeOffset; // indicationWidth = 40
+            hudHeight = stringHeight + edgeOffset;
+            
+            self.shimmeringView.hidden = NO;
+            self.shimmeringLabel.text = string;
+            
+        } break;
+        case WSProgressHUDTypeImage: {
+            
+            self.labelView.hidden = NO;
+            self.labelView.text = string;
+            
+            if (self.imageView.image) {
+                
+                hudHeight = stringHeight + imageOffset + edgeOffset;
+                self.imageView.hidden = NO;
+                
+                hudWidth = stringWidth + edgeOffset;
+                
+                if (hudWidth < 120) {
+                    hudWidth = 120; //设置最小
+                }
+                
+                if (hudHeight < 100) {
+                    hudHeight = 100;
+                }
+
+                
+                
+            } else {
+                hudHeight = stringHeight + edgeOffset + 20;
+                hudWidth = stringWidth + edgeOffset + 20;
+            }
+            
+            
+        } break;
+            
+        default:
+            break;
+    }
+
+    return CGSizeMake(hudWidth, hudHeight);
+}
+
 
 - (void)updateSubviewsPositionWithString: (NSString *)string
 {
-    NSString *titleString = string;
-    
-    CGFloat hudWidth = 50;
-    CGFloat hudHeight = 50;
-    
-    CGFloat stringWidth = 0.0f;
-    CGFloat stringHeight = 0.0f;
-    CGRect stringRect = CGRectZero;
-    
-    if (titleString) {
-        
-        UILabel *contentLabel = self.onlyShowTitle ? self.shimmeringLabel : self.labelView;
-        
-        CGSize constraintSize = CGSizeMake(200.0f, 300.0f);
-//        stringRect.origin = CGPointMake(30, 0);
-        
-        // > iOS7
-        if ([titleString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-            stringRect.size = [titleString boundingRectWithSize:constraintSize
-                                                        options:(NSStringDrawingOptions)(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin)
-                                                     attributes:@{NSFontAttributeName: contentLabel.font}
-                                                        context:NULL].size;
-            
-        } else {
-            CGSize stringSize;
-            if ([titleString respondsToSelector:@selector(sizeWithAttributes:)]){
-                stringSize = [titleString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:contentLabel.font.fontName size:contentLabel.font.pointSize]}];
-            } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-                stringSize = [titleString sizeWithFont:contentLabel.font constrainedToSize:constraintSize];
-#pragma clang diagnostic pop
-            }
-            stringRect.size = stringSize;
-        }
-        
-        stringWidth =  ceilf(stringRect.size.width);
-        stringHeight = ceilf(stringRect.size.height);
-        
-        if (self.onlyShowTitle) {
-            hudWidth = stringWidth + 10; // indicationWidth = 40
-            hudHeight = stringHeight + 10;
-            
-            self.shimmeringView.hidden = NO;
-            self.labelView.hidden = YES;
-            self.indicatorView.hidden = YES;
-            self.shimmeringLabel.text = string;
-        } else {
-            
-            self.shimmeringView.hidden = YES;
-            self.labelView.hidden = NO;
-            self.indicatorView.hidden = NO;
-            self.labelView.text = string;
-            
-            hudWidth = stringWidth + 40; // indicationWidth = 40
-            hudHeight = stringHeight + 10;
-        }
-    } else {
-        self.shimmeringView.hidden = YES;
-        self.labelView.hidden = YES;
-        self.indicatorView.hidden = NO;
-    }
+    CGSize hudSize = [self hudSizeWithString:string];
     
     CGFloat centerX = kScreenWidth / 2;
     CGFloat centerY = kScreenHeight / 2;
     
-    self.hudView.bounds = CGRectMake(0, 0, hudWidth, hudHeight);
+    self.hudView.bounds = CGRectMake(0, 0, hudSize.width, hudSize.height);
     self.hudView.center = CGPointMake(centerX, centerY);
-    
-    if ([self onlyShowTitle]) {
-        self.shimmeringView.frame = stringRect;//设置完hud的frame后需要重新设置
-        [self setShimmeringLabelSize:stringRect.size];
-    } else {
-        self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
-    }
     
     CGFloat hudCenterX = CGRectGetWidth(self.hudView.bounds)/2;
     CGFloat hudCenterY = CGRectGetHeight(self.hudView.bounds)/2;
-    
-    self.indicatorView.hidden = NO;
-    if (titleString) {
-        
-        if ([self onlyShowTitle]) {
+
+    switch (self.hudType) {
+        case WSProgressHUDTypeStatus: {
+            self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
+            if (string) {
+                self.indicatorView.center = CGPointMake(15, hudCenterY);
+                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
+                [self.indicatorView startAnimating];
+            } else {
+                self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
+                [self.indicatorView startAnimating];
+
+            }
+
+        }break;
+       
+        case WSProgressHUDTypeString: {
+            self.shimmeringView.frame = stringRect;//设置完hud的frame后需要重新设置
+            [self setShimmeringLabelSize:stringRect.size];
+            
             self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
             [self.indicatorView stopAnimating];
+
+
+        }break;
+
+        case WSProgressHUDTypeImage: {
             
-//            self.hudView.layer.cornerRadius = 3.5;
-//            self.hudView.layer.masksToBounds = YES;
-        } else {
-//            self.hudView.layer.cornerRadius = 3.5;
-//            self.hudView.layer.masksToBounds = YES;
-            
-            self.indicatorView.center = CGPointMake(15, hudCenterY);
-            self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-            [self.indicatorView startAnimating];
-        }
-    } else {
-//        self.hudView.layer.cornerRadius = 3.5;
-//        self.hudView.layer.masksToBounds = YES;
-        self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
-        [self.indicatorView startAnimating];
+            self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
+            if (self.imageView.image) {
+                
+                stringRect.origin.y = imageOffset;
+                
+                self.imageView.frame = CGRectMake(0, 0, 50, 50);
+                
+                [self.indicatorView stopAnimating];
+                
+                self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 30);
+                
+                self.imageView.center = CGPointMake(hudCenterX, hudCenterY - 10);
+                
+                
+            } else {
+//                self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
+                self.labelView.center = CGPointMake(hudCenterX, hudCenterY);
+            }
+
+        }break;
+
+        default:
+            break;
     }
+//    if ([self onlyShowTitle]) {
+//        self.shimmeringView.frame = stringRect;//设置完hud的frame后需要重新设置
+//        [self setShimmeringLabelSize:stringRect.size];
+//    } else {
+//        if (self.imageView.image) {
+//            
+//            stringRect.origin.y = imageOffset;
+//            
+//            self.imageView.frame = CGRectMake(0, 0, 30, 30);
+//            
+//        } else {
+//            self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
+//        }
+//    }
+//
+
+//    if (string) {
+//        if ([self onlyShowTitle]) {
+//            self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
+//            [self.indicatorView stopAnimating];
+//            
+//        } else {
+//            if (self.imageView.image) {
+//                [self.indicatorView stopAnimating];
+//                
+//                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY + 20);
+//                [self.indicatorView startAnimating];
+//                self.imageView.center = CGPointMake(hudCenterX, hudCenterY - 10);
+//
+//            } else {
+//                self.indicatorView.center = CGPointMake(15, hudCenterY);
+//                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
+//                [self.indicatorView startAnimating];
+//
+//            }
+//        }
+//    } else {
+//        self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
+//        [self.indicatorView startAnimating];
+//    }
 }
 
+/*
+ //    if (titleString) {
+ //
+ //        UILabel *contentLabel = self.onlyShowTitle ? self.shimmeringLabel : self.labelView;
+ //
+ //        CGSize constraintSize = CGSizeMake(200.0f, 300.0f);
+ ////        stringRect.origin = CGPointMake(30, 0);
+ //
+ //        // > iOS7
+ //        if ([titleString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+ //            stringRect.size = [titleString boundingRectWithSize:constraintSize
+ //                                                        options:(NSStringDrawingOptions)(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin)
+ //                                                     attributes:@{NSFontAttributeName: contentLabel.font}
+ //                                                        context:NULL].size;
+ //
+ //        } else {
+ //            CGSize stringSize;
+ //            if ([titleString respondsToSelector:@selector(sizeWithAttributes:)]){
+ //                stringSize = [titleString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:contentLabel.font.fontName size:contentLabel.font.pointSize]}];
+ //            } else {
+ //#pragma clang diagnostic push
+ //#pragma clang diagnostic ignored "-Wdeprecated"
+ //                stringSize = [titleString sizeWithFont:contentLabel.font constrainedToSize:constraintSize];
+ //#pragma clang diagnostic pop
+ //            }
+ //            stringRect.size = stringSize;
+ //        }
+ //
+ //        stringWidth =  ceilf(stringRect.size.width);
+ //        stringHeight = ceilf(stringRect.size.height);
+ //
+ //        switch (self.hudType) {
+ //            case WSProgressHUDTypeStatus: {
+ //                self.shimmeringView.hidden = YES;
+ //                self.labelView.hidden = NO;
+ //                self.indicatorView.hidden = NO;
+ //
+ //                self.labelView.text = string;
+ //                hudWidth = stringWidth + 40; // indicationWidth = 40
+ //            } break;
+ //
+ //            case WSProgressHUDTypeString: {
+ //                hudWidth = stringWidth + edgeOffset; // indicationWidth = 40
+ //                hudHeight = stringHeight + edgeOffset;
+ //
+ //                self.shimmeringView.hidden = NO;
+ //                self.labelView.hidden = YES;
+ //                self.indicatorView.hidden = YES;
+ //                self.shimmeringLabel.text = string;
+ //                self.imageView.hidden = YES;
+ //
+ //            } break;
+ //            case WSProgressHUDTypeImage: {
+ //                self.shimmeringView.hidden = YES;
+ //                self.labelView.hidden = NO;
+ //                self.indicatorView.hidden = NO;
+ //                self.labelView.text = string;
+ //                hudWidth = stringWidth + 40; // indicationWidth = 40
+ //
+ //                if (self.imageView.image) {
+ //                    hudHeight = stringHeight + imageOffset + edgeOffset;
+ //                    self.imageView.hidden = NO;
+ //
+ //                    if (hudWidth < 50) {
+ //                        hudWidth = hudWidth + 30; //设置最小
+ //                    }
+ //                } else {
+ //                    hudHeight = stringHeight + edgeOffset;
+ //                    self.imageView.hidden = YES;
+ //                }
+ //
+ //            } break;
+ //
+ //            default:
+ //                break;
+ //        }
+ //    } else {
+ //        self.shimmeringView.hidden = YES;
+ //        self.labelView.hidden = YES;
+ //        self.indicatorView.hidden = NO;
+ //    }
+
+ */
 - (void)setShimmeringLabelSize: (CGSize)size
 {
     CGRect bounds = self.shimmeringLabel.bounds;
@@ -436,6 +654,8 @@ static const char *onlyShowTitle;
         [self.hudView addSubview:self.indicatorView];
         [self.hudView addSubview:self.shimmeringView];
         [self.hudView addSubview:self.labelView];
+        [self.hudView addSubview:self.imageView];
+        
         self.shimmeringView.contentView = self.shimmeringLabel;
         
         self.backgroundColor = [UIColor clearColor];
@@ -525,7 +745,21 @@ static const char *onlyShowTitle;
 //    return _indefiniteAnimatedView;
 //}
 
+- (UIImageView *)imageView
+{
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _imageView.hidden = YES;
+    }
+    return _imageView;
+}
+
+
 - (BOOL)onlyShowTitle
+{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+- (BOOL)showImage
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
@@ -534,6 +768,13 @@ static const char *onlyShowTitle;
 {
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
+
+- (WSProgressHUDType)hudType
+{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
+
+
 - (CGFloat)visibleKeyboardHeight {
 #if !defined(SV_APP_EXTENSIONS)
     UIWindow *keyboardWindow = nil;

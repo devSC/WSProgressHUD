@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		52038DED1B5CA67400F37CEE /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */; };
 		52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */; };
+		52038DFF1B5CD3E100F37CEE /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFD1B5CD3E100F37CEE /* error@2x.png */; };
+		52038E001B5CD3E100F37CEE /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFE1B5CD3E100F37CEE /* success@2x.png */; };
 		FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */; };
 		FEDB74A11B593589003DDB79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A01B593589003DDB79 /* main.m */; };
 		FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A31B593589003DDB79 /* AppDelegate.m */; };
@@ -35,6 +37,8 @@
 		52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSProgressHUD.h; sourceTree = "<group>"; };
 		52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUD.m; sourceTree = "<group>"; };
 		52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_6584.png; sourceTree = "<group>"; };
+		52038DFD1B5CD3E100F37CEE /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		52038DFE1B5CD3E100F37CEE /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = SOURCE_ROOT; };
 		FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = SOURCE_ROOT; };
 		FEDB749B1B593589003DDB79 /* WSProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,8 @@
 			children = (
 				52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */,
 				52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */,
+				52038DFD1B5CD3E100F37CEE /* error@2x.png */,
+				52038DFE1B5CD3E100F37CEE /* success@2x.png */,
 			);
 			path = WSProgress;
 			sourceTree = "<group>";
@@ -243,6 +249,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEDB74AA1B593589003DDB79 /* Main.storyboard in Resources */,
+				52038DFF1B5CD3E100F37CEE /* error@2x.png in Resources */,
+				52038E001B5CD3E100F37CEE /* success@2x.png in Resources */,
 				FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */,
 				52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */,
 				FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */,
@@ -398,7 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WSProgressHUD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -409,7 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WSProgressHUD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
