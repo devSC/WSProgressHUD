@@ -8,9 +8,7 @@
 
 #import "WSProgressHUD.h"
 #import "FBShimmeringView.h"
-
 #import <objc/runtime.h>
-//#import "WSIndefiniteAnimationView.h"
 
 typedef NS_ENUM(NSInteger, WSProgressHUDType) {
     WSProgressHUDTypeStatus,
@@ -37,15 +35,8 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 @property (strong, nonatomic) UIImageView *imageView;
 
 @property (strong, nonatomic) NSTimer *timer;
-//@property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimatedView;
-
 
 @end
-
-//static 为静态全局变量
-//const 为全局常量
-//static const CGFloat WSProgressHUDRingRadius = 10;
-//static const CGFloat WSProgressHUDRingNoTextRadius = 17;
 
 static CGFloat hudWidth = 50;
 static CGFloat hudHeight = 50;
@@ -57,15 +48,17 @@ static CGFloat const edgeOffset = 10;
 static CGFloat const imageOffset = 40;
 
 static CGRect stringRect;
+static UIColor *WSProgressHUDForeGroundColor;
+static UIImage *WSProgressHUDSuccessImage;
+static UIImage *WSProgressHUDErrorImage;
+
 
 @implementation WSProgressHUD
-{
-    WSProgressHUDMaskType _maskType;
-    BOOL _onlyShowString;
-}
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+
 + (WSProgressHUD *)shareInstance {
     static dispatch_once_t once;
     static WSProgressHUD *shareView;
@@ -136,20 +129,13 @@ static CGRect stringRect;
                         options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.hudView.transform = CGAffineTransformScale(self.hudView.transform, .8, .8);
-                         
-                         //                         if(self.isClear) // handle iOS 7 and 8 UIToolbar which not answers well to hierarchy opacity change
                          self.hudView.alpha = 0;
-                         //                         else
-                         //                             self.alpha = 1;
                      }
                      completion:^(BOOL finished){
                          self.hudView.transform = CGAffineTransformIdentity;
                         [self.overlayView removeFromSuperview];
-                         
                          objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
                          objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
-                         
-                         
                      }];
 }
 
@@ -217,7 +203,7 @@ static CGRect stringRect;
     
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
     
-    self.imageView.image = image;
+    self.imageView.image = WSProgressHUDSuccessImage;
     
     [self addOverlayViewToWindow];
     
@@ -289,7 +275,6 @@ static CGRect stringRect;
         }
 #endif
     } else {
-        // Ensure that overlay will be exactly on top of rootViewController (which may be changed during runtime).
         [self.overlayView.superview bringSubviewToFront:self.overlayView];
     }
     
@@ -378,16 +363,12 @@ static CGRect stringRect;
                 
                 hudWidth = stringWidth + edgeOffset;
                 
-                if (hudWidth < 120) {
-                    hudWidth = 120; //设置最小
-                }
+                hudWidth = hudWidth < 100 ? 120 : hudWidth + 10;
                 
-                if (hudHeight < 100) {
-                    hudHeight = 100;
-                }
+                hudHeight = hudHeight < 80 ? 100 : hudHeight + 10;
    
             } else {
-                hudHeight = stringHeight + edgeOffset + 15;
+                hudHeight = stringHeight + edgeOffset + 10;
                 hudWidth = stringWidth + edgeOffset + 20;
             }
             
@@ -446,7 +427,7 @@ static CGRect stringRect;
                 
                 stringRect.origin.y = imageOffset;
                 
-                self.imageView.frame = CGRectMake(0, 0, 50, 50);
+                self.imageView.frame = CGRectMake(0, 0, 40, 40);
                 
                 [self.indicatorView stopAnimating];
                 
@@ -477,18 +458,18 @@ static CGRect stringRect;
 - (void)showHUDViewWithAnimation
 {
 
-    if (_maskType != WSProgressHUDMaskTypeDefault) {
+    if (self.maskType != WSProgressHUDMaskTypeDefault) {
         self.overlayView.userInteractionEnabled = YES;
     } else {
         self.overlayView.userInteractionEnabled = NO;
     }
-    self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.3, 1.3);
+    self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.2, 1.2);
     
-    [UIView animateWithDuration:0.15
+    [UIView animateWithDuration:0.2
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.3, 1/1.3);
+                         self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.2, 1/1.2);
                          
                          //                         if(self.isClear) // handle iOS 7 and 8 UIToolbar which not answers well to hierarchy opacity change
                          self.hudView.alpha = 1;
@@ -503,22 +484,21 @@ static CGRect stringRect;
     
 }
 
-- (CAShapeLayer *)createRingLayerWithCenter:(CGPoint)center radius:(CGFloat)radius lineWidth:(CGFloat)lineWidth color:(UIColor *)color {
+- (UIImage *)image:(UIImage *)image withTintColor:(UIColor *)color{
+    CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    [image drawInRect:rect];
+    CGContextSetFillColorWithColor(c, [color CGColor]);
+    CGContextSetBlendMode(c, kCGBlendModeSourceAtop);
+    CGContextFillRect(c, rect);
+    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
-    UIBezierPath* smoothedPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(radius, radius) radius:radius startAngle:-M_PI_2 endAngle:(M_PI + M_PI_2) clockwise:YES];
-    
-    CAShapeLayer *slice = [CAShapeLayer layer];
-    slice.contentsScale = [[UIScreen mainScreen] scale];
-    slice.frame = CGRectMake(center.x-radius, center.y-radius, radius*2, radius*2);
-    slice.fillColor = [UIColor clearColor].CGColor;
-    slice.strokeColor = color.CGColor;
-    slice.lineWidth = lineWidth;
-    slice.lineCap = kCALineCapRound;
-    slice.lineJoin = kCALineJoinBevel;
-    slice.path = smoothedPath.CGPath;
-    
-    return slice;
+    return tintedImage;
 }
+
+
 
 - (void)setTimer:(NSTimer *)timer
 {
@@ -536,6 +516,22 @@ static CGRect stringRect;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        WSProgressHUDForeGroundColor = [UIColor redColor];
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSURL *bundleUrl = [bundle URLForResource:@"WSProgressBundle" withExtension:@"bundle"];
+        NSBundle *imageBundle = [NSBundle bundleWithURL:bundleUrl];
+        
+        UIImage *successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success" ofType:@"png"]];
+        UIImage *failurImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error" ofType:@"png"]];
+        
+        if ([[UIImage class] instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
+            WSProgressHUDSuccessImage = [successImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            WSProgressHUDErrorImage = [failurImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        } else {
+            WSProgressHUDErrorImage = failurImage;
+            WSProgressHUDSuccessImage = successImage;
+        }
+        
         [self addSubview:self.hudView];
         [self.hudView addSubview:self.indicatorView];
         [self.hudView addSubview:self.shimmeringView];
@@ -557,6 +553,7 @@ static CGRect stringRect;
         _hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
         _hudView.layer.cornerRadius = 3.5;
         _hudView.layer.masksToBounds = YES;
+        _hudView.contentScaleFactor = [UIScreen mainScreen].scale;
     }
     return _hudView;
 }
@@ -574,7 +571,13 @@ static CGRect stringRect;
     if (!_labelView) {
         _labelView = [[UILabel alloc] initWithFrame:CGRectZero];
         _labelView.textColor = [UIColor whiteColor];
-        _labelView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        
+        if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
+            _labelView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        } else {
+            _labelView.font = [UIFont systemFontOfSize:14];
+        }
+
         _labelView.adjustsFontSizeToFitWidth = YES;
         _labelView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _labelView.textAlignment = NSTextAlignmentLeft;
@@ -592,6 +595,7 @@ static CGRect stringRect;
         _shimmeringView.shimmeringSpeed = 100;
         _shimmeringView.shimmeringOpacity = 1;
         _shimmeringView.shimmeringAnimationOpacity = 0.3;
+        _shimmeringView.layer.contentsScale = [UIScreen mainScreen].scale;
     }
     return _shimmeringView;
 }
@@ -600,7 +604,12 @@ static CGRect stringRect;
     if (!_shimmeringLabel) {
         _shimmeringLabel = [[UILabel alloc] initWithFrame:self.shimmeringView.bounds];
         _shimmeringLabel.textColor = [UIColor whiteColor];
-        _shimmeringLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
+            _shimmeringLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+        } else {
+            _shimmeringLabel.font = [UIFont systemFontOfSize:14];
+        }
+        _shimmeringLabel.contentScaleFactor = [UIScreen mainScreen].scale;
         _shimmeringLabel.adjustsFontSizeToFitWidth = YES;
         _shimmeringLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _shimmeringLabel.textAlignment = NSTextAlignmentLeft;
@@ -620,23 +629,16 @@ static CGRect stringRect;
     return _overlayView;
 }
 
-
-//- (WSIndefiniteAnimationView *)indefiniteAnimatedView {
-//    if (_indefiniteAnimatedView == nil) {
-//        _indefiniteAnimatedView = [[WSIndefiniteAnimationView alloc] initWithFrame:CGRectZero];
-//        _indefiniteAnimatedView.strokeThickness = ws;
-//        _indefiniteAnimatedView.strokeColor = SVProgressHUDForegroundColor;
-//        _indefiniteAnimatedView.radius = self.labelView.text ? SVProgressHUDRingRadius : SVProgressHUDRingNoTextRadius;
-//        [_indefiniteAnimatedView sizeToFit];
-//    }
-//    return _indefiniteAnimatedView;
-//}
-
 - (UIImageView *)imageView
 {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imageView.hidden = YES;
+        if ([_imageView respondsToSelector:@selector(setTintColor:)]) {
+            [_imageView setTintColor:WSProgressHUDForeGroundColor];
+        } else {
+            
+        }
     }
     return _imageView;
 }
@@ -660,6 +662,8 @@ static CGRect stringRect;
 {
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
+
+
 
 
 - (CGFloat)visibleKeyboardHeight {

@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, WSProgressHUDMaskType) {
 + (void)showImage:(UIImage *)image title:(NSString *)title;
 + (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType;
 
+//+ (void)showSuccessWithString: (NSString *)string;
 + (void)dismiss;
 
 @end

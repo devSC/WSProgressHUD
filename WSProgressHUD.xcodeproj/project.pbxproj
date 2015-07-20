@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		52038DED1B5CA67400F37CEE /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */; };
 		52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */; };
-		52038DFF1B5CD3E100F37CEE /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFD1B5CD3E100F37CEE /* error@2x.png */; };
-		52038E001B5CD3E100F37CEE /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038DFE1B5CD3E100F37CEE /* success@2x.png */; };
-		52038E021B5CFAD200F37CEE /* angle-mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52038E011B5CFAD200F37CEE /* angle-mask@3x.png */; };
 		52038E041B5CFADB00F37CEE /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52038E031B5CFADB00F37CEE /* image1.jpg */; };
 		FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */; };
+		FED428D61B5D4754002A5294 /* WSProgressBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FED428D51B5D4753002A5294 /* WSProgressBundle.bundle */; };
 		FEDB74A11B593589003DDB79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A01B593589003DDB79 /* main.m */; };
 		FEDB74A41B593589003DDB79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A31B593589003DDB79 /* AppDelegate.m */; };
 		FEDB74A71B593589003DDB79 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A61B593589003DDB79 /* ViewController.m */; };
@@ -39,12 +37,10 @@
 		52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSProgressHUD.h; sourceTree = "<group>"; };
 		52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUD.m; sourceTree = "<group>"; };
 		52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_6584.png; sourceTree = "<group>"; };
-		52038DFD1B5CD3E100F37CEE /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
-		52038DFE1B5CD3E100F37CEE /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
-		52038E011B5CFAD200F37CEE /* angle-mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angle-mask@3x.png"; sourceTree = "<group>"; };
 		52038E031B5CFADB00F37CEE /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = SOURCE_ROOT; };
 		FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = SOURCE_ROOT; };
+		FED428D51B5D4753002A5294 /* WSProgressBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WSProgressBundle.bundle; sourceTree = "<group>"; };
 		FEDB749B1B593589003DDB79 /* WSProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDB749F1B593589003DDB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEDB74A01B593589003DDB79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,11 +83,11 @@
 		52038DEA1B5CA67400F37CEE /* WSProgress */ = {
 			isa = PBXGroup;
 			children = (
+				FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */,
+				FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */,
 				52038DEB1B5CA67400F37CEE /* WSProgressHUD.h */,
 				52038DEC1B5CA67400F37CEE /* WSProgressHUD.m */,
-				52038E011B5CFAD200F37CEE /* angle-mask@3x.png */,
-				52038DFD1B5CD3E100F37CEE /* error@2x.png */,
-				52038DFE1B5CD3E100F37CEE /* success@2x.png */,
+				FED428D51B5D4753002A5294 /* WSProgressBundle.bundle */,
 			);
 			path = WSProgress;
 			sourceTree = "<group>";
@@ -122,8 +118,6 @@
 				FEDB74A31B593589003DDB79 /* AppDelegate.m */,
 				FEDB74A51B593589003DDB79 /* ViewController.h */,
 				FEDB74A61B593589003DDB79 /* ViewController.m */,
-				FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */,
-				FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */,
 				52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */,
 				FEDB74A81B593589003DDB79 /* Main.storyboard */,
 				52038E031B5CFADB00F37CEE /* image1.jpg */,
@@ -254,13 +248,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED428D61B5D4754002A5294 /* WSProgressBundle.bundle in Resources */,
 				FEDB74AA1B593589003DDB79 /* Main.storyboard in Resources */,
-				52038DFF1B5CD3E100F37CEE /* error@2x.png in Resources */,
-				52038E001B5CD3E100F37CEE /* success@2x.png in Resources */,
 				FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */,
 				52038DFC1B5CA9DA00F37CEE /* IMG_6584.png in Resources */,
 				52038E041B5CFADB00F37CEE /* image1.jpg in Resources */,
-				52038E021B5CFAD200F37CEE /* angle-mask@3x.png in Resources */,
 				FEDB74AC1B593589003DDB79 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

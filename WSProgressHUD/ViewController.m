@@ -41,7 +41,9 @@
     [WSProgressHUD showWithString:@"WSProgressHUD刷新中..."];
 }
 - (IBAction)showImage:(id)sender {
-    [WSProgressHUD showImage:nil title:@"WSProgressHUD获取成功"];
+//    [WSProgressHUD showImage:nil title:@"WSProgressHUD获取成功"];
+    [WSProgressHUD showImage:[UIImage imageNamed:@"error"] title:@"WSProgressHUD获取成功"];
+
 }
 
 - (IBAction)dismiss:(id)sender {
