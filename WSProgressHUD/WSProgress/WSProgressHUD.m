@@ -298,6 +298,9 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
                          }
                          completion:^(BOOL finished){
                              objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(0), OBJC_ASSOCIATION_ASSIGN);
+                             if (self.hudType == WSProgressHUDTypeString) {
+                                 [self.shimmeringView setShimmering:YES];
+                             }
                          }];
     }
    
@@ -326,6 +329,9 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
                          objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
                          objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(1), OBJC_ASSOCIATION_ASSIGN);
                          
+                         if (self.hudType == WSProgressHUDTypeString) {
+                             [self.shimmeringView setShimmering:NO];
+                         }
                          [self.timer invalidate];
                          self.timer = nil;
                      }];
@@ -408,9 +414,8 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
     
     self.shimmeringView.hidden = YES;
     self.labelView.hidden = YES;
-//    self.indicatorView.hidden = YES;
-    [self startIndicatorAnimation:NO];
     self.imageView.hidden = YES;
+    [self startIndicatorAnimation:NO];
     
     
     switch (self.hudType) {
@@ -499,10 +504,7 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
             [self setShimmeringLabelSize:WSProgressHUDStringRect.size];
             
             self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
-//            [self.indicatorView stopAnimating];
             [self startIndicatorAnimation:NO];
-
-
         }break;
 
         case WSProgressHUDTypeImage: {
@@ -512,7 +514,6 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
                 
                 WSProgressHUDStringRect.origin.y = imageOffset;
                 
-//                [self.indicatorView stopAnimating];
                 [self startIndicatorAnimation:NO];
                 
                 self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
@@ -601,7 +602,6 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
     CGRect rect = self.frame;
     rect.size = self.overlayView.frame.size;
     self.frame = rect;
-//    NSLog(@"%@", self.overlayView);
 }
 
 
@@ -743,7 +743,6 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
         } else {
             _labelView.font = [UIFont systemFontOfSize:14];
         }
-
         _labelView.adjustsFontSizeToFitWidth = YES;
         _labelView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _labelView.textAlignment = NSTextAlignmentLeft;
@@ -755,9 +754,7 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
 {
     if (!_shimmeringView) {
         _shimmeringView = [[FBShimmeringView alloc] initWithFrame:CGRectZero];
-        _shimmeringView.shimmering = YES;
         _shimmeringView.shimmeringBeginFadeDuration = 0.8;
-        _shimmeringView.shimmeringBeginTime = WSProgressHUDShowDuration;
         _shimmeringView.shimmeringSpeed = 100;
         _shimmeringView.shimmeringOpacity = 1;
         _shimmeringView.shimmeringAnimationOpacity = 0.3;
