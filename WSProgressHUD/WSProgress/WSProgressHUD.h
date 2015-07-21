@@ -23,8 +23,10 @@ typedef NS_ENUM(NSInteger, WSProgressHUDMaskWithoutType) { //
 };
 
 typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
+    WSProgressHUDIndicatorMMSpinner,
     WSProgressHUDIndicatorCustom,
     WSProgressHUDIndicatorSmallLight,
+    WSProgressHUDIndicatorBigWhite,
 };
 
 

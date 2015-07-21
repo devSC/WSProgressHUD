@@ -26,20 +26,32 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)show:(id)sender {
-    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorMMSpinner];
     [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [WSProgressHUD dismiss];
     });
 }
 
 - (IBAction)showOnlyString:(id)sender {
-    [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..."];
+//    [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..."];
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
+    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WSProgressHUD dismiss];
+    });
+
     
 }
 - (IBAction)showWithString:(id)sender {
 //    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorSmallLight];
     [WSProgressHUD showWithString:@"刷新中,请等待..."];
+//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorSmallLight];
+//    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [WSProgressHUD dismiss];
+//    });
+
 }
 - (IBAction)showImage:(id)sender {
     [WSProgressHUD showSuccessWithString:@"I was not delivered unto this world in defeat, nor does failure course in my veins. I am not a sheep waiting to be prodded by my shepherd. I am a lion and I refuse to talk, to walk, to sleep with the sheep. I will hear not those who weep and complain, for their disease is contagious. Let them join the sheep. The slaughterhouse of failure is not my destiny."];

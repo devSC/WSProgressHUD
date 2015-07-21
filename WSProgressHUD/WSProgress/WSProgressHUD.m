@@ -10,6 +10,7 @@
 #import "FBShimmeringView.h"
 #import <objc/runtime.h>
 #import "WSIndefiniteAnimationView.h"
+#import "MMMaterialDesignSpinner.h"
 
 typedef NS_ENUM(NSInteger, WSProgressHUDType) {
     WSProgressHUDTypeStatus,
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 
 @property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimationView;
 
+@property (strong, nonatomic) MMMaterialDesignSpinner *spinnerView;
 @end
 
 static CGFloat stringWidth = 0.0f;
@@ -62,6 +64,8 @@ static CGFloat WSProgressHUDShowDuration = 0.3;
 static CGFloat WSProgressHUDDismissDuration = 0.3;
 static CGFloat const WSProgressHUDWidthEdgeOffset = 20;
 static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
+static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
+
 
 
 
@@ -290,13 +294,10 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
                             options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
                              self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.2, 1/1.2);
-                             
-                             //                         if(self.isClear) // handle iOS 7 and 8 UIToolbar which not answers well to hierarchy opacity change
                              self.hudView.alpha = 1;
-                             //                         else
-                             //                             self.alpha = 1;
                          }
                          completion:^(BOOL finished){
+                             
                              objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(0), OBJC_ASSOCIATION_ASSIGN);
                              if (self.hudType == WSProgressHUDTypeString) {
                                  [self.shimmeringView setShimmering:YES];
@@ -450,7 +451,7 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
                 WSProgressHUDDefaultHeight = stringHeight + imageOffset + WSProgressHUDHeightEdgeOffset;
                 self.imageView.hidden = NO;
                 
-                WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDWidthEdgeOffset;
+                WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDImageTypeWidthEdgeOffset;
                 
                 WSProgressHUDDefaultWidth = WSProgressHUDDefaultWidth < 100 ? 120 : WSProgressHUDDefaultWidth + 10;
                 
@@ -458,7 +459,7 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
    
             } else {
                 WSProgressHUDDefaultHeight = stringHeight + WSProgressHUDHeightEdgeOffset;
-                WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDWidthEdgeOffset;
+                WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDImageTypeWidthEdgeOffset;
             }
             
         } break;
@@ -490,11 +491,11 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
             [self startIndicatorAnimation:YES];
     
             if (string) {
-                self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
+                self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
                 self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
                 
             } else {
-                self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
+                self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
             }
 
         }break;
@@ -541,6 +542,7 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
     switch (self.indicatorStyle) {
         case WSProgressHUDIndicatorSmallLight: {
             self.indefiniteAnimationView.hidden = YES;
+            self.spinnerView.hidden = YES;
             if (start) {
                 [self.indicatorView startAnimating];
             } else {
@@ -549,11 +551,22 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
         }break;
         case WSProgressHUDIndicatorCustom: {
             [self.indicatorView stopAnimating];
+            self.spinnerView.hidden = YES;
             self.indicatorView.hidden = YES;
             if (start) {
                 self.indefiniteAnimationView.hidden = NO;
             } else {
                 self.indefiniteAnimationView.hidden = YES;
+            }
+        }break;
+        case WSProgressHUDIndicatorMMSpinner: {
+            self.indicatorView.hidden = YES;
+            self.indefiniteAnimationView.hidden = YES;
+            if (start) {
+                self.spinnerView.hidden = NO;
+                [self.spinnerView startAnimating];
+            } else {
+                self.spinnerView.hidden = YES;
             }
         }break;
         default:
@@ -702,6 +715,7 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
         [self.hudView addSubview:self.shimmeringView];
         [self.hudView addSubview:self.labelView];
         [self.hudView addSubview:self.imageView];
+        [self.hudView addSubview:self.spinnerView];
         
         self.shimmeringView.contentView = self.shimmeringLabel;
         
@@ -816,6 +830,16 @@ static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
         [_indefiniteAnimationView sizeToFit];
     }
     return _indefiniteAnimationView;
+}
+
+- (MMMaterialDesignSpinner *)spinnerView
+{
+    if (!_spinnerView) {
+        _spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
+        _spinnerView.bounds = CGRectMake(0, 0, 20, 20);
+        _spinnerView.tintColor = WSProgressHUDForeGroundColor;
+    }
+    return _spinnerView;
 }
 
 
