@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="2AE91FB4-4D29-49EE-BF4F-9FDAC2591326" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="81824BEA-AA15-4E7D-96E3-9FACD9FBB3EA" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDa-Uw-ahE">
@@ -42,7 +42,7 @@
                                     <color key="titleColor" red="0.62837357954545459" green="0.1702536656212936" blue="0.20819928553108161" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6FN-zj-A8p"/>
+                                    <action selector="showWithString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iiz-66-hjf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8m-Cd-Je5">
@@ -78,7 +78,7 @@
                                     <color key="titleColor" red="0.62837357949999995" green="0.17025366559999999" blue="0.2081992855" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="showImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TQl-SK-svx"/>
+                                    <action selector="showString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9KH-ZB-c6h"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuY-QD-xVq">
@@ -132,7 +132,7 @@
                                     <color key="titleColor" red="0.62837357949999995" green="0.17025366559999999" blue="0.2081992855" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="showNoString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ish-fx-jKc"/>
+                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oB1-tt-Dpd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -286,7 +286,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2AE91FB4-4D29-49EE-BF4F-9FDAC2591326" width="1280" height="720">
+        <image name="81824BEA-AA15-4E7D-96E3-9FACD9FBB3EA" width="1280" height="720">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

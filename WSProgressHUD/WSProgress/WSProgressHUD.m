@@ -41,24 +41,27 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 
 @end
 
-static CGFloat hudWidth = 50;
-static CGFloat hudHeight = 50;
-
 static CGFloat stringWidth = 0.0f;
 static CGFloat stringHeight = 0.0f;
 
-static CGFloat const edgeOffset = 10;
 static CGFloat const imageOffset = 40;
 
 static CGFloat maskTopEdge = 0;
 static CGFloat maskBottomEdge = 0;
 
-static CGRect stringRect;
+static CGFloat WSProgressHUDDefaultWidth = 50;
+static CGFloat WSProgressHUDDefaultHeight = 50;
+
+static CGRect WSProgressHUDStringRect;
 static UIColor *WSProgressHUDForeGroundColor;
 static UIImage *WSProgressHUDSuccessImage;
 static UIImage *WSProgressHUDErrorImage;
 
 static CGFloat WSProgressHUDRingThickness = 2;
+static CGFloat WSProgressHUDShowDuration = 0.3;
+static CGFloat WSProgressHUDDismissDuration = 0.3;
+static CGFloat const WSProgressHUDWidthEdgeOffset = 20;
+static CGFloat const WSProgressHUDHeightEdgeOffset = 10;
 
 
 
@@ -225,7 +228,7 @@ static CGFloat WSProgressHUDRingThickness = 2;
     
     [self showHUDViewWithAnimation];
     
-    self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+    self.timer = [NSTimer timerWithTimeInterval:[self displayDurationForString:title] target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
     
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 
@@ -280,10 +283,9 @@ static CGFloat WSProgressHUDRingThickness = 2;
         self.overlayView.userInteractionEnabled = NO;
     }
     if (self.hudView.alpha == 0) {
-        self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.2, 1.2);
         
-
-        [UIView animateWithDuration:0.2
+        self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.2, 1.2);
+        [UIView animateWithDuration:WSProgressHUDShowDuration
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
@@ -305,12 +307,12 @@ static CGFloat WSProgressHUDRingThickness = 2;
 
 - (void)dismiss
 {
-    if (self.hudAlreadyDismiss) {
+    if (self.hudAlreadyDismiss || self.hudView.alpha != 1) {
         return;
     }
     
     self.hudView.transform = CGAffineTransformIdentity;
-    [UIView animateWithDuration:0.2
+    [UIView animateWithDuration:WSProgressHUDDismissDuration
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
@@ -371,10 +373,10 @@ static CGFloat WSProgressHUDRingThickness = 2;
 - (CGSize)hudSizeWithString: (NSString *)string
 {
     
-    stringRect = CGRectZero;
+    WSProgressHUDStringRect = CGRectZero;
     
-    hudHeight = 50;
-    hudWidth = 50;
+    WSProgressHUDDefaultHeight = 50;
+    WSProgressHUDDefaultWidth = 50;
     
     UILabel *contentLabel = self.onlyShowTitle ? self.shimmeringLabel : self.labelView;
     
@@ -382,7 +384,7 @@ static CGFloat WSProgressHUDRingThickness = 2;
     
     // > iOS7
     if ([string respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-        stringRect.size = [string boundingRectWithSize:constraintSize
+        WSProgressHUDStringRect.size = [string boundingRectWithSize:constraintSize
                                                options:(NSStringDrawingOptions)(NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin)
                                             attributes:@{NSFontAttributeName: contentLabel.font}
                                                context:NULL].size;
@@ -397,11 +399,11 @@ static CGFloat WSProgressHUDRingThickness = 2;
             stringSize = [string sizeWithFont:contentLabel.font constrainedToSize:constraintSize];
 #pragma clang diagnostic pop
         }
-        stringRect.size = stringSize;
+        WSProgressHUDStringRect.size = stringSize;
     }
     
-    stringWidth =  ceilf(stringRect.size.width);
-    stringHeight = ceilf(stringRect.size.height);
+    stringWidth =  ceilf(WSProgressHUDStringRect.size.width);
+    stringHeight = ceilf(WSProgressHUDStringRect.size.height);
     
     
     self.shimmeringView.hidden = YES;
@@ -413,14 +415,11 @@ static CGFloat WSProgressHUDRingThickness = 2;
     
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
-            [self startIndicatorAnimation:YES];
-//                self.indicatorView.hidden = NO;
-
             if (string) {
                 self.labelView.hidden = NO;
                 self.labelView.text = string;
-                hudWidth = stringWidth + 40; // indicationWidth = 40
-                hudHeight = stringHeight + edgeOffset;
+                WSProgressHUDDefaultWidth = stringWidth + 40; // indicationWidth = 40
+                WSProgressHUDDefaultHeight = stringHeight + WSProgressHUDHeightEdgeOffset;
             }  else {
                 self.shimmeringView.hidden = YES;
                 self.labelView.hidden = YES;
@@ -429,8 +428,8 @@ static CGFloat WSProgressHUDRingThickness = 2;
         } break;
             
         case WSProgressHUDTypeString: {
-            hudWidth = stringWidth + edgeOffset; // indicationWidth = 40
-            hudHeight = stringHeight + edgeOffset;
+            WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDWidthEdgeOffset; // indicationWidth = 40
+            WSProgressHUDDefaultHeight = stringHeight + WSProgressHUDHeightEdgeOffset;
             
             self.shimmeringView.hidden = NO;
             self.shimmeringLabel.text = string;
@@ -443,18 +442,18 @@ static CGFloat WSProgressHUDRingThickness = 2;
             
             if (self.imageView.image) {
                 
-                hudHeight = stringHeight + imageOffset + edgeOffset;
+                WSProgressHUDDefaultHeight = stringHeight + imageOffset + WSProgressHUDHeightEdgeOffset;
                 self.imageView.hidden = NO;
                 
-                hudWidth = stringWidth + edgeOffset;
+                WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDWidthEdgeOffset;
                 
-                hudWidth = hudWidth < 100 ? 120 : hudWidth + 10;
+                WSProgressHUDDefaultWidth = WSProgressHUDDefaultWidth < 100 ? 120 : WSProgressHUDDefaultWidth + 10;
                 
-                hudHeight = hudHeight < 80 ? 100 : hudHeight + 10;
+                WSProgressHUDDefaultHeight = WSProgressHUDDefaultHeight < 80 ? 100 : WSProgressHUDDefaultHeight + 10;
    
             } else {
-                hudHeight = stringHeight + edgeOffset + 10;
-                hudWidth = stringWidth + edgeOffset + 20;
+                WSProgressHUDDefaultHeight = stringHeight + WSProgressHUDHeightEdgeOffset;
+                WSProgressHUDDefaultWidth = stringWidth + WSProgressHUDWidthEdgeOffset;
             }
             
         } break;
@@ -463,7 +462,7 @@ static CGFloat WSProgressHUDRingThickness = 2;
             break;
     }
 
-    return CGSizeMake(hudWidth, hudHeight);
+    return CGSizeMake(WSProgressHUDDefaultWidth, WSProgressHUDDefaultHeight);
 }
 
 - (void)updateSubviewsPositionWithString: (NSString *)string
@@ -481,25 +480,23 @@ static CGFloat WSProgressHUDRingThickness = 2;
 
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
-            self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
+            self.labelView.frame = WSProgressHUDStringRect;//设置完hud的frame后需要重新设置
             
             [self startIndicatorAnimation:YES];
+    
             if (string) {
                 self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
                 self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-//                [self.indicatorView startAnimating];
                 
             } else {
                 self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
-//                self.indicatorView.hidden = YES;
-//                [self startIndicatorAnimation:NO];
             }
 
         }break;
        
         case WSProgressHUDTypeString: {
-            self.shimmeringView.frame = stringRect;//设置完hud的frame后需要重新设置
-            [self setShimmeringLabelSize:stringRect.size];
+            self.shimmeringView.frame = WSProgressHUDStringRect;//设置完hud的frame后需要重新设置
+            [self setShimmeringLabelSize:WSProgressHUDStringRect.size];
             
             self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
 //            [self.indicatorView stopAnimating];
@@ -510,10 +507,10 @@ static CGFloat WSProgressHUDRingThickness = 2;
 
         case WSProgressHUDTypeImage: {
             
-            self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
+            self.labelView.frame = WSProgressHUDStringRect;//设置完hud的frame后需要重新设置
             if (self.imageView.image) {
                 
-                stringRect.origin.y = imageOffset;
+                WSProgressHUDStringRect.origin.y = imageOffset;
                 
 //                [self.indicatorView stopAnimating];
                 [self startIndicatorAnimation:NO];
@@ -635,6 +632,11 @@ static CGFloat WSProgressHUDRingThickness = 2;
     _timer = timer;
 }
 
+- (NSTimeInterval)displayDurationForString:(NSString*)string {
+    return MIN((float)string.length*0.06 + 0.5, 4.0);
+}
+
+
 
 
 - (CGFloat)visibleKeyboardHeight {
@@ -716,6 +718,7 @@ static CGFloat WSProgressHUDRingThickness = 2;
         _hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
         _hudView.layer.cornerRadius = 3.5;
         _hudView.layer.masksToBounds = YES;
+        _hudView.alpha = 0;
         _hudView.contentScaleFactor = [UIScreen mainScreen].scale;
     }
     return _hudView;
@@ -754,6 +757,7 @@ static CGFloat WSProgressHUDRingThickness = 2;
         _shimmeringView = [[FBShimmeringView alloc] initWithFrame:CGRectZero];
         _shimmeringView.shimmering = YES;
         _shimmeringView.shimmeringBeginFadeDuration = 0.8;
+        _shimmeringView.shimmeringBeginTime = WSProgressHUDShowDuration;
         _shimmeringView.shimmeringSpeed = 100;
         _shimmeringView.shimmeringOpacity = 1;
         _shimmeringView.shimmeringAnimationOpacity = 0.3;
