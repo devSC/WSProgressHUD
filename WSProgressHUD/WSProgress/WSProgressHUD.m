@@ -47,14 +47,19 @@ static CGFloat stringHeight = 0.0f;
 static CGFloat const edgeOffset = 10;
 static CGFloat const imageOffset = 40;
 
+static CGFloat maskTopEdge = 0;
+static CGFloat maskBottomEdge = 0;
+
 static CGRect stringRect;
 static UIColor *WSProgressHUDForeGroundColor;
 static UIImage *WSProgressHUDSuccessImage;
 static UIImage *WSProgressHUDErrorImage;
 
 
+
 @implementation WSProgressHUD
 
+#define kScreenScale(v) (kScreenWidth / 320 * v)
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
@@ -70,18 +75,23 @@ static UIImage *WSProgressHUDErrorImage;
 }
 
 
+#pragma mark - Show
 + (void)show {
     [self showWithMaskType:WSProgressHUDMaskTypeDefault];
 }
 
-
 + (void)showWithMaskType: (WSProgressHUDMaskType)maskType
 {
-    [[self shareInstance] showWithMaskType:maskType];
+    [self showWithMaskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
+}
+
++ (void)showWithMaskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    [[self shareInstance] showWithMaskType:maskType maskWithout:withoutType];
 }
 
 
-
+#pragma mark - Show with string
 + (void)showWithString:(NSString *)string
 {
     [self showWithString:string maskType:WSProgressHUDMaskTypeDefault];
@@ -89,9 +99,26 @@ static UIImage *WSProgressHUDErrorImage;
 
 + (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
 {
-    [[self shareInstance] showWithString:string maskType:maskType];
+    [self showWithString:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
++ (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    [[self shareInstance] showWithString:string maskType:maskType maskWithout:withoutType];
+}
+
+
+#pragma mark - Show image
+
++ (void)showSuccessWithString: (NSString *)string
+{
+    [self showImage:WSProgressHUDSuccessImage title:string];
+}
+
++ (void)showErrorWithString: (NSString *)string
+{
+    [self showImage:WSProgressHUDErrorImage title:string];
+}
 
 
 + (void)showImage:(UIImage *)image title:(NSString *)title
@@ -101,10 +128,18 @@ static UIImage *WSProgressHUDErrorImage;
 
 + (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType
 {
-    [[self shareInstance] showImage:image title:title maskType:maskType];
+//    [[self shareInstance] showImage:image title:title maskType:maskType];
+    [self showImage:image title:title maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
 
++ (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    [[self shareInstance] showImage:image title:title maskType:maskType maskWithout:withoutType];
+}
+
+
+#pragma mark - Only String
 + (void)showOnlyString: (NSString *)string
 {
     [self showOnlyString:string maskType:WSProgressHUDMaskTypeDefault];
@@ -112,41 +147,30 @@ static UIImage *WSProgressHUDErrorImage;
 
 + (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
 {
-    [[self shareInstance] showOnlyString:string maskType:maskType];
+    [self showOnlyString:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
++ (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    [[self shareInstance] showOnlyString:string maskType:maskType maskWithout:withoutType];
+}
+
 
 + (void)dismiss {
     [[self shareInstance] dismiss];
 }
 
 
-#pragma mark - Show method
-- (void)dismiss
+#pragma mark - Show & dismiss method
+
+- (void)showWithMaskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    self.hudView.transform = CGAffineTransformIdentity;
-    [UIView animateWithDuration:0.15
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         self.hudView.transform = CGAffineTransformScale(self.hudView.transform, .8, .8);
-                         self.hudView.alpha = 0;
-                     }
-                     completion:^(BOOL finished){
-                         self.hudView.transform = CGAffineTransformIdentity;
-                        [self.overlayView removeFromSuperview];
-                         objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
-                         objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
-                     }];
+    [self showWithString:nil maskType:maskType maskWithout:withoutType];
 }
 
+/*
 - (void)showWithString:(NSString *)string
 {
-    [self showWithString:string maskType:WSProgressHUDMaskTypeDefault];
-}
-
-- (void)showWithMaskType: (WSProgressHUDMaskType)maskType
-{
-    [self showWithString:nil maskType:maskType];
+    [self showWithString:string maskType:WSProgressHUDMaskTypeDefault maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
 
@@ -157,26 +181,13 @@ static UIImage *WSProgressHUDErrorImage;
 }
 
 
-
 - (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
 {
-    objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeStatus), OBJC_ASSOCIATION_ASSIGN);
-    
-    [self addOverlayViewToWindow];
-    
-    self.labelView.text = string;
-    
-    [self updateSubviewsPositionWithString:string];
-    
-    [self showHUDViewWithAnimation];
+   
 }
-
-
-
 - (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
 {
-
+    
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
     
@@ -194,7 +205,6 @@ static UIImage *WSProgressHUDErrorImage;
 }
 
 
-
 - (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType
 {
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
@@ -203,7 +213,7 @@ static UIImage *WSProgressHUDErrorImage;
     
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
     
-    self.imageView.image = WSProgressHUDSuccessImage;
+    self.imageView.image = image;
     
     [self addOverlayViewToWindow];
     
@@ -216,6 +226,69 @@ static UIImage *WSProgressHUDErrorImage;
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
+*/
+
+- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeStatus), OBJC_ASSOCIATION_ASSIGN);
+    
+    objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
+    
+    [self addOverlayViewToWindow];
+    
+    self.labelView.text = string;
+    
+    [self updateSubviewsPositionWithString:string];
+    
+    [self showHUDViewWithAnimation];
+}
+
+
+- (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    
+    objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
+    if (string) {
+        objc_setAssociatedObject(self, @selector(onlyShowTitle), @(1), OBJC_ASSOCIATION_ASSIGN);
+        [self addOverlayViewToWindow];
+        
+        [self updateSubviewsPositionWithString:string];
+        
+        [self showHUDViewWithAnimation];
+        
+    } else {
+        [self showWithString:nil maskType:maskType maskWithout:withoutType];
+    }
+}
+
+
+- (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+{
+    objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
+    
+    objc_setAssociatedObject(self, @selector(showImage), @(1), OBJC_ASSOCIATION_ASSIGN);
+    
+    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
+    
+    objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
+    
+    self.imageView.image = image;
+    
+    [self addOverlayViewToWindow];
+    
+    [self updateSubviewsPositionWithString:title];
+    
+    [self showHUDViewWithAnimation];
+    
+    self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+
+}
+
 
 #pragma mark - Super Method
 - (void)drawRect:(CGRect)rect
@@ -223,8 +296,9 @@ static UIImage *WSProgressHUDErrorImage;
     switch (self.maskType) {
         case WSProgressHUDMaskTypeBlack: {
             CGContextRef context = UIGraphicsGetCurrentContext();
-            [UIColor colorWithWhite:0 alpha:0.5];
-            CGContextFillRect(context, self.bounds);
+            [UIColor colorWithWhite:0 alpha:0.2];
+            CGRect bounds = self.bounds;
+            CGContextFillRect(context, bounds);
         } break;
         case WSProgressHUDMaskTypeGradient: {
             CGContextRef context = UIGraphicsGetCurrentContext();
@@ -236,10 +310,12 @@ static UIImage *WSProgressHUDErrorImage;
             
             CGColorSpaceRelease(colorSpace);
             
-            CGFloat freeHeight = CGRectGetHeight(self.bounds) - self.visibleKeyboardHeight;
+            CGRect bounds = self.bounds;
             
-            CGPoint center = CGPointMake(CGRectGetWidth(self.bounds)/2, freeHeight/2);
-            float radius = MIN(CGRectGetWidth(self.bounds) , CGRectGetHeight(self.bounds)) ;
+            CGFloat freeHeight = CGRectGetHeight(bounds) - self.visibleKeyboardHeight;
+            
+            CGPoint center = CGPointMake(CGRectGetWidth(bounds)/2, freeHeight/2);
+            float radius = MIN(CGRectGetWidth(bounds) , CGRectGetHeight(bounds)) ;
             CGContextDrawRadialGradient (context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
             CGGradientRelease(gradient);
             
@@ -249,6 +325,33 @@ static UIImage *WSProgressHUDErrorImage;
             break;
     }
 }
+
+
+
+- (void)dismiss
+{
+    if (self.hudAlreadyDismiss) {
+        return;
+    }
+    
+    self.hudView.transform = CGAffineTransformIdentity;
+    [UIView animateWithDuration:0.15
+                          delay:0
+                        options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         self.hudView.transform = CGAffineTransformScale(self.hudView.transform, .8, .8);
+                         self.hudView.alpha = 0;
+                     }
+                     completion:^(BOOL finished){
+                         self.hudView.transform = CGAffineTransformIdentity;
+                         [self.overlayView removeFromSuperview];
+                         objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
+                         objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
+                         objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(1), OBJC_ASSOCIATION_ASSIGN);
+                     }];
+}
+
+
 
 #pragma mark - Pravite Method
 /*!
@@ -281,6 +384,8 @@ static UIImage *WSProgressHUDErrorImage;
     if (!self.superview) {
         [self.overlayView addSubview:self];
     }
+    
+    [self setMaskEdgeWithType:self.maskType];
 }
 
 - (CGSize)hudSizeWithString: (NSString *)string
@@ -293,7 +398,7 @@ static UIImage *WSProgressHUDErrorImage;
     
     UILabel *contentLabel = self.onlyShowTitle ? self.shimmeringLabel : self.labelView;
     
-    CGSize constraintSize = CGSizeMake(200.0f, 300.0f);
+    CGSize constraintSize = CGSizeMake(kScreenScale(220), kScreenScale(300));
     
     // > iOS7
     if ([string respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
@@ -381,13 +486,12 @@ static UIImage *WSProgressHUDErrorImage;
     return CGSizeMake(hudWidth, hudHeight);
 }
 
-
 - (void)updateSubviewsPositionWithString: (NSString *)string
 {
     CGSize hudSize = [self hudSizeWithString:string];
     
-    CGFloat centerX = kScreenWidth / 2;
-    CGFloat centerY = kScreenHeight / 2;
+    CGFloat centerX = self.frame.size.width / 2;
+    CGFloat centerY = self.frame.size.height / 2 - 20;
     
     self.hudView.bounds = CGRectMake(0, 0, hudSize.width, hudSize.height);
     self.hudView.center = CGPointMake(centerX, centerY);
@@ -405,7 +509,6 @@ static UIImage *WSProgressHUDErrorImage;
             } else {
                 self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
                 [self.indicatorView startAnimating];
-
             }
 
         }break;
@@ -427,13 +530,11 @@ static UIImage *WSProgressHUDErrorImage;
                 
                 stringRect.origin.y = imageOffset;
                 
-                self.imageView.frame = CGRectMake(0, 0, 40, 40);
-                
                 [self.indicatorView stopAnimating];
                 
-                self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 30);
+                self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
                 
-                self.imageView.center = CGPointMake(hudCenterX, hudCenterY - 10);
+                self.imageView.center = CGPointMake(hudCenterX, 30);
                 
                 
             } else {
@@ -477,12 +578,50 @@ static UIImage *WSProgressHUDErrorImage;
                          //                             self.alpha = 1;
                      }
                      completion:^(BOOL finished){
-                         
+                          objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(0), OBJC_ASSOCIATION_ASSIGN);
                      }];
     
     [self setNeedsDisplay];
     
 }
+
+- (void)setMaskEdgeWithType: (WSProgressHUDMaskType)maskType
+{
+    if (maskType != WSProgressHUDMaskTypeDefault) {
+        switch (self.withoutType) {
+            case WSProgressHUDMaskWithoutDefault: {
+                maskBottomEdge = 0;
+                maskTopEdge = 0;
+                
+            }break;
+            case WSProgressHUDMaskWithoutNavigation: {
+                maskBottomEdge = 0;
+                maskTopEdge = 64; //判断StatusBarHidden
+            }break;
+            case WSProgressHUDMaskWithoutTabbar: {
+                maskBottomEdge = 0;
+                maskTopEdge = 64;
+            }break;
+            case WSProgressHUDMaskWithoutNavAndTabbar: {
+                maskBottomEdge = 49;
+                maskTopEdge = 64;
+            }break;
+                
+            default:
+                break;
+        }
+    } else {
+        maskBottomEdge = 0;
+        maskTopEdge = 0;
+    }
+    self.overlayView.frame = CGRectMake(0, maskTopEdge, kScreenWidth, kScreenHeight - maskTopEdge - maskBottomEdge);
+    CGRect rect = self.frame;
+    rect.size = self.overlayView.frame.size;
+    self.frame = rect;
+//    NSLog(@"%@", self.overlayView);
+}
+
+
 
 - (UIImage *)image:(UIImage *)image withTintColor:(UIColor *)color{
     CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
@@ -510,19 +649,47 @@ static UIImage *WSProgressHUDErrorImage;
     _timer = timer;
 }
 
+
+
+- (CGFloat)visibleKeyboardHeight {
+#if !defined(SV_APP_EXTENSIONS)
+    UIWindow *keyboardWindow = nil;
+    for (UIWindow *testWindow in [[UIApplication sharedApplication] windows]) {
+        if(![[testWindow class] isEqual:[UIWindow class]]) {
+            keyboardWindow = testWindow;
+            break;
+        }
+    }
+    
+    for (__strong UIView *possibleKeyboard in [keyboardWindow subviews]) {
+        if ([possibleKeyboard isKindOfClass:NSClassFromString(@"UIPeripheralHostView")] || [possibleKeyboard isKindOfClass:NSClassFromString(@"UIKeyboard")]) {
+            return CGRectGetHeight(possibleKeyboard.bounds);
+        } else if ([possibleKeyboard isKindOfClass:NSClassFromString(@"UIInputSetContainerView")]) {
+            for (__strong UIView *possibleKeyboardSubview in [possibleKeyboard subviews]) {
+                if ([possibleKeyboardSubview isKindOfClass:NSClassFromString(@"UIInputSetHostView")]) {
+                    return CGRectGetHeight(possibleKeyboardSubview.bounds);
+                }
+            }
+        }
+    }
+#endif
+    return 0;
+}
+
+
 #pragma mark - INIT View
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        WSProgressHUDForeGroundColor = [UIColor redColor];
+        WSProgressHUDForeGroundColor = [UIColor whiteColor];
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
         NSURL *bundleUrl = [bundle URLForResource:@"WSProgressBundle" withExtension:@"bundle"];
         NSBundle *imageBundle = [NSBundle bundleWithURL:bundleUrl];
         
-        UIImage *successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success" ofType:@"png"]];
-        UIImage *failurImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error" ofType:@"png"]];
+        UIImage *successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success@2x" ofType:@"png"]];
+        UIImage *failurImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error@2x" ofType:@"png"]];
         
         if ([[UIImage class] instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
             WSProgressHUDSuccessImage = [successImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -591,7 +758,6 @@ static UIImage *WSProgressHUDErrorImage;
         _shimmeringView = [[FBShimmeringView alloc] initWithFrame:CGRectZero];
         _shimmeringView.shimmering = YES;
         _shimmeringView.shimmeringBeginFadeDuration = 0.8;
-//        _shimmeringView.shimmeringPauseDuration = 0.2;
         _shimmeringView.shimmeringSpeed = 100;
         _shimmeringView.shimmeringOpacity = 1;
         _shimmeringView.shimmeringAnimationOpacity = 0.3;
@@ -632,7 +798,7 @@ static UIImage *WSProgressHUDErrorImage;
 - (UIImageView *)imageView
 {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
         _imageView.hidden = YES;
         if ([_imageView respondsToSelector:@selector(setTintColor:)]) {
             [_imageView setTintColor:WSProgressHUDForeGroundColor];
@@ -663,32 +829,14 @@ static UIImage *WSProgressHUDErrorImage;
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
+- (WSProgressHUDMaskWithoutType)withoutType
+{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
 
-
-
-- (CGFloat)visibleKeyboardHeight {
-#if !defined(SV_APP_EXTENSIONS)
-    UIWindow *keyboardWindow = nil;
-    for (UIWindow *testWindow in [[UIApplication sharedApplication] windows]) {
-        if(![[testWindow class] isEqual:[UIWindow class]]) {
-            keyboardWindow = testWindow;
-            break;
-        }
-    }
-    
-    for (__strong UIView *possibleKeyboard in [keyboardWindow subviews]) {
-        if ([possibleKeyboard isKindOfClass:NSClassFromString(@"UIPeripheralHostView")] || [possibleKeyboard isKindOfClass:NSClassFromString(@"UIKeyboard")]) {
-            return CGRectGetHeight(possibleKeyboard.bounds);
-        } else if ([possibleKeyboard isKindOfClass:NSClassFromString(@"UIInputSetContainerView")]) {
-            for (__strong UIView *possibleKeyboardSubview in [possibleKeyboard subviews]) {
-                if ([possibleKeyboardSubview isKindOfClass:NSClassFromString(@"UIInputSetHostView")]) {
-                    return CGRectGetHeight(possibleKeyboardSubview.bounds);
-                }
-            }
-        }
-    }
-#endif
-    return 0;
+- (BOOL)hudAlreadyDismiss
+{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 
