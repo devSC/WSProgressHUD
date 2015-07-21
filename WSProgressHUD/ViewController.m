@@ -26,8 +26,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)showNoString:(id)sender {
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
     [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [WSProgressHUD dismiss];
     });
 }
@@ -37,7 +38,8 @@
     
 }
 - (IBAction)show:(id)sender {
-    [WSProgressHUD showWithString:@"WSProgressHUD刷新中..."];
+//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorSmallLight];
+    [WSProgressHUD showWithString:@"请等待,刷新中..."];
 }
 - (IBAction)showImage:(id)sender {
 //    [WSProgressHUD showImage:nil title:@"WSProgressHUD获取成功"];

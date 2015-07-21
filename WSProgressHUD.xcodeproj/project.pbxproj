@@ -17,6 +17,7 @@
 		52E75E031B5E184200117676 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E75E001B5E184200117676 /* Aspects.m */; };
 		52E75E041B5E184200117676 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 52E75E011B5E184200117676 /* LICENSE */; };
 		52E75E051B5E184200117676 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52E75E021B5E184200117676 /* README.md */; };
+		52E75E581B5E4D8100117676 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E75E571B5E4D8100117676 /* image2.png */; };
 		FED428BA1B5B3DDE002A5294 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */; };
 		FED428D61B5D4754002A5294 /* WSProgressBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FED428D51B5D4753002A5294 /* WSProgressBundle.bundle */; };
 		FEDB74A11B593589003DDB79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74A01B593589003DDB79 /* main.m */; };
@@ -57,6 +58,7 @@
 		52E75E001B5E184200117676 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		52E75E011B5E184200117676 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		52E75E021B5E184200117676 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		52E75E571B5E4D8100117676 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
 		FED428B81B5B3DDE002A5294 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = SOURCE_ROOT; };
 		FED428B91B5B3DDE002A5294 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = SOURCE_ROOT; };
 		FED428D51B5D4753002A5294 /* WSProgressBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WSProgressBundle.bundle; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				52E75DF91B5E0C8200117676 /* TabViewController1.m */,
 				52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */,
 				FEDB74A81B593589003DDB79 /* Main.storyboard */,
+				52E75E571B5E4D8100117676 /* image2.png */,
 				52038E031B5CFADB00F37CEE /* image1.jpg */,
 				FEDB74AB1B593589003DDB79 /* Images.xcassets */,
 				FEDB74AD1B593589003DDB79 /* LaunchScreen.xib */,
@@ -277,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E75E581B5E4D8100117676 /* image2.png in Resources */,
 				FED428D61B5D4754002A5294 /* WSProgressBundle.bundle in Resources */,
 				FEDB74AA1B593589003DDB79 /* Main.storyboard in Resources */,
 				FEDB74AF1B593589003DDB79 /* LaunchScreen.xib in Resources */,

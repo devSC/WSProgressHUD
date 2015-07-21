@@ -56,7 +56,7 @@
 }
 
 - (void)showWithStatus {
-	[SVProgressHUD showWithStatus:@"Doing Stuff"];
+	[SVProgressHUD showWithStatus:@"Doing Stuff" maskType:SVProgressHUDMaskTypeBlack];
 }
 
 static float progress = 0.0f;

@@ -25,7 +25,7 @@
 }
 - (IBAction)show:(id)sender {
     
-    [WSProgressHUD showWithString:@"Loading..." maskType:WSProgressHUDMaskTypeGradient maskWithout:WSProgressHUDMaskWithoutNavAndTabbar];
+    [WSProgressHUD showWithString:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavAndTabbar];
 }
 
 /*

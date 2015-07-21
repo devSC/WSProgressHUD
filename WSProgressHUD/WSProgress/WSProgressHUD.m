@@ -9,6 +9,7 @@
 #import "WSProgressHUD.h"
 #import "FBShimmeringView.h"
 #import <objc/runtime.h>
+#import "WSIndefiniteAnimationView.h"
 
 typedef NS_ENUM(NSInteger, WSProgressHUDType) {
     WSProgressHUDTypeStatus,
@@ -36,6 +37,8 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 
 @property (strong, nonatomic) NSTimer *timer;
 
+@property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimationView;
+
 @end
 
 static CGFloat hudWidth = 50;
@@ -54,6 +57,8 @@ static CGRect stringRect;
 static UIColor *WSProgressHUDForeGroundColor;
 static UIImage *WSProgressHUDSuccessImage;
 static UIImage *WSProgressHUDErrorImage;
+
+static CGFloat WSProgressHUDRingThickness = 2;
 
 
 
@@ -167,72 +172,11 @@ static UIImage *WSProgressHUDErrorImage;
     [self showWithString:nil maskType:maskType maskWithout:withoutType];
 }
 
-/*
-- (void)showWithString:(NSString *)string
-{
-    [self showWithString:string maskType:WSProgressHUDMaskTypeDefault maskWithout:WSProgressHUDMaskWithoutDefault];
-}
-
-
-- (void)showImage:(UIImage *)image title:(NSString *)title
-{
-   
-    [self showImage:image title:title maskType:WSProgressHUDMaskTypeDefault];
-}
-
-
-- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
-{
-   
-}
-- (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
-{
-    
-    objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
-    
-    if (string) {
-        objc_setAssociatedObject(self, @selector(onlyShowTitle), @(1), OBJC_ASSOCIATION_ASSIGN);
-        [self addOverlayViewToWindow];
-        
-        [self updateSubviewsPositionWithString:string];
-        
-        [self showHUDViewWithAnimation];
-        
-    } else {
-        [self showWithString:nil];
-    }
-}
-
-
-- (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType
-{
-    objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
-    
-    objc_setAssociatedObject(self, @selector(showImage), @(1), OBJC_ASSOCIATION_ASSIGN);
-    
-    objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
-    
-    self.imageView.image = image;
-    
-    [self addOverlayViewToWindow];
-    
-    [self updateSubviewsPositionWithString:title];
-    
-    [self showHUDViewWithAnimation];
-    
-    self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
-    
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-}
-
-*/
 
 - (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeStatus), OBJC_ASSOCIATION_ASSIGN);
-    
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
     
     [self addOverlayViewToWindow];
@@ -251,6 +195,7 @@ static UIImage *WSProgressHUDErrorImage;
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
+    
     if (string) {
         objc_setAssociatedObject(self, @selector(onlyShowTitle), @(1), OBJC_ASSOCIATION_ASSIGN);
         [self addOverlayViewToWindow];
@@ -268,11 +213,8 @@ static UIImage *WSProgressHUDErrorImage;
 - (void)showImage:(UIImage *)image title:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
-    
     objc_setAssociatedObject(self, @selector(showImage), @(1), OBJC_ASSOCIATION_ASSIGN);
-    
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
-    
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
     
     self.imageView.image = image;
@@ -296,7 +238,7 @@ static UIImage *WSProgressHUDErrorImage;
     switch (self.maskType) {
         case WSProgressHUDMaskTypeBlack: {
             CGContextRef context = UIGraphicsGetCurrentContext();
-            [UIColor colorWithWhite:0 alpha:0.2];
+            [[UIColor colorWithWhite:0 alpha:0.5] set];
             CGRect bounds = self.bounds;
             CGContextFillRect(context, bounds);
         } break;
@@ -327,6 +269,39 @@ static UIImage *WSProgressHUDErrorImage;
 }
 
 
+#pragma mark - Pravite Method
+
+- (void)showHUDViewWithAnimation
+{
+    
+    if (self.maskType != WSProgressHUDMaskTypeDefault) {
+        self.overlayView.userInteractionEnabled = YES;
+    } else {
+        self.overlayView.userInteractionEnabled = NO;
+    }
+    if (self.hudView.alpha == 0) {
+        self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.2, 1.2);
+        
+
+        [UIView animateWithDuration:0.2
+                              delay:0
+                            options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.2, 1/1.2);
+                             
+                             //                         if(self.isClear) // handle iOS 7 and 8 UIToolbar which not answers well to hierarchy opacity change
+                             self.hudView.alpha = 1;
+                             //                         else
+                             //                             self.alpha = 1;
+                         }
+                         completion:^(BOOL finished){
+                             objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(0), OBJC_ASSOCIATION_ASSIGN);
+                         }];
+    }
+   
+    [self setNeedsDisplay];
+    
+}
 
 - (void)dismiss
 {
@@ -335,7 +310,7 @@ static UIImage *WSProgressHUDErrorImage;
     }
     
     self.hudView.transform = CGAffineTransformIdentity;
-    [UIView animateWithDuration:0.15
+    [UIView animateWithDuration:0.2
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
@@ -348,12 +323,17 @@ static UIImage *WSProgressHUDErrorImage;
                          objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
                          objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
                          objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(1), OBJC_ASSOCIATION_ASSIGN);
+                         
+                         [self.timer invalidate];
+                         self.timer = nil;
                      }];
 }
 
 
 
-#pragma mark - Pravite Method
+
+
+
 /*!
  @brief  添加覆盖层
  */
@@ -426,24 +406,24 @@ static UIImage *WSProgressHUDErrorImage;
     
     self.shimmeringView.hidden = YES;
     self.labelView.hidden = YES;
-    self.indicatorView.hidden = YES;
+//    self.indicatorView.hidden = YES;
+    [self startIndicatorAnimation:NO];
     self.imageView.hidden = YES;
     
     
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
+            [self startIndicatorAnimation:YES];
+//                self.indicatorView.hidden = NO;
+
             if (string) {
-                
                 self.labelView.hidden = NO;
-                self.indicatorView.hidden = NO;
-                
                 self.labelView.text = string;
                 hudWidth = stringWidth + 40; // indicationWidth = 40
                 hudHeight = stringHeight + edgeOffset;
             }  else {
                 self.shimmeringView.hidden = YES;
                 self.labelView.hidden = YES;
-                self.indicatorView.hidden = NO;
             }
             
         } break;
@@ -502,13 +482,17 @@ static UIImage *WSProgressHUDErrorImage;
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
             self.labelView.frame = stringRect;//设置完hud的frame后需要重新设置
+            
+            [self startIndicatorAnimation:YES];
             if (string) {
-                self.indicatorView.center = CGPointMake(15, hudCenterY);
+                self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
                 self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-                [self.indicatorView startAnimating];
+//                [self.indicatorView startAnimating];
+                
             } else {
-                self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
-                [self.indicatorView startAnimating];
+                self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
+//                self.indicatorView.hidden = YES;
+//                [self startIndicatorAnimation:NO];
             }
 
         }break;
@@ -518,7 +502,8 @@ static UIImage *WSProgressHUDErrorImage;
             [self setShimmeringLabelSize:stringRect.size];
             
             self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
-            [self.indicatorView stopAnimating];
+//            [self.indicatorView stopAnimating];
+            [self startIndicatorAnimation:NO];
 
 
         }break;
@@ -530,7 +515,8 @@ static UIImage *WSProgressHUDErrorImage;
                 
                 stringRect.origin.y = imageOffset;
                 
-                [self.indicatorView stopAnimating];
+//                [self.indicatorView stopAnimating];
+                [self startIndicatorAnimation:NO];
                 
                 self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
                 
@@ -546,7 +532,35 @@ static UIImage *WSProgressHUDErrorImage;
         default:
             break;
     }
+}
 
+- (void)setIndicatorViewCenter: (CGPoint)center
+{
+
+}
+- (void)startIndicatorAnimation: (BOOL)start
+{
+    switch (self.indicatorStyle) {
+        case WSProgressHUDIndicatorSmallLight: {
+            self.indefiniteAnimationView.hidden = YES;
+            if (start) {
+                [self.indicatorView startAnimating];
+            } else {
+                [self.indicatorView stopAnimating];
+            }
+        }break;
+        case WSProgressHUDIndicatorCustom: {
+            [self.indicatorView stopAnimating];
+            self.indicatorView.hidden = YES;
+            if (start) {
+                self.indefiniteAnimationView.hidden = NO;
+            } else {
+                self.indefiniteAnimationView.hidden = YES;
+            }
+        }break;
+        default:
+            break;
+    }
 }
 
 - (void)setShimmeringLabelSize: (CGSize)size
@@ -556,34 +570,6 @@ static UIImage *WSProgressHUDErrorImage;
     self.shimmeringLabel.bounds = bounds;
 }
 
-- (void)showHUDViewWithAnimation
-{
-
-    if (self.maskType != WSProgressHUDMaskTypeDefault) {
-        self.overlayView.userInteractionEnabled = YES;
-    } else {
-        self.overlayView.userInteractionEnabled = NO;
-    }
-    self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.2, 1.2);
-    
-    [UIView animateWithDuration:0.2
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.2, 1/1.2);
-                         
-                         //                         if(self.isClear) // handle iOS 7 and 8 UIToolbar which not answers well to hierarchy opacity change
-                         self.hudView.alpha = 1;
-                         //                         else
-                         //                             self.alpha = 1;
-                     }
-                     completion:^(BOOL finished){
-                          objc_setAssociatedObject(self, @selector(hudAlreadyDismiss), @(0), OBJC_ASSOCIATION_ASSIGN);
-                     }];
-    
-    [self setNeedsDisplay];
-    
-}
 
 - (void)setMaskEdgeWithType: (WSProgressHUDMaskType)maskType
 {
@@ -676,8 +662,17 @@ static UIImage *WSProgressHUDErrorImage;
     return 0;
 }
 
+#pragma mark - Custom
++ (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
+    [[self shareInstance] setProgressHUDIndicatorStyle:style];
+}
 
-#pragma mark - INIT View
+- (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
+    objc_setAssociatedObject(self, @selector(indicatorStyle), @(style), OBJC_ASSOCIATION_ASSIGN);
+}
+
+
+#pragma mark - Init View
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -701,6 +696,7 @@ static UIImage *WSProgressHUDErrorImage;
         
         [self addSubview:self.hudView];
         [self.hudView addSubview:self.indicatorView];
+        [self.hudView addSubview:self.indefiniteAnimationView];
         [self.hudView addSubview:self.shimmeringView];
         [self.hudView addSubview:self.labelView];
         [self.hudView addSubview:self.imageView];
@@ -740,7 +736,7 @@ static UIImage *WSProgressHUDErrorImage;
         _labelView.textColor = [UIColor whiteColor];
         
         if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
-            _labelView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+            _labelView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         } else {
             _labelView.font = [UIFont systemFontOfSize:14];
         }
@@ -771,9 +767,9 @@ static UIImage *WSProgressHUDErrorImage;
         _shimmeringLabel = [[UILabel alloc] initWithFrame:self.shimmeringView.bounds];
         _shimmeringLabel.textColor = [UIColor whiteColor];
         if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
-            _shimmeringLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+            _shimmeringLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         } else {
-            _shimmeringLabel.font = [UIFont systemFontOfSize:14];
+            _shimmeringLabel.font = [UIFont systemFontOfSize:15];
         }
         _shimmeringLabel.contentScaleFactor = [UIScreen mainScreen].scale;
         _shimmeringLabel.adjustsFontSizeToFitWidth = YES;
@@ -809,6 +805,18 @@ static UIImage *WSProgressHUDErrorImage;
     return _imageView;
 }
 
+- (WSIndefiniteAnimationView *)indefiniteAnimationView
+{
+    if (!_indefiniteAnimationView) {
+        _indefiniteAnimationView = [[WSIndefiniteAnimationView alloc] initWithFrame:CGRectZero];
+        _indefiniteAnimationView.strokeColor = WSProgressHUDForeGroundColor;
+        _indefiniteAnimationView.strokeThickness = WSProgressHUDRingThickness;
+        _indefiniteAnimationView.radius = 10;
+        [_indefiniteAnimationView sizeToFit];
+    }
+    return _indefiniteAnimationView;
+}
+
 
 - (BOOL)onlyShowTitle
 {
@@ -837,6 +845,10 @@ static UIImage *WSProgressHUDErrorImage;
 - (BOOL)hudAlreadyDismiss
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (WSProgressHUDIndicatorStyle )indicatorStyle {
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
 
