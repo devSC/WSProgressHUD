@@ -58,7 +58,7 @@
 
 }
 - (IBAction)showString:(id)sender {
-    [WSProgressHUD showImage:nil title:@"WSProgressHUD"];
+    [WSProgressHUD showImage:nil status:@"WSProgressHUD"];
 }
 
 - (IBAction)dismiss:(id)sender {

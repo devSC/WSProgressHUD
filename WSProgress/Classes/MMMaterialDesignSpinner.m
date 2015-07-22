@@ -52,6 +52,7 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
     [super layoutSubviews];
     
     self.progressLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
+    
     [self updatePath];
 }
 
@@ -146,6 +147,8 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 #pragma mark - Private
 
 - (void)updatePath {
+    self.progressLayer.path = nil;
+    
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     CGFloat radius = MIN(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) - self.progressLayer.lineWidth / 2;
     CGFloat startAngle = (CGFloat)(0);
@@ -187,4 +190,13 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
     self.hidden = !self.isAnimating && hidesWhenStopped;
 }
 
+- (void)sizeToFit
+{
+    [self updatePath];
+
+}
+//-(CGSize)sizeThatFits:(CGSize)size
+//{
+//    return self.bounds.size;
+//}
 @end
