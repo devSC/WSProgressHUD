@@ -22,8 +22,9 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initialize];
         self.backgroundColor = [UIColor redColor];
+        [self initialize];
+
     }
     return self;
 }
@@ -43,16 +44,15 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 //- (void)willMoveToSuperview:(UIView *)newSuperview
 //{
 //    if (newSuperview) {
-//        [self updatePath];
-//        [self startAnimating];
+//        [self initialize];
 //    } else {
-//        [self stopAnimating];
+//        [self.progressLayer removeFromSuperlayer];
 //    }
 //}
 
 
 - (void)initialize {
-    _timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    self.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     
     [self.layer addSublayer:self.progressLayer];
     
@@ -101,6 +101,11 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
     animation.fromValue = @(0.f);
     animation.toValue = @(2 * M_PI);
     animation.repeatCount = INFINITY;
+    animation.timingFunction = self.timingFunction;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.autoreverses = NO;
+    
     [self.progressLayer addAnimation:animation forKey:kMMRingRotationAnimationKey];
     
     CABasicAnimation *headAnimation = [CABasicAnimation animation];
@@ -182,9 +187,13 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 - (CAShapeLayer *)progressLayer {
     if (!_progressLayer) {
         _progressLayer = [CAShapeLayer layer];
+        _progressLayer.contentsScale = [UIScreen mainScreen].scale;
+        
         _progressLayer.strokeColor = self.tintColor.CGColor;
         _progressLayer.fillColor = [UIColor blueColor].CGColor;
         _progressLayer.lineWidth = 1.5f;
+        _progressLayer.lineCap = kCALineCapRound;
+        _progressLayer.lineJoin = kCALineJoinBevel;
     }
     return _progressLayer;
 }
