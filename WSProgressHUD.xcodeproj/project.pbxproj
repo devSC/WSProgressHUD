@@ -11,6 +11,7 @@
 		52038E041B5CFADB00F37CEE /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52038E031B5CFADB00F37CEE /* image1.jpg */; };
 		52E75DFA1B5E0C8200117676 /* TabViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E75DF91B5E0C8200117676 /* TabViewController1.m */; };
 		52E75E581B5E4D8100117676 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E75E571B5E4D8100117676 /* image2.png */; };
+		52F4589F1B60CBBD0025CC71 /* TabViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F4589E1B60CBBD0025CC71 /* TabViewController2.m */; };
 		52F9A7EE1B5F7D2D00151F97 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F9A7DC1B5F7D2D00151F97 /* Aspects.m */; };
 		52F9A7EF1B5F7D2D00151F97 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 52F9A7DD1B5F7D2D00151F97 /* LICENSE */; };
 		52F9A7F01B5F7D2D00151F97 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 52F9A7DE1B5F7D2D00151F97 /* README.md */; };
@@ -45,6 +46,8 @@
 		52E75DF81B5E0C8200117676 /* TabViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController1.h; sourceTree = "<group>"; };
 		52E75DF91B5E0C8200117676 /* TabViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController1.m; sourceTree = "<group>"; };
 		52E75E571B5E4D8100117676 /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
+		52F4589D1B60CBBD0025CC71 /* TabViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController2.h; sourceTree = "<group>"; };
+		52F4589E1B60CBBD0025CC71 /* TabViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController2.m; sourceTree = "<group>"; };
 		52F9A7DB1B5F7D2D00151F97 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		52F9A7DC1B5F7D2D00151F97 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		52F9A7DD1B5F7D2D00151F97 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				FEDB74A61B593589003DDB79 /* ViewController.m */,
 				52E75DF81B5E0C8200117676 /* TabViewController1.h */,
 				52E75DF91B5E0C8200117676 /* TabViewController1.m */,
+				52F4589D1B60CBBD0025CC71 /* TabViewController2.h */,
+				52F4589E1B60CBBD0025CC71 /* TabViewController2.m */,
 				52038DFB1B5CA9DA00F37CEE /* IMG_6584.png */,
 				FEDB74A81B593589003DDB79 /* Main.storyboard */,
 				52E75E571B5E4D8100117676 /* image2.png */,
@@ -324,6 +329,7 @@
 				52F9A7F21B5F7D2D00151F97 /* FBShimmeringLayer.m in Sources */,
 				52F9A7F31B5F7D2D00151F97 /* FBShimmeringView.m in Sources */,
 				FEDB74A11B593589003DDB79 /* main.m in Sources */,
+				52F4589F1B60CBBD0025CC71 /* TabViewController2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

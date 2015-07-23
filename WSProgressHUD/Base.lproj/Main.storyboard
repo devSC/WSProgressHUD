@@ -273,7 +273,7 @@
         <!--Item 2-->
         <scene sceneID="564-qN-x2w">
             <objects>
-                <viewController id="zNa-IR-ZXb" sceneMemberID="viewController">
+                <viewController id="zNa-IR-ZXb" customClass="TabViewController2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WBt-Je-k4r"/>
                         <viewControllerLayoutGuide type="bottom" id="WLR-U1-Gtd"/>
@@ -287,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ry-bk-vLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="377"/>
+            <point key="canvasLocation" x="1664.5" y="505.5"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="El1-Ve-XGQ">

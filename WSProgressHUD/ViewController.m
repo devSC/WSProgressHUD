@@ -28,7 +28,7 @@
     hud = [[WSProgressHUD alloc] initWithView:self.navigationController.view];
     
     [self.view addSubview:hud];
-//    [hud showWithString:@"LaMaMa..."];
+    [hud showWithString:@"LaMaMa..."];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,15 +39,18 @@
 //    [hud dismiss];
     
     [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorMMSpinner];
-    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeDefault maskWithout:WSProgressHUDMaskWithoutNavigation];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [WSProgressHUD dismiss];
-//    });
+//    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavigation];
+    [WSProgressHUD show];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WSProgressHUD dismiss];
+    });
 }
 
 - (IBAction)showOnlyString:(id)sender {
 //    [hud show];
     [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..."];
+//    [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..." maskType:WSProgressHUDMaskTypeGradient maskWithout:WSProgressHUDMaskWithoutTabbar];
 //    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
 //    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -58,7 +61,9 @@
 }
 - (IBAction)showWithString:(id)sender {
 //    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorSmallLight];
-    [WSProgressHUD showWithString:@"刷新中,请等待..."];
+        [WSProgressHUD showWithString:@"刷新中,请等待..."];
+//    [WSProgressHUD showWithString:@"刷新中,请等待..." maskType:WSProgressHUDMaskTypeGradient maskWithout:WSProgressHUDMaskWithoutTabbar];
+
 //    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorSmallLight];
 //    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

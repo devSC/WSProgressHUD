@@ -1,18 +1,19 @@
 //
-//  TabViewController1.m
+//  TabViewController2.m
 //  WSProgressHUD
 //
-//  Created by YSC on 15/7/21.
+//  Created by YSC on 15/7/23.
 //  Copyright (c) 2015年 wilson-yuan. All rights reserved.
 //
 
-#import "TabViewController1.h"
+#import "TabViewController2.h"
 #import "WSProgressHUD.h"
-@interface TabViewController1 ()
+
+@interface TabViewController2 ()
 
 @end
 
-@implementation TabViewController1
+@implementation TabViewController2
 {
     WSProgressHUD *hud;
 }
@@ -22,7 +23,7 @@
     hud = [[WSProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:hud];
     
-    [hud showWithString:nil];
+    [hud showOnlyString:@"Loading...."];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [hud dismiss];
@@ -33,16 +34,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)show:(id)sender {
-    [hud showWithString:@"Loading..."];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [hud dismiss];
-    });
-    
-
-//    [WSProgressHUD showWithString:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavAndTabbar];
 }
 
 /*
