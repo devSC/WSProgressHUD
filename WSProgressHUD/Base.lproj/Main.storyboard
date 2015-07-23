@@ -32,12 +32,21 @@
                                             <color key="textColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6c-wX-su0" customClass="MMMaterialDesignSpinner">
+                                            <rect key="frame" x="137" y="239" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="Rxh-lN-VhR"/>
+                                                <constraint firstAttribute="width" constant="100" id="g2V-sT-Yax"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="P2p-4r-ADC" firstAttribute="leading" secondItem="Jlu-IK-Ssn" secondAttribute="leading" constant="8" id="1wX-Bb-FXY"/>
+                                        <constraint firstAttribute="centerX" secondItem="W6c-wX-su0" secondAttribute="centerX" id="Oaf-rd-XuQ"/>
                                         <constraint firstAttribute="trailing" secondItem="P2p-4r-ADC" secondAttribute="trailing" constant="8" id="cDP-Ig-2KQ"/>
                                         <constraint firstAttribute="bottom" secondItem="P2p-4r-ADC" secondAttribute="bottom" constant="8" id="lD3-yR-cxT"/>
                                         <constraint firstAttribute="bottom" secondItem="P2p-4r-ADC" secondAttribute="bottom" constant="8" id="ulu-Ya-sOI"/>
+                                        <constraint firstItem="P2p-4r-ADC" firstAttribute="top" secondItem="W6c-wX-su0" secondAttribute="bottom" constant="304" id="xy4-ny-yJc"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -253,6 +262,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="spinner" destination="W6c-wX-su0" id="Gqv-9m-Ouk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

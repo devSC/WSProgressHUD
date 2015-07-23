@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 
 @interface WSProgressHUD : UIView
 
+/*----------------------Show On the Window------------------------------*/
 + (void)show;
 + (void)showWithMaskType: (WSProgressHUDMaskType)maskType;
 + (void)showWithMaskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
@@ -57,12 +58,38 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 
 + (void)dismiss;
 
-
-
-/**
- *  @brief  Custome
- */
+/*----------------------------Custom---------------------------------*/
 
 + (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
+
+
+/*----------------------Show On the view------------------------------*/
+
+- (instancetype)initWithView: (UIView *)view;
+
+- (void)show;
+- (void)showWithMaskType: (WSProgressHUDMaskType)maskType;
+- (void)showWithMaskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
+
+
+- (void)showWithString: (NSString *)string;
+- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType;
+- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
+
+
+- (void)showOnlyString: (NSString *)string;
+- (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType;
+- (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
+
+
+
+- (void)showImage:(UIImage *)image status:(NSString *)title;
+- (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType;
+- (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
+- (void)showSuccessWithString: (NSString *)string;
+- (void)showErrorWithString: (NSString *)string;
+
+
+- (void)dismiss;
 
 @end

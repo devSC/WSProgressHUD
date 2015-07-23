@@ -9,16 +9,26 @@
 #import "ViewController.h"
 #import "WSProgressHUD.h"
 
+#import "MMMaterialDesignSpinner.h"
+
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet MMMaterialDesignSpinner *spinner;
 
 @end
 
 @implementation ViewController
-
+{
+    WSProgressHUD *hud;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+//    [self.spinner startAnimating];
+    hud = [[WSProgressHUD alloc] initWithView:self.navigationController.view];
     
+    [self.view addSubview:hud];
+//    [hud showWithString:@"LaMaMa..."];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,20 +36,23 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)show:(id)sender {
+//    [hud dismiss];
+    
     [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorMMSpinner];
-    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [WSProgressHUD dismiss];
-    });
+    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeDefault maskWithout:WSProgressHUDMaskWithoutNavigation];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [WSProgressHUD dismiss];
+//    });
 }
 
 - (IBAction)showOnlyString:(id)sender {
-//    [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..."];
-    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
-    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [WSProgressHUD dismiss];
-    });
+//    [hud show];
+    [WSProgressHUD showOnlyString:@"WSProgressHUD正在刷新..."];
+//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
+//    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [WSProgressHUD dismiss];
+//    });
 
     
 }
