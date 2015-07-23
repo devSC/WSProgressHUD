@@ -23,6 +23,7 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initialize];
+        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -38,6 +39,18 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 {
     [self initialize];
 }
+
+//- (void)willMoveToSuperview:(UIView *)newSuperview
+//{
+//    if (newSuperview) {
+//        [self updatePath];
+//        [self startAnimating];
+//    } else {
+//        [self stopAnimating];
+//    }
+//}
+
+
 - (void)initialize {
     _timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     
@@ -170,7 +183,7 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
     if (!_progressLayer) {
         _progressLayer = [CAShapeLayer layer];
         _progressLayer.strokeColor = self.tintColor.CGColor;
-        _progressLayer.fillColor = nil;
+        _progressLayer.fillColor = [UIColor blueColor].CGColor;
         _progressLayer.lineWidth = 1.5f;
     }
     return _progressLayer;
