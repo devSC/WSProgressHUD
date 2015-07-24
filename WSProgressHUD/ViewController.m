@@ -28,7 +28,11 @@
     hud = [[WSProgressHUD alloc] initWithView:self.navigationController.view];
     
     [self.view addSubview:hud];
-    [hud showWithString:@"LaMaMa..."];
+    [hud showWithString:@"LaMaMa..." maskType:WSProgressHUDMaskTypeClear maskWithout:WSProgressHUDMaskWithoutNavigation];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [hud dismiss];
+    });
+
 }
 
 - (void)didReceiveMemoryWarning {
