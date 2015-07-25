@@ -19,7 +19,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [WSProgressHUD dismiss];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,9 +34,9 @@
     hud = [[WSProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:hud];
     
-    [hud showWithString:nil];
+    [hud showWithString:nil maskType:WSProgressHUDMaskTypeBlack];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [hud dismiss];
     });
 
@@ -42,12 +49,14 @@
 - (IBAction)show:(id)sender {
     [hud showWithString:@"Loading..."];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [hud dismiss];
     });
     
 
-//    [WSProgressHUD showWithString:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavAndTabbar];
+}
+- (IBAction)showOnTheWindow:(id)sender {
+    [WSProgressHUD showWithStatus:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavAndTabbar];
 }
 
 /*

@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, WSProgressHUDMaskType) {
 };
 
 typedef NS_ENUM(NSInteger, WSProgressHUDMaskWithoutType) { //
-    WSProgressHUDMaskWithoutDefault, // default no without
+    WSProgressHUDMaskWithoutDefault, // default mask all
     WSProgressHUDMaskWithoutNavigation, //show mask without navigation
     WSProgressHUDMaskWithoutTabbar, //show mask without tabbar
     WSProgressHUDMaskWithoutNavAndTabbar, //show mask without tabbar and navigation
@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
     WSProgressHUDIndicatorMMSpinner,
     WSProgressHUDIndicatorCustom,
     WSProgressHUDIndicatorSmallLight,
-    WSProgressHUDIndicatorBigWhite,
 };
 
 
@@ -76,31 +75,25 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 
 - (void)show;
 - (void)showWithMaskType: (WSProgressHUDMaskType)maskType;
-- (void)showWithMaskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
-
 
 - (void)showWithString: (NSString *)string;
 - (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType;
-- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
 
 
 - (void)showShimmeringString: (NSString *)string;
 - (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType;
-- (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
 
 - (void)showProgress:(CGFloat)progress;
 - (void)showProgress:(CGFloat)progress maskType:(WSProgressHUDMaskType)maskType;
-- (void)showProgress:(CGFloat)progress maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
 
 - (void)showProgress:(CGFloat)progress status:(NSString*)status;
 - (void)showProgress:(CGFloat)progress status:(NSString*)status maskType:(WSProgressHUDMaskType)maskType;
-- (void)showProgress:(CGFloat)progress status:(NSString*)status maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
 
 
 
 - (void)showImage:(UIImage *)image status:(NSString *)title;
 - (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType;
-- (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
+
 - (void)showSuccessWithString: (NSString *)string;
 - (void)showErrorWithString: (NSString *)string;
 

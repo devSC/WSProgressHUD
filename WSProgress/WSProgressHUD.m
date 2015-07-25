@@ -237,11 +237,11 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 
 #pragma mark - OnlyString
-- (void)showOnlyString: (NSString *)string
+- (void)showShimmeringString: (NSString *)string
 {
     [self showShimmeringString:string maskType:WSProgressHUDMaskTypeDefault];
 }
-- (void)showOnlyString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
+- (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
 {
     [self showShimmeringString:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
@@ -450,7 +450,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     objc_setAssociatedObject(self, @selector(onlyShowTitle), @(0), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(showImage), @(0), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudIsShowing), @(0), OBJC_ASSOCIATION_ASSIGN);
-    
+    objc_setAssociatedObject(self, @selector(maskType), WSProgressHUDMaskTypeDefault, OBJC_ASSOCIATION_ASSIGN);
     WSProgressHUDNewBounds = CGRectZero;
 
     self.hudView.transform = CGAffineTransformIdentity;
@@ -465,9 +465,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
                          self.hudView.transform = CGAffineTransformIdentity;
                          
                          [self.overlayView removeFromSuperview];
-                         
                          self.userInteractionEnabled = NO;
                          [self stopIndicatorAnimation];
+                         [self setNeedsDisplay];
 //                         NSLog(@"HUD dismiss ===== isShow: %@ hudAlpha: %f, timer: %@\n\n\n", @(self.hudIsShowing), self.hudView.alpha, self.timer);
                      }];
 }
@@ -640,9 +640,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
+            self.labelView.text = string;
             if (string) {
                 self.labelView.hidden = NO;
-                self.labelView.text = string;
                 WSProgressHUDDefaultWidth = stringWidth + 40; // indicationWidth = 40
                 WSProgressHUDDefaultHeight = stringHeight + WSProgressHUDHeightEdgeOffset;
                 [self exchangeIndicatorSizeToBig:NO];
@@ -881,9 +881,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     }
     
     self.overlayView.frame = CGRectMake(0, maskTopEdge, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - maskTopEdge - maskBottomEdge);
-//    CGRect rect = self.frame;
-//    rect.size = self.overlayView.frame.size;
-//    self.frame = rect;
+    CGRect rect = self.frame;
+    rect.size = self.overlayView.frame.size;
+    self.frame = rect;
 }
 
 
@@ -1027,8 +1027,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
             
         } break;
             
-        default:
-            break;
+        default: {
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            [[UIColor colorWithWhite:0 alpha:0] set];
+            CGRect bounds = self.bounds;
+            CGContextFillRect(context, bounds);
+        }break;
     }
 }
 

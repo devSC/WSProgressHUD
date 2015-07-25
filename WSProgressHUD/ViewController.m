@@ -24,12 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    [self.spinner startAnimating];
+
+    //Add HUD to view
     hud = [[WSProgressHUD alloc] initWithView:self.navigationController.view];
-    
     [self.view addSubview:hud];
-    [hud showWithString:@"LaMaMa..."];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    //show
+    [hud showWithString:@"Wating..." maskType:WSProgressHUDMaskTypeBlack];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [hud dismiss];
     });
 
@@ -40,44 +43,36 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)show:(id)sender {
-//    [hud dismiss];
     
-    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorMMSpinner];
-//    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavigation];
-    [WSProgressHUD show];
+    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack];
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [WSProgressHUD dismiss];
     });
 }
 
-- (IBAction)showOnlyString:(id)sender {
+- (IBAction)showShimmeringString:(id)sender {
 //    [hud show];
-    [WSProgressHUD showShimmeringString:@"WSProgressHUD正在刷新..."];
+    [WSProgressHUD showShimmeringString:@"WSProgressHUD Loading..."];
 
     
 }
 - (IBAction)showWithString:(id)sender {
-//    [WSProgressHUD showShimmeringString:@"正在刷新..."];
-    progress+=0.05f;
-    [WSProgressHUD showProgress:progress status:@"Loading"];
-    
-    if(progress < 1.0f)
-        [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-    else
-        [WSProgressHUD performSelector:@selector(dismiss) withObject:nil afterDelay:0.4f];
-
+    [WSProgressHUD showWithStatus:@"Loading..."];
+}
+- (IBAction)showProgress:(id)sender {
+    [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
 }
 static float progress = 0.0f;
 
 - (void)increaseProgress {
-    progress+=0.05f;
-    [WSProgressHUD showProgress:progress status:@"Loading"];
+    progress+=0.1f;
+    [WSProgressHUD showProgress:progress status:@"Updating..."];
     
-    if(progress < 1.0f)
+    if(progress < 1.0f) {
         [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-    else {
-        [self performSelector:@selector(showOnlyString:) withObject:nil afterDelay:0.4f];
+    } else {
+        [WSProgressHUD showImage:nil status:@"Success Update"];
         progress = 0;
     }
 }
@@ -88,15 +83,7 @@ static float progress = 0.0f;
 
 }
 - (IBAction)showString:(id)sender {
-//    [WSProgressHUD showImage:nil status:@"WSProgressHUD"];
-    progress+=0.005f;
-    [WSProgressHUD showProgress:progress status:nil];
-    
-    if(progress < 1.0f)
-        [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
-    else
-        [WSProgressHUD performSelector:@selector(dismiss) withObject:nil afterDelay:0.4f];
-
+    [WSProgressHUD showImage:nil status:@"WSProgressHUD"];
 }
 
 - (IBAction)dismiss:(id)sender {

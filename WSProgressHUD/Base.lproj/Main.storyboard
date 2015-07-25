@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="image2.png" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-C6-fit">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDa-Uw-ahE">
@@ -28,7 +28,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="WSProgressHUD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2p-4r-ADC">
                                             <rect key="frame" x="231" y="643" width="136" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="11"/>
                                             <color key="textColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -49,7 +49,7 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BfU-PC-bCE">
-                                <rect key="frame" x="36" y="490" width="303" height="33"/>
+                                <rect key="frame" x="36" y="452" width="303" height="33"/>
                                 <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="b0N-kC-otA"/>
@@ -69,6 +69,29 @@
                                 </variation>
                                 <connections>
                                     <action selector="showWithString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iiz-66-hjf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mh-qw-QkW">
+                                <rect key="frame" x="36" y="490" width="303" height="33"/>
+                                <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="slf-5A-sBP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="ShowProgress">
+                                    <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.62837357949999995" green="0.17025366559999999" blue="0.2081992855" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="slf-5A-sBP"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="showProgress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="98g-lW-3jV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8m-Cd-Je5">
@@ -141,13 +164,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNp-eu-l5J">
-                                <rect key="frame" x="36" y="452" width="303" height="33"/>
+                                <rect key="frame" x="36" y="414" width="303" height="33"/>
                                 <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="FtL-Gq-UjC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="OnlyString">
+                                <state key="normal" title="Shimmering">
                                     <color key="titleColor" red="0.94315312149999997" green="1" blue="0.94202995270000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -160,11 +183,11 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="showOnlyString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kXb-SB-MF8"/>
+                                    <action selector="showShimmeringString:" destination="BYZ-38-t0r" eventType="touchUpInside" id="grS-1D-CEi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keO-NK-Whb">
-                                <rect key="frame" x="36" y="414" width="303" height="33"/>
+                                <rect key="frame" x="36" y="376" width="303" height="33"/>
                                 <color key="backgroundColor" red="1" green="0.27456957370000001" blue="0.33472088830000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="254" id="6ie-EA-o8I"/>
@@ -210,13 +233,18 @@
                             <constraint firstItem="BfU-PC-bCE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="SUP-WA-oYp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JuY-QD-xVq" secondAttribute="trailing" constant="20" id="VCp-Ng-8gi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="D8m-Cd-Je5" secondAttribute="trailing" constant="20" id="VsF-Qz-JVo"/>
+                            <constraint firstItem="0mh-qw-QkW" firstAttribute="centerX" secondItem="D8m-Cd-Je5" secondAttribute="centerX" id="Ww0-Ie-cTG"/>
                             <constraint firstItem="JuY-QD-xVq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="c3A-Dz-IIP"/>
                             <constraint firstItem="JuY-QD-xVq" firstAttribute="top" secondItem="iqL-A6-PHI" secondAttribute="bottom" constant="5" id="eac-gS-reB"/>
                             <constraint firstItem="iqL-A6-PHI" firstAttribute="top" secondItem="JuY-QD-xVq" secondAttribute="bottom" constant="-50" id="fpD-QP-41Q"/>
+                            <constraint firstItem="D8m-Cd-Je5" firstAttribute="top" secondItem="0mh-qw-QkW" secondAttribute="bottom" constant="5" id="ghh-vq-aEo"/>
                             <constraint firstItem="JuY-QD-xVq" firstAttribute="top" secondItem="iqL-A6-PHI" secondAttribute="bottom" constant="5" id="jTn-lj-1FY"/>
                             <constraint firstAttribute="centerX" secondItem="FNp-eu-l5J" secondAttribute="centerX" id="jbJ-o2-MLZ"/>
                             <constraint firstItem="hGQ-C6-fit" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="l25-yN-vWg"/>
+                            <constraint firstItem="0mh-qw-QkW" firstAttribute="top" secondItem="BfU-PC-bCE" secondAttribute="bottom" constant="5" id="oDy-t2-EiS"/>
                             <constraint firstAttribute="trailing" secondItem="hGQ-C6-fit" secondAttribute="trailing" id="oFZ-Dp-oH4"/>
+                            <constraint firstItem="0mh-qw-QkW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="pZ5-Aj-eoO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0mh-qw-QkW" secondAttribute="trailing" constant="20" id="r7Q-ZM-n68"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hGQ-C6-fit" secondAttribute="bottom" id="rTf-AB-ObT"/>
                             <constraint firstAttribute="centerX" secondItem="BfU-PC-bCE" secondAttribute="centerX" id="u3F-DZ-RTX"/>
                             <constraint firstItem="JuY-QD-xVq" firstAttribute="top" secondItem="D8m-Cd-Je5" secondAttribute="bottom" constant="8" id="uGA-wB-3J6"/>
@@ -233,6 +261,7 @@
                                 <exclude reference="AZv-d9-Uj8"/>
                                 <exclude reference="jbJ-o2-MLZ"/>
                                 <exclude reference="u3F-DZ-RTX"/>
+                                <exclude reference="wdf-vT-KwG"/>
                                 <exclude reference="zcV-db-i1M"/>
                                 <exclude reference="AVX-5Z-IYI"/>
                                 <exclude reference="Fl4-Es-AX7"/>
@@ -290,14 +319,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olZ-6A-vBA">
-                                <rect key="frame" x="62" y="319" width="250" height="30"/>
+                                <rect key="frame" x="62" y="500" width="250" height="30"/>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="C4v-40-RKx"/>
                                     <constraint firstAttribute="width" constant="250" id="fys-lp-gPA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="show(maskWithoutNav&amp;tab)">
+                                <state key="normal" title="show on the self.view">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -305,12 +334,36 @@
                                     <action selector="show:" destination="tnY-ha-fej" eventType="touchUpInside" id="4Oq-ej-aA9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWx-A6-hDq">
+                                <rect key="frame" x="62" y="538" width="250" height="30"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0Sr-7X-ljj"/>
+                                    <constraint firstAttribute="width" constant="250" id="S7n-h7-Cs8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="show on the window">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showOnTheWindow:" destination="tnY-ha-fej" eventType="touchUpInside" id="9Kc-Yd-q5Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="olZ-6A-vBA" firstAttribute="centerX" secondItem="jWx-A6-hDq" secondAttribute="centerX" id="7Uz-oK-7h2"/>
+                            <constraint firstItem="Bqx-FP-NV7" firstAttribute="top" secondItem="jWx-A6-hDq" secondAttribute="bottom" constant="50" id="Rdf-TC-wOq"/>
+                            <constraint firstItem="jWx-A6-hDq" firstAttribute="top" secondItem="olZ-6A-vBA" secondAttribute="bottom" constant="8" id="X6d-cf-liw"/>
                             <constraint firstAttribute="centerX" secondItem="olZ-6A-vBA" secondAttribute="centerX" id="lKi-tq-5yk"/>
                             <constraint firstAttribute="centerY" secondItem="olZ-6A-vBA" secondAttribute="centerY" id="zUF-2U-xux"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zUF-2U-xux"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="GOb-h9-GMM"/>
                 </viewController>
@@ -354,7 +407,4 @@
             <point key="canvasLocation" x="-528" y="421"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="image2.png" width="327" height="610"/>
-    </resources>
 </document>
