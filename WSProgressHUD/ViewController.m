@@ -58,7 +58,7 @@
     
 }
 - (IBAction)showWithString:(id)sender {
-    [WSProgressHUD showWithStatus:@"Loading..."];
+    [WSProgressHUD showWithStatus:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutTabbar];
 }
 - (IBAction)showProgress:(id)sender {
     [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
