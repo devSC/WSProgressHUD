@@ -1,7 +1,7 @@
 # WSProgressHUD
 This is a beauful hud view for iPhone &amp; iPad
 
-![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo.gif)
+![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/Demo.gif)
 
 #Usage
 To run the WSProgressHUD project
