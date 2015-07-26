@@ -116,6 +116,16 @@
 		FE52FF171B648EDD00703FB5 /* WSProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				FE52FF231B648EDD00703FB5 /* WSProgressHUD.h */,
+				FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */,
+				FE52FF311B64F7E200703FB5 /* Source */,
+			);
+			path = WSProgressHUD;
+			sourceTree = "<group>";
+		};
+		FE52FF311B64F7E200703FB5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
 				FE52FF181B648EDD00703FB5 /* FBShimmering-Prefix.pch */,
 				FE52FF191B648EDD00703FB5 /* FBShimmering.h */,
 				FE52FF1A1B648EDD00703FB5 /* FBShimmeringLayer.h */,
@@ -127,10 +137,8 @@
 				FE52FF201B648EDD00703FB5 /* WSIndefiniteAnimationView.h */,
 				FE52FF211B648EDD00703FB5 /* WSIndefiniteAnimationView.m */,
 				FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */,
-				FE52FF231B648EDD00703FB5 /* WSProgressHUD.h */,
-				FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */,
 			);
-			path = WSProgressHUD;
+			name = Source;
 			sourceTree = "<group>";
 		};
 		FED428F01B63E262002A5294 /* WSProgressHUDDemo */ = {
