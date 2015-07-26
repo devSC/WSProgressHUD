@@ -13,6 +13,9 @@
 		FE52FF281B648EDD00703FB5 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF211B648EDD00703FB5 /* WSIndefiniteAnimationView.m */; };
 		FE52FF291B648EDD00703FB5 /* WSProgressBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */; };
 		FE52FF2A1B648EDD00703FB5 /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */; };
+		FE52FF2E1B649B9300703FB5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF2B1B649B9300703FB5 /* LICENSE */; };
+		FE52FF2F1B649B9300703FB5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF2C1B649B9300703FB5 /* README.md */; };
+		FE52FF301B649B9300703FB5 /* WSProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF2D1B649B9300703FB5 /* WSProgressHUD.podspec */; };
 		FED429031B63E262002A5294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FED428F21B63E262002A5294 /* AppDelegate.m */; };
 		FED429061B63E262002A5294 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FED428F71B63E262002A5294 /* image1.jpg */; };
 		FED429071B63E262002A5294 /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = FED428F81B63E262002A5294 /* image2.png */; };
@@ -53,6 +56,9 @@
 		FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WSProgressBundle.bundle; sourceTree = "<group>"; };
 		FE52FF231B648EDD00703FB5 /* WSProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSProgressHUD.h; sourceTree = "<group>"; };
 		FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUD.m; sourceTree = "<group>"; };
+		FE52FF2B1B649B9300703FB5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FE52FF2C1B649B9300703FB5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FE52FF2D1B649B9300703FB5 /* WSProgressHUD.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = WSProgressHUD.podspec; path = ../WSProgressHUD.podspec; sourceTree = "<group>"; };
 		FED428F11B63E262002A5294 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FED428F21B63E262002A5294 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FED428F41B63E262002A5294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 		FEDB74921B593589003DDB79 = {
 			isa = PBXGroup;
 			children = (
+				FE52FF2B1B649B9300703FB5 /* LICENSE */,
+				FE52FF2C1B649B9300703FB5 /* README.md */,
+				FE52FF2D1B649B9300703FB5 /* WSProgressHUD.podspec */,
 				FE52FF171B648EDD00703FB5 /* WSProgressHUD */,
 				FED428F01B63E262002A5294 /* WSProgressHUDDemo */,
 				FEDB74B71B593589003DDB79 /* WSProgressHUDTests */,
@@ -264,6 +273,8 @@
 				FED429261B63E2A0002A5294 /* LaunchScreen.xib in Resources */,
 				FED429271B63E2A0002A5294 /* Main.storyboard in Resources */,
 				FED429281B63E2A0002A5294 /* Info.plist in Resources */,
+				FE52FF2E1B649B9300703FB5 /* LICENSE in Resources */,
+				FE52FF301B649B9300703FB5 /* WSProgressHUD.podspec in Resources */,
 				FED4290A1B63E262002A5294 /* Info.plist in Resources */,
 				FED429071B63E262002A5294 /* image2.png in Resources */,
 				FED429091B63E262002A5294 /* IMG_6584.png in Resources */,
@@ -295,6 +306,7 @@
 				FED4290B1B63E262002A5294 /* main.m in Sources */,
 				FE52FF271B648EDD00703FB5 /* MMMaterialDesignSpinner.m in Sources */,
 				FE52FF281B648EDD00703FB5 /* WSIndefiniteAnimationView.m in Sources */,
+				FE52FF2F1B649B9300703FB5 /* README.md in Sources */,
 				FED4290C1B63E262002A5294 /* TabViewController1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

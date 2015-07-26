@@ -6,10 +6,11 @@ This is a beauful hud view for iPhone &amp; iPad
 [![License](https://img.shields.io/cocoapods/l/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
 [![Platform](https://img.shields.io/cocoapods/p/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
 
+
 ![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/Demo.gif)
 
 #Usage
-To run the WSProgressHUD project
+To Download the project. Run the WSProgressHUD.xcodeproj in the demo directory.
 
 ``` objc
 //Show on the self.view
@@ -62,6 +63,10 @@ To run the WSProgressHUD project
 
     //Dismiss
     [WSProgressHUD dismiss];
+    
+    //And There have 3 indicator style for your choice
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorSmall] //small custom spinner
+
 ```
 ## Installation
 
