@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "WSProgressHUD"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "WSProgressHUD is a beauful hud view for iPhone & iPad."
 
   s.description  = <<-DESC
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,6 +92,7 @@ Pod::Spec.new do |s|
 
   s.source_files  = "WSProgressHUD/*"
   s.exclude_files = "Demo/Exclude"
+  s.resources  = "WSProgressHUD/WSProgressBundle.bundle/*.png"
 
 
   # s.public_header_files = "Classes/**/*.h"
@@ -133,6 +134,6 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  # s.dependency pod 'Shimmer'
 
 end

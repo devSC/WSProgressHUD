@@ -1,5 +1,9 @@
 # WSProgressHUD
 This is a beauful hud view for iPhone &amp; iPad
+[![CI Status](http://img.shields.io/travis/袁仕崇/WSProgressHUD.svg?style=flat)](https://travis-ci.org/袁仕崇/WSProgressHUD)
+[![Version](https://img.shields.io/cocoapods/v/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
+[![License](https://img.shields.io/cocoapods/l/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
+[![Platform](https://img.shields.io/cocoapods/p/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
 
 ![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/Demo.gif)
 
@@ -57,6 +61,14 @@ To run the WSProgressHUD project
 
     //Dismiss
     [WSProgressHUD dismiss];
+```
+## Installation
+
+WSProgressHUD is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "WSProgressHUD"
 ```
 
 ##Thanks
