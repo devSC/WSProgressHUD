@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "WSProgressHUD"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "WSProgressHUD is a beauful hud view for iPhone & iPad."
 
   s.description  = <<-DESC
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.0.2" }
+  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +92,6 @@ Pod::Spec.new do |s|
 
   s.source_files  = "WSProgressHUD/*"
   s.exclude_files = "Demo/Exclude"
-  s.resources  = "WSProgressHUD/*.bundle"
 
 
   # s.public_header_files = "Classes/**/*.h"
@@ -107,7 +106,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  s.resources  = "WSProgressHUD/*.bundle"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -119,7 +118,7 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  s.frameworks = "UIKit", "QuartzCore","CoreGraphics","Foundation"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
