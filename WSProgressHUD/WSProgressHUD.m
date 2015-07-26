@@ -297,7 +297,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    NSAssert([NSThread mainThread], @"Show Must In main thread");
+    NSAssert([NSThread mainThread], @"Show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeStatus), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
@@ -314,7 +314,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    
+    NSAssert([NSThread mainThread], @"Show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
@@ -338,6 +338,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
+    NSAssert([NSThread mainThread], @"Show Must on main thread");
     if (self.hudIsShowing && self.hudType == WSProgressHUDTypeProgress) {
         self.ringLayer.strokeEnd = progress;
         return;
@@ -360,6 +361,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
+    NSAssert([NSThread mainThread], @"Show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(showImage), @(1), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);

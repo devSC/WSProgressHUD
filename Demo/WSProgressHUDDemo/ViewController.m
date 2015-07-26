@@ -43,7 +43,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)show:(id)sender {
-    
+
+//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
     [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -59,6 +60,10 @@
 }
 - (IBAction)showWithString:(id)sender {
     [WSProgressHUD showWithStatus:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutTabbar];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WSProgressHUD dismiss];
+    });
+
 }
 - (IBAction)showProgress:(id)sender {
     [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
