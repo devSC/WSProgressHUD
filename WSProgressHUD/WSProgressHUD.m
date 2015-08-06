@@ -981,7 +981,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     switch (self.maskType) {
         case WSProgressHUDMaskTypeClear: {
             CGContextRef context = UIGraphicsGetCurrentContext();
-            [[UIColor colorWithWhite:0 alpha:0.5] set];
+            [[UIColor clearColor] set];
             CGRect bounds = self.bounds;
             CGContextFillRect(context, bounds);
         }break;
