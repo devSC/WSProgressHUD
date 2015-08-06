@@ -567,6 +567,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
                     WSProgressHUDStringRect.origin.y = imageOffset;
                     [self startIndicatorAnimation:NO];
                     self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
+					self.labelView.textAlignment = NSTextAlignmentCenter;
                     self.imageView.center = CGPointMake(hudCenterX, 30);
                 } else {
                     self.labelView.text = string;
