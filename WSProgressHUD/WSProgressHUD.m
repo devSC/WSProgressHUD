@@ -566,6 +566,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
                     WSProgressHUDStringRect.origin.y = imageOffset;
                     [self startIndicatorAnimation:NO];
                     self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
+					self.labelView.textAlignment = NSTextAlignmentCenter;
                     self.imageView.center = CGPointMake(hudCenterX, 30);
                 } else {
                     self.labelView.text = string;
@@ -981,7 +982,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     switch (self.maskType) {
         case WSProgressHUDMaskTypeClear: {
             CGContextRef context = UIGraphicsGetCurrentContext();
-            [[UIColor colorWithWhite:0 alpha:0.5] set];
+            [[UIColor clearColor] set];
             CGRect bounds = self.bounds;
             CGContextFillRect(context, bounds);
         }break;
