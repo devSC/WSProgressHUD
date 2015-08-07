@@ -672,6 +672,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
             
             self.labelView.hidden = NO;
             self.labelView.text = string;
+			self.labelView.textAlignment = NSTextAlignmentCenter;
             
             if (self.imageView.image) {
                 
