@@ -33,6 +33,7 @@ FOUNDATION_EXPORT const unsigned char MMMaterialDesignSpinnerVersionString[];
 /** Property indicating whether the view is currently animating. */
 @property (nonatomic, readonly) BOOL isAnimating;
 
+@property (nonatomic, strong) UIColor *spinnerColor;
 /**
  *  Convenience function for starting & stopping animation with a boolean variable instead of explicit
  *  method calls.

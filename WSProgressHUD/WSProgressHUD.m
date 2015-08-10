@@ -69,7 +69,7 @@ static UIColor *WSProgressHUDBackGroundColor;
 static UIImage *WSProgressHUDSuccessImage;
 static UIImage *WSProgressHUDErrorImage;
 
-static CGFloat const WSProgressHUDIndicatorBig = 35;
+static CGFloat const WSProgressHUDIndicatorBig = 31;
 static CGFloat const WSProgressHUDIndicatorSmall = 20;
 
 static CGFloat WSProgressHUDRingThickness = 2;
@@ -341,10 +341,10 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
         self.ringLayer.strokeEnd = progress;
         return;
     }
-    
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeProgress), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
+    
     [self invalidateTimer];
     
     [self setMaskEdgeWithType:self.maskType];
@@ -982,7 +982,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     switch (self.maskType) {
         case WSProgressHUDMaskTypeClear: {
             CGContextRef context = UIGraphicsGetCurrentContext();
-            [[UIColor clearColor] set];
+			[[UIColor clearColor] set];
             CGRect bounds = self.bounds;
             CGContextFillRect(context, bounds);
         }break;
@@ -1155,11 +1155,6 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
         _imageView.hidden = YES;
-        if ([_imageView respondsToSelector:@selector(setTintColor:)]) {
-            [_imageView setTintColor:WSProgressHUDForeGroundColor];
-        } else {
-            
-        }
     }
     return _imageView;
 }
@@ -1181,7 +1176,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     if (!_spinnerView) {
         _spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
         _spinnerView.bounds = CGRectMake(0, 0, 20, 20);
-        _spinnerView.tintColor = WSProgressHUDForeGroundColor;
+        [_spinnerView setSpinnerColor:[UIColor whiteColor]];
     }
     return _spinnerView;
 }
