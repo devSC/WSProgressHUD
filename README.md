@@ -91,7 +91,7 @@ pod "WSProgressHUD"
 ## Manually
 
 Drag the WSProgressHUD/Demo/WSProgressHUD folder into your project.
-Then take care that SVProgressHUD.bundle is added to Targets->Build Phases->Copy Bundle Resources.
+Then take care that WSProgressHUD.bundle is added to Targets->Build Phases->Copy Bundle Resources.
 Add the QuartzCore framework to your project.
 
 ##Thanks
