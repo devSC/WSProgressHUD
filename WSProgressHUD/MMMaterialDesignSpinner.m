@@ -169,12 +169,17 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 - (CAShapeLayer *)progressLayer {
     if (!_progressLayer) {
         _progressLayer = [CAShapeLayer layer];
-        _progressLayer.strokeColor = self.tintColor.CGColor;
+        _progressLayer.strokeColor = [UIColor blueColor].CGColor;
         _progressLayer.fillColor = nil;
         _progressLayer.lineWidth = 1.5f;
     }
     return _progressLayer;
 }
+- (void)setSpinnerColor:(UIColor *)spinnerColor
+{
+    self.progressLayer.strokeColor = spinnerColor.CGColor;
+}
+
 
 - (BOOL)isAnimating {
     return _isAnimating;

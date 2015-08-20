@@ -13,6 +13,17 @@ This is a beauful hud view for iPhone &amp; iPad
 To Download the project. Run the WSProgressHUD.xcodeproj in the demo directory.
 
 ``` objc
+
+    [WSProgressHUD show];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        ...
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+        ...
+        [WSProgressHUD dismiss];
+        });
+    });
+
 //Show on the self.view
 
 @implementation ViewController
@@ -76,7 +87,13 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod "WSProgressHUD"
+
 ```
+## Manually
+
+Drag the WSProgressHUD/Demo/WSProgressHUD folder into your project.
+Then take care that WSProgressHUD.bundle is added to Targets->Build Phases->Copy Bundle Resources.
+Add the QuartzCore framework to your project.
 
 ##Thanks
 
