@@ -70,6 +70,7 @@ To Download the project. Run the WSProgressHUD.xcodeproj in the demo directory.
 ```
 ## Installation
 
+
 WSProgressHUD is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
