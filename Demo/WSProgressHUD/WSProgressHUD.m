@@ -1096,7 +1096,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     if (!_labelView) {
         _labelView = [[UILabel alloc] initWithFrame:CGRectZero];
         _labelView.textColor = [UIColor whiteColor];
-        
+        _labelView.backgroundColor = [UIColor clearColor];
         if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
             _labelView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         } else {
@@ -1125,6 +1125,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 - (UILabel *)shimmeringLabel {
     if (!_shimmeringLabel) {
         _shimmeringLabel = [[UILabel alloc] initWithFrame:self.shimmeringView.bounds];
+        _shimmeringLabel.backgroundColor = [UIColor clearColor];
         _shimmeringLabel.textColor = [UIColor whiteColor];
         if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
             _shimmeringLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
