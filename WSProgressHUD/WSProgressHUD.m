@@ -1043,13 +1043,8 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
         UIImage *successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success@2x" ofType:@"png"]];
         UIImage *failurImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error@2x" ofType:@"png"]];
         
-        if ([[UIImage class] instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-            WSProgressHUDSuccessImage = [successImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            WSProgressHUDErrorImage = [failurImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        } else {
-            WSProgressHUDErrorImage = failurImage;
-            WSProgressHUDSuccessImage = successImage;
-        }
+        WSProgressHUDSuccessImage = [self image:successImage withTintColor:WSProgressHUDForeGroundColor];
+        WSProgressHUDErrorImage = [self image:failurImage withTintColor:WSProgressHUDForeGroundColor];
         
         [self addSubview:self.hudView];
         
@@ -1104,7 +1099,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
         }
         _labelView.adjustsFontSizeToFitWidth = YES;
         _labelView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _labelView.textAlignment = NSTextAlignmentLeft;
+        _labelView.textAlignment = NSTextAlignmentCenter;
         _labelView.numberOfLines = 0;
     }
     return _labelView;
