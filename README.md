@@ -102,7 +102,7 @@ Add the QuartzCore framework to your project.
 @MMMaterialDesignSpinner
 
 ## Author
-Wilson-yuan, wilson.yuan.dev@gmail.com
+Wilson-Yuan, xiaochong2154@163.com
 
 ## License
 WSProgressHUD is available under the MIT license. See the LICENSE file for more info.
