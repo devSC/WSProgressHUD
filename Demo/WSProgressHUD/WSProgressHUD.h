@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
     WSProgressHUDIndicatorCustom,
     WSProgressHUDIndicatorMMSpinner,
     WSProgressHUDIndicatorSmallLight,
+    WSProgressHUDIndicatorGray,
+    WSProgressHUDIndicatorBigGray,//Avaliable ios 7.0+
 };
 
 
@@ -67,7 +69,7 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 /*----------------------------Custom---------------------------------*/
 
 + (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
-
++ (void)setProgressHUDFont: (UIFont *)font;
 
 /*----------------------Show On the view------------------------------*/
 
@@ -98,7 +100,11 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 - (void)showSuccessWithString: (NSString *)string;
 - (void)showErrorWithString: (NSString *)string;
 
-
 - (void)dismiss;
+
+/*----------------------------Custom---------------------------------*/
+- (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
+- (void)setProgressHUDFont: (UIFont *)font;
+
 
 @end

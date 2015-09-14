@@ -36,6 +36,7 @@
         [hud dismiss];
     });
 
+    [self registerOrientationDidChangeObserve];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,25 +45,23 @@
 }
 - (IBAction)show:(id)sender {
 
-//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorCustom];
-    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack];
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorGray];
+    [WSProgressHUD show];
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [WSProgressHUD dismiss];
-    });
+    [self autoDismiss];
 }
 
 - (IBAction)showShimmeringString:(id)sender {
 //    [hud show];
-    [WSProgressHUD showShimmeringString:@"WSProgressHUD Loading..."];
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorBigGray];
 
-    
+//    [WSProgressHUD showShimmeringString:@"WSProgressHUD Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavigation];
+    [WSProgressHUD show];
+
+    [self autoDismiss];
 }
 - (IBAction)showWithString:(id)sender {
     [WSProgressHUD showWithStatus:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutTabbar];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [WSProgressHUD dismiss];
-    });
 
 }
 - (IBAction)showProgress:(id)sender {
@@ -84,7 +83,13 @@ static float progress = 0.0f;
 
 
 - (IBAction)showImage:(id)sender {
-    [WSProgressHUD showSuccessWithStatus:@"I was not delivered unto this world in defeat, nor does failure course in my veins. I am not a sheep waiting to be prodded by my shepherd. I am a lion and I refuse to talk, to walk, to sleep with the sheep. I will hear not those who weep and complain, for their disease is contagious. Let them join the sheep. The slaughterhouse of failure is not my destiny."];
+    
+    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack];
+    [self autoDismiss];
+    
+//    [WSProgressHUD setProgressHUDFont:[UIFont systemFontOfSize:18]];
+    
+//    [WSProgressHUD showSuccessWithStatus:@"I was not delivered unto this world in defeat, nor does failure course in my veins. I am not a sheep waiting to be prodded by my shepherd. I am a lion and I refuse to talk, to walk, to sleep with the sheep. I will hear not those who weep and complain, for their disease is contagious. Let them join the sheep. The slaughterhouse of failure is not my destiny."];
 
 }
 - (IBAction)showString:(id)sender {
@@ -94,5 +99,25 @@ static float progress = 0.0f;
 - (IBAction)dismiss:(id)sender {
     [WSProgressHUD dismiss];
 }
+
+
+- (void)autoDismiss
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WSProgressHUD dismiss];
+    });
+
+}
+- (void)registerOrientationDidChangeObserve
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationDidChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    
+}
+
+- (void)statusBarOrientationDidChange: (NSNotification *)notification {
+    NSLog(@"%@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
+}
+
+
 
 @end
