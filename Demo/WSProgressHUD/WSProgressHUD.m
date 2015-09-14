@@ -23,29 +23,34 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 
 @property (nonatomic, strong) UIControl *overlayView;
 
-@property (strong, nonatomic) UILabel *labelView;
+@property (nonatomic, strong) UILabel *labelView;
 
-@property (strong, nonatomic) UIView *hudView;
+@property (nonatomic, strong) UIView *hudView;
 
-@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
-@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+@property (nonatomic, strong) FBShimmeringView *shimmeringView;
 
-@property (strong, nonatomic) UILabel *shimmeringLabel;
+@property (nonatomic, strong) UILabel *shimmeringLabel;
 
 @property (nonatomic, strong) CAShapeLayer *backgroundRingLayer;
 
-@property (strong, nonatomic) CAShapeLayer *ringLayer;
+@property (nonatomic, strong) CAShapeLayer *ringLayer;
 
-@property (strong, nonatomic) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
-@property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;
 
-@property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimationView;
+@property (nonatomic, strong) WSIndefiniteAnimationView *indefiniteAnimationView;
 
-@property (strong, nonatomic) MMMaterialDesignSpinner *spinnerView;
+@property (nonatomic, strong) MMMaterialDesignSpinner *spinnerView;
 
 @property (nonatomic, assign) CGFloat progress;
+
+@property (nonatomic, copy) NSString *currentString;
+
+
+@property (nonatomic) BOOL isRotate;
 
 @end
 
