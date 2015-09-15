@@ -763,7 +763,8 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 - (void)updateSubview
 {
     self.hudView.bounds = WSProgressHUDNewBounds;
-    
+    self.hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+
     CGFloat hudCenterX = CGRectGetWidth(self.hudView.bounds)/2;
     CGFloat hudCenterY = CGRectGetHeight(self.hudView.bounds)/2;
     
@@ -773,12 +774,27 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
             [self startIndicatorAnimation:YES];
             
             if (self.labelView.text) {
-                self.labelView.frame = WSProgressHUDStringRect;
                 
+                if (self.indicatorStyle == WSProgressHUDIndicatorGray ||
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray) {
+                    
+                    self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+                }
+
+                self.labelView.frame = WSProgressHUDStringRect;
                 self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
                 self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
                 
             } else {
+                if (self.indicatorStyle == WSProgressHUDIndicatorGray  ||
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ) {
+                    self.hudView.backgroundColor = [UIColor clearColor];
+                    if (self.maskType == WSProgressHUDMaskTypeBlack || self.maskType == WSProgressHUDMaskTypeGradient) {
+                        self.indicatorView.color = [UIColor whiteColor];
+                    } else {
+                        self.indicatorView.color = [UIColor grayColor];
+                    }
+                }
                 self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
             }
             

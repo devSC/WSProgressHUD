@@ -36,7 +36,6 @@
         [hud dismiss];
     });
 
-    [self registerOrientationDidChangeObserve];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,16 +107,6 @@ static float progress = 0.0f;
     });
 
 }
-- (void)registerOrientationDidChangeObserve
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationDidChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-    
-}
-
-- (void)statusBarOrientationDidChange: (NSNotification *)notification {
-    NSLog(@"%@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
-}
-
 
 
 @end
