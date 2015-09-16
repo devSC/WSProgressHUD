@@ -1,6 +1,5 @@
 # WSProgressHUD
 This is a beauful hud view for iPhone &amp; iPad
-![logo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/logo.jpg)
 
 [![CI Status](http://img.shields.io/travis/袁仕崇/WSProgressHUD.svg?style=flat)](https://travis-ci.org/袁仕崇/WSProgressHUD)
 [![Version](https://img.shields.io/cocoapods/v/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
