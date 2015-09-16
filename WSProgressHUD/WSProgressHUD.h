@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
     WSProgressHUDIndicatorCustom,
     WSProgressHUDIndicatorMMSpinner,
     WSProgressHUDIndicatorSmallLight,
+    WSProgressHUDIndicatorGray,
+    WSProgressHUDIndicatorBigGray,
 };
 
 
@@ -54,19 +56,24 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 + (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType;
 + (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
 
+//imageSize is 28*28
 + (void)showImage:(UIImage *)image status:(NSString *)title;
 + (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType;
 + (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType;
 
 + (void)showSuccessWithStatus: (NSString *)string;
 + (void)showErrorWithStatus: (NSString *)string;
-
 + (void)dismiss;
 
 /*----------------------------Custom---------------------------------*/
 
 + (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
 
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style
++ (void)setSecondProrityIndicatorStyle: (WSProgressHUDIndicatorStyle)style; //Default is small SmallLight
+
++ (void)setProgressHUDFont: (UIFont *)font;
++ (void)setIndicatorColor: (UIColor *)color;
 
 /*----------------------Show On the view------------------------------*/
 
@@ -97,7 +104,16 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 - (void)showSuccessWithString: (NSString *)string;
 - (void)showErrorWithString: (NSString *)string;
 
-
 - (void)dismiss;
+
+/*----------------------------Custom---------------------------------*/
+- (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
+
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style
+- (void)setSecondProrityIndicatorStyle: (WSProgressHUDIndicatorStyle)style; //Default is small SmallLight
+
+- (void)setProgressHUDFont: (UIFont *)font;
+- (void)setIndicatorColor: (UIColor *)color;
+
 
 @end

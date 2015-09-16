@@ -44,18 +44,16 @@
 }
 - (IBAction)show:(id)sender {
 
-    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorGray];
+//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorGray];
+    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorBigGray];
     [WSProgressHUD show];
 
     [self autoDismiss];
 }
 
 - (IBAction)showShimmeringString:(id)sender {
-//    [hud show];
-    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorBigGray];
 
-//    [WSProgressHUD showShimmeringString:@"WSProgressHUD Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavigation];
-    [WSProgressHUD show];
+    [WSProgressHUD showShimmeringString:@"WSProgressHUD Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutNavigation];
 
     [self autoDismiss];
 }

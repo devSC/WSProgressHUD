@@ -68,6 +68,10 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 /*----------------------------Custom---------------------------------*/
 
 + (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
+
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style
++ (void)setSecondProrityIndicatorStyle: (WSProgressHUDIndicatorStyle)style; //Default is small SmallLight
+
 + (void)setProgressHUDFont: (UIFont *)font;
 + (void)setIndicatorColor: (UIColor *)color;
 
@@ -104,6 +108,10 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 
 /*----------------------------Custom---------------------------------*/
 - (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style;
+
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style
+- (void)setSecondProrityIndicatorStyle: (WSProgressHUDIndicatorStyle)style; //Default is small SmallLight
+
 - (void)setProgressHUDFont: (UIFont *)font;
 - (void)setIndicatorColor: (UIColor *)color;
 

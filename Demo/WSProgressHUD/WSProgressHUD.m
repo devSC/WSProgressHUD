@@ -565,9 +565,11 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
             if (string) {
 
                 if (self.indicatorStyle == WSProgressHUDIndicatorGray ||
-                    self.indicatorStyle == WSProgressHUDIndicatorBigGray) {
-                    
-                    self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ||
+                    [self secondProrityIndicatorStyle] == WSProgressHUDIndicatorGray) { //如果第二优先级的是gray
+//                    if ([self secondProrityIndicatorStyle] == WSProgressHUDIndicatorGray) {
+//                    }
+                    self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite; //设置为白色
                 }
 
                 self.labelView.frame = WSProgressHUDStringRect;
@@ -578,7 +580,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
                 
                 if (self.indicatorStyle == WSProgressHUDIndicatorGray  ||
                     self.indicatorStyle == WSProgressHUDIndicatorBigGray ) {
+                    
                     self.hudView.backgroundColor = [UIColor clearColor];
+                    
                     if (self.maskType == WSProgressHUDMaskTypeBlack || self.maskType == WSProgressHUDMaskTypeGradient) {
                         self.indicatorView.color = [UIColor whiteColor];
                     } else {
@@ -771,12 +775,11 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
             
-            [self startIndicatorAnimation:YES];
             
             if (self.labelView.text) {
-                
                 if (self.indicatorStyle == WSProgressHUDIndicatorGray ||
-                    self.indicatorStyle == WSProgressHUDIndicatorBigGray) {
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ||
+                    [self secondProrityIndicatorStyle] == WSProgressHUDIndicatorGray) {
                     
                     self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
                 }
@@ -797,6 +800,8 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
                 }
                 self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
             }
+            
+            [self startIndicatorAnimation:YES];
             
         }break;
             
@@ -907,8 +912,31 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
         }break;
         case WSProgressHUDIndicatorBigGray: {
             
-            self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-            self.indicatorView.color = [UIColor lightGrayColor];
+            if (self.labelView.text) {
+                [self startSecondProrityIndicatorAnimation:start];
+            } else {
+                self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//                self.indicatorView.color = [UIColor lightGrayColor];
+                self.indefiniteAnimationView.hidden = YES;
+                self.spinnerView.hidden = YES;
+                if (start) {
+                    [self.indicatorView startAnimating];
+                } else {
+                    [self.indicatorView stopAnimating];
+                }
+            }
+        }break;
+
+        default:
+            break;
+    }
+}
+
+- (void)startSecondProrityIndicatorAnimation: (BOOL)start
+{
+    switch ([self secondProrityIndicatorStyle]) {
+            
+        case WSProgressHUDIndicatorSmallLight: {
             self.indefiniteAnimationView.hidden = YES;
             self.spinnerView.hidden = YES;
             if (start) {
@@ -917,11 +945,45 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
                 [self.indicatorView stopAnimating];
             }
         }break;
-
+            
+        case WSProgressHUDIndicatorBigGray:
+        case WSProgressHUDIndicatorCustom: {
+            [self.indicatorView stopAnimating];
+            self.spinnerView.hidden = YES;
+            self.indicatorView.hidden = YES;
+            if (start) {
+                self.indefiniteAnimationView.hidden = NO;
+            } else {
+                self.indefiniteAnimationView.hidden = YES;
+            }
+        }break;
+        case WSProgressHUDIndicatorMMSpinner: {
+            self.indicatorView.hidden = YES;
+            self.indefiniteAnimationView.hidden = YES;
+            if (start) {
+                self.spinnerView.hidden = NO;
+                [self.spinnerView startAnimating];
+            } else {
+                self.spinnerView.hidden = YES;
+            }
+        }break;
+        case WSProgressHUDIndicatorGray: {
+            
+            self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+            
+            self.indefiniteAnimationView.hidden = YES;
+            self.spinnerView.hidden = YES;
+            if (start) {
+                [self.indicatorView startAnimating];
+            } else {
+                [self.indicatorView stopAnimating];
+            }
+        }break;
         default:
             break;
     }
 }
+
 
 - (void)setShimmeringLabelSize: (CGSize)size
 {
@@ -1072,6 +1134,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     [[self shareInstance] setProgressHUDIndicatorStyle:style];
 }
 
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style ->no use
++ (void)setSecondProrityIndicatorStyle:(WSProgressHUDIndicatorStyle)style
+{
+    [[self shareInstance] setSecondProrityIndicatorStyle:style];
+}
+
 + (void)setProgressHUDFont: (UIFont *)font
 {
     [[self shareInstance] setProgressHUDFont:font];
@@ -1086,6 +1154,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 - (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
     objc_setAssociatedObject(self, @selector(indicatorStyle), @(style), OBJC_ASSOCIATION_ASSIGN);
+}
+
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style ->no use
+- (void)setSecondProrityIndicatorStyle:(WSProgressHUDIndicatorStyle)style
+{
+    objc_setAssociatedObject(self, @selector(secondProrityIndicatorStyle), @(style), OBJC_ASSOCIATION_ASSIGN);
 }
 
 #pragma mark - Draw rect
@@ -1346,12 +1420,17 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
-- (WSProgressHUDIndicatorStyle )indicatorStyle {
+- (WSProgressHUDIndicatorStyle)indicatorStyle {
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 - (BOOL)showOnTheWindow
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (WSProgressHUDIndicatorStyle)secondProrityIndicatorStyle
+{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
 

@@ -23,29 +23,36 @@ typedef NS_ENUM(NSInteger, WSProgressHUDType) {
 
 @property (nonatomic, strong) UIControl *overlayView;
 
-@property (strong, nonatomic) UILabel *labelView;
+@property (nonatomic, strong) UILabel *labelView;
 
-@property (strong, nonatomic) UIView *hudView;
+@property (nonatomic, strong) UIView *hudView;
 
-@property (strong, nonatomic) UIActivityIndicatorView *indicatorView;
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorView;
 
-@property (strong, nonatomic) FBShimmeringView *shimmeringView;
+@property (nonatomic, strong) FBShimmeringView *shimmeringView;
 
-@property (strong, nonatomic) UILabel *shimmeringLabel;
+@property (nonatomic, strong) UILabel *shimmeringLabel;
 
 @property (nonatomic, strong) CAShapeLayer *backgroundRingLayer;
 
-@property (strong, nonatomic) CAShapeLayer *ringLayer;
+@property (nonatomic, strong) CAShapeLayer *ringLayer;
 
-@property (strong, nonatomic) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
-@property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;
 
-@property (strong, nonatomic) WSIndefiniteAnimationView *indefiniteAnimationView;
+@property (nonatomic, strong) WSIndefiniteAnimationView *indefiniteAnimationView;
 
-@property (strong, nonatomic) MMMaterialDesignSpinner *spinnerView;
+@property (nonatomic, strong) MMMaterialDesignSpinner *spinnerView;
 
 @property (nonatomic, assign) CGFloat progress;
+
+@property (nonatomic, copy) NSString *currentString;
+
+
+@property (nonatomic) BOOL isRotate;
+
+@property (nonatomic) BOOL isTempIndicatorStyle;
 
 @end
 
@@ -77,7 +84,7 @@ static CGFloat WSProgressHUDShowDuration = 0.3;
 static CGFloat WSProgressHUDDismissDuration = 0.15;
 static CGFloat const WSProgressHUDWidthEdgeOffset = 10;
 static CGFloat const WSProgressHUDHeightEdgeOffset = 8;
-static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
+static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 
 @implementation WSProgressHUD
@@ -295,7 +302,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    NSAssert([NSThread isMainThread], @"Show Must on main thread");
+    NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeStatus), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
@@ -304,7 +311,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     
     [self setMaskEdgeWithType:self.maskType];
     
-    [self updateSubviewsPositionWithString:string];
+    self.currentString = string;
+
+    [self updateSubviewsPosition];
     
     [self showHudViewWithAnimation];
 }
@@ -312,7 +321,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    NSAssert([NSThread isMainThread], @"Show Must on main thread");
+    NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeString), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(withoutType), @(withoutType), OBJC_ASSOCIATION_ASSIGN);
@@ -320,11 +329,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     [self invalidateTimer];
     
     [self setMaskEdgeWithType:self.maskType];
-
+    
+    self.currentString = string;
     if (string) {
         objc_setAssociatedObject(self, @selector(onlyShowTitle), @(1), OBJC_ASSOCIATION_ASSIGN);
         
-        [self updateSubviewsPositionWithString:string];
+        [self updateSubviewsPosition];
         
         [self showHudViewWithAnimation];
         
@@ -336,7 +346,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    NSAssert([NSThread isMainThread], @"Show Must on main thread");
+    NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     if (self.hudIsShowing && self.hudType == WSProgressHUDTypeProgress) {
         self.ringLayer.strokeEnd = progress;
         return;
@@ -349,7 +359,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     
     [self setMaskEdgeWithType:self.maskType];
 
-    [self updateSubviewsPositionWithString:string];
+    self.currentString = string;
+
+    [self updateSubviewsPosition];
     
     [self showHudViewWithAnimation];
     
@@ -358,7 +370,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    NSAssert([NSThread isMainThread], @"Show Must on main thread");
+    NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(showImage), @(1), OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(self, @selector(hudType), @(WSProgressHUDTypeImage), OBJC_ASSOCIATION_ASSIGN);
@@ -368,7 +380,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     
     [self setMaskEdgeWithType:self.maskType];
     
-    [self updateSubviewsPositionWithString:title];
+    self.currentString = title;
+
+    [self updateSubviewsPosition];
     
     [self showHudViewWithAnimation];
 
@@ -462,9 +476,15 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
                          self.hudView.transform = CGAffineTransformIdentity;
                          
                          [self.overlayView removeFromSuperview];
+                         
                          self.userInteractionEnabled = NO;
+                         
                          [self stopIndicatorAnimation];
+                         
+                         //Call drawInRact
                          [self setNeedsDisplay];
+                         
+                         [self setProgressHUDIndicatorStyle:self.indicatorStyle];
                      }];
 }
 
@@ -504,84 +524,117 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 }
 
 
-- (void)updateSubviewsPositionWithString: (NSString *)string
+- (void)updateSubviewsPosition
 {
-    CGSize hudSize = [self hudSizeWithString:string];
+    NSString *string = self.currentString;
     
-    CGFloat centerX = self.frame.size.width / 2;
-    CGFloat centerY = self.frame.size.height / 2 - 20;
+    CGSize hudSize = [self hudSizeWithString:string];
     CGRect hudBounds = CGRectMake(0, 0, hudSize.width, hudSize.height);
+    
     if (self.hudIsShowing) {
-        WSProgressHUDNewBounds = hudBounds;
-        [self stopIndicatorAnimation];
-    } else {
-        self.hudView.bounds = hudBounds;
-        self.labelView.frame = WSProgressHUDStringRect;//Reset the view frame
-        self.hudView.center = CGPointMake(centerX, centerY);
-        
-        CGFloat hudCenterX = CGRectGetWidth(hudBounds)/2;
-        CGFloat hudCenterY = CGRectGetHeight(hudBounds)/2;
-        
-        switch (self.hudType) {
-            case WSProgressHUDTypeStatus: {
-                
-                [self startIndicatorAnimation:YES];
-                
-                if (string) {
-                    self.labelView.frame = WSProgressHUDStringRect;
-                    self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-                    self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
-                    
-                } else {
-                    self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
-                }
-                
-            }break;
-                
-            case WSProgressHUDTypeString: {
-                self.labelView.frame = WSProgressHUDStringRect;
-                
-                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-                
-                self.shimmeringView.frame = WSProgressHUDStringRect;
-                [self setShimmeringLabelSize:WSProgressHUDStringRect.size];
-                
-                self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
-                [self startIndicatorAnimation:NO];
-            }break;
-                
-            case WSProgressHUDTypeProgress: {
-                if (string) {
-                    self.ringLayer.position = self.backgroundRingLayer.position = CGPointMake(15, hudCenterY);
-                    self.labelView.frame = WSProgressHUDStringRect;
-                    self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
-                } else {
-                    self.ringLayer.position = self.backgroundRingLayer.position = CGPointMake(hudCenterX, hudCenterY);
-                }
-
-            }break;
-            case WSProgressHUDTypeImage: {
-                
-                if (self.imageView.image) {
-                    WSProgressHUDStringRect.origin.y = imageOffset;
-                    [self startIndicatorAnimation:NO];
-                    self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
-					self.labelView.textAlignment = NSTextAlignmentCenter;
-                    self.imageView.center = CGPointMake(hudCenterX, 30);
-                } else {
-                    self.labelView.text = string;
-                    self.labelView.center = CGPointMake(hudCenterX, hudCenterY);
-                }
-                
-            }break;
-                
-            default:
-                break;
+        if (self.isRotate) {
+            [self updatePositionWithString:string hudBounds:hudBounds];
+            self.isRotate = NO;
+        } else {
+            WSProgressHUDNewBounds = hudBounds;
+            [self stopIndicatorAnimation];
         }
-
+    } else {
+        [self updatePositionWithString:string hudBounds:hudBounds];
     }
 }
 
+- (void)updatePositionWithString: (NSString *)string hudBounds: (CGRect)bounds
+{
+    CGFloat centerX = self.bounds.size.width / 2;
+    CGFloat centerY = self.bounds.size.height / 2 - 20;
+    
+    self.hudView.bounds = bounds;
+    self.labelView.frame = WSProgressHUDStringRect;//Reset the view frame
+    self.hudView.center = CGPointMake(centerX, centerY);
+    self.hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+    
+    CGFloat hudCenterX = CGRectGetWidth(bounds)/2;
+    CGFloat hudCenterY = CGRectGetHeight(bounds)/2;
+    
+    switch (self.hudType) {
+        case WSProgressHUDTypeStatus: {
+            
+            [self startIndicatorAnimation:YES];
+            
+            if (string) {
+
+                if (self.indicatorStyle == WSProgressHUDIndicatorGray ||
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ||
+                    [self secondProrityIndicatorStyle] == WSProgressHUDIndicatorGray) { //如果第二优先级的是gray
+//                    if ([self secondProrityIndicatorStyle] == WSProgressHUDIndicatorGray) {
+//                    }
+                    self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite; //设置为白色
+                }
+
+                self.labelView.frame = WSProgressHUDStringRect;
+                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
+                self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
+                
+            } else {
+                
+                if (self.indicatorStyle == WSProgressHUDIndicatorGray  ||
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ) {
+                    
+                    self.hudView.backgroundColor = [UIColor clearColor];
+                    
+                    if (self.maskType == WSProgressHUDMaskTypeBlack || self.maskType == WSProgressHUDMaskTypeGradient) {
+                        self.indicatorView.color = [UIColor whiteColor];
+                    } else {
+                        self.indicatorView.color = [UIColor grayColor];
+                    }
+                }
+                self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
+            }
+            
+        }break;
+            
+        case WSProgressHUDTypeString: {
+            self.labelView.frame = WSProgressHUDStringRect;
+            
+            self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
+            
+            self.shimmeringView.frame = WSProgressHUDStringRect;
+            [self setShimmeringLabelSize:WSProgressHUDStringRect.size];
+            
+            self.shimmeringView.center = CGPointMake(hudCenterX, hudCenterY);
+            [self startIndicatorAnimation:NO];
+        }break;
+            
+        case WSProgressHUDTypeProgress: {
+            if (string) {
+                self.ringLayer.position = self.backgroundRingLayer.position = CGPointMake(15, hudCenterY);
+                self.labelView.frame = WSProgressHUDStringRect;
+                self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
+            } else {
+                self.ringLayer.position = self.backgroundRingLayer.position = CGPointMake(hudCenterX, hudCenterY);
+            }
+            
+        }break;
+        case WSProgressHUDTypeImage: {
+            
+            if (self.imageView.image) {
+                WSProgressHUDStringRect.origin.y = imageOffset;
+                [self startIndicatorAnimation:NO];
+                self.labelView.center = CGPointMake(hudCenterX , hudCenterY + 20);
+                self.labelView.textAlignment = NSTextAlignmentCenter;
+                self.imageView.center = CGPointMake(hudCenterX, 30);
+            } else {
+                self.labelView.text = string;
+                self.labelView.center = CGPointMake(hudCenterX, hudCenterY);
+            }
+            
+        }break;
+            
+        default:
+            break;
+    }
+}
 - (CGFloat)valueByScreenScale: (CGFloat)value
 {
     return ([UIScreen mainScreen].bounds.size.width / 320 * value);
@@ -714,24 +767,41 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 - (void)updateSubview
 {
     self.hudView.bounds = WSProgressHUDNewBounds;
-    
+    self.hudView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+
     CGFloat hudCenterX = CGRectGetWidth(self.hudView.bounds)/2;
     CGFloat hudCenterY = CGRectGetHeight(self.hudView.bounds)/2;
     
     switch (self.hudType) {
         case WSProgressHUDTypeStatus: {
             
-            [self startIndicatorAnimation:YES];
             
             if (self.labelView.text) {
+                if (self.indicatorStyle == WSProgressHUDIndicatorGray ||
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ||
+                    [self secondProrityIndicatorStyle] == WSProgressHUDIndicatorGray) {
+                    
+                    self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+                }
+
                 self.labelView.frame = WSProgressHUDStringRect;
-                
                 self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(15, hudCenterY);
                 self.labelView.center = CGPointMake(hudCenterX + 10, hudCenterY);
                 
             } else {
+                if (self.indicatorStyle == WSProgressHUDIndicatorGray  ||
+                    self.indicatorStyle == WSProgressHUDIndicatorBigGray ) {
+                    self.hudView.backgroundColor = [UIColor clearColor];
+                    if (self.maskType == WSProgressHUDMaskTypeBlack || self.maskType == WSProgressHUDMaskTypeGradient) {
+                        self.indicatorView.color = [UIColor whiteColor];
+                    } else {
+                        self.indicatorView.color = [UIColor grayColor];
+                    }
+                }
                 self.spinnerView.center = self.indefiniteAnimationView.center = self.indicatorView.center = CGPointMake(hudCenterX, hudCenterY);
             }
+            
+            [self startIndicatorAnimation:YES];
             
         }break;
             
@@ -828,10 +898,92 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
                 self.spinnerView.hidden = YES;
             }
         }break;
+        case WSProgressHUDIndicatorGray: {
+            
+            self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+            
+            self.indefiniteAnimationView.hidden = YES;
+            self.spinnerView.hidden = YES;
+            if (start) {
+                [self.indicatorView startAnimating];
+            } else {
+                [self.indicatorView stopAnimating];
+            }
+        }break;
+        case WSProgressHUDIndicatorBigGray: {
+            
+            if (self.labelView.text) {
+                [self startSecondProrityIndicatorAnimation:start];
+            } else {
+                self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//                self.indicatorView.color = [UIColor lightGrayColor];
+                self.indefiniteAnimationView.hidden = YES;
+                self.spinnerView.hidden = YES;
+                if (start) {
+                    [self.indicatorView startAnimating];
+                } else {
+                    [self.indicatorView stopAnimating];
+                }
+            }
+        }break;
+
         default:
             break;
     }
 }
+
+- (void)startSecondProrityIndicatorAnimation: (BOOL)start
+{
+    switch ([self secondProrityIndicatorStyle]) {
+            
+        case WSProgressHUDIndicatorSmallLight: {
+            self.indefiniteAnimationView.hidden = YES;
+            self.spinnerView.hidden = YES;
+            if (start) {
+                [self.indicatorView startAnimating];
+            } else {
+                [self.indicatorView stopAnimating];
+            }
+        }break;
+            
+        case WSProgressHUDIndicatorBigGray:
+        case WSProgressHUDIndicatorCustom: {
+            [self.indicatorView stopAnimating];
+            self.spinnerView.hidden = YES;
+            self.indicatorView.hidden = YES;
+            if (start) {
+                self.indefiniteAnimationView.hidden = NO;
+            } else {
+                self.indefiniteAnimationView.hidden = YES;
+            }
+        }break;
+        case WSProgressHUDIndicatorMMSpinner: {
+            self.indicatorView.hidden = YES;
+            self.indefiniteAnimationView.hidden = YES;
+            if (start) {
+                self.spinnerView.hidden = NO;
+                [self.spinnerView startAnimating];
+            } else {
+                self.spinnerView.hidden = YES;
+            }
+        }break;
+        case WSProgressHUDIndicatorGray: {
+            
+            self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+            
+            self.indefiniteAnimationView.hidden = YES;
+            self.spinnerView.hidden = YES;
+            if (start) {
+                [self.indicatorView startAnimating];
+            } else {
+                [self.indicatorView stopAnimating];
+            }
+        }break;
+        default:
+            break;
+    }
+}
+
 
 - (void)setShimmeringLabelSize: (CGSize)size
 {
@@ -843,6 +995,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 
 - (void)setMaskEdgeWithType: (WSProgressHUDMaskType)maskType
 {
+    
     if (maskType != WSProgressHUDMaskTypeDefault) {
         switch (self.withoutType) {
             case WSProgressHUDMaskWithoutDefault: {
@@ -852,15 +1005,15 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
             }break;
             case WSProgressHUDMaskWithoutNavigation: {
                 maskBottomEdge = 0;
-                maskTopEdge = 64;
+                maskTopEdge = [self maskTopEdge];
             }break;
             case WSProgressHUDMaskWithoutTabbar: {
-                maskBottomEdge = 0;
-                maskTopEdge = 64;
+                maskBottomEdge = 49;
+                maskTopEdge = 0;
             }break;
             case WSProgressHUDMaskWithoutNavAndTabbar: {
                 maskBottomEdge = 49;
-                maskTopEdge = 64;
+                maskTopEdge = [self maskTopEdge];
             }break;
                 
             default:
@@ -873,9 +1026,9 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     
     self.overlayView.frame = CGRectMake(0, maskTopEdge, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - maskTopEdge - maskBottomEdge);
     if (self.showOnTheWindow) {
-        CGRect rect = self.frame;
+        CGRect rect = self.bounds;
         rect.size = self.overlayView.frame.size;
-        self.frame = rect;
+        self.bounds = rect;
     }
 }
 
@@ -966,14 +1119,47 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     return slice;
 }
 
+- (CGFloat)maskTopEdge
+{
+    if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        return 32;
+    } else {
+        return 64;
+    }
+}
+
 
 #pragma mark - Custom
 + (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
     [[self shareInstance] setProgressHUDIndicatorStyle:style];
 }
 
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style ->no use
++ (void)setSecondProrityIndicatorStyle:(WSProgressHUDIndicatorStyle)style
+{
+    [[self shareInstance] setSecondProrityIndicatorStyle:style];
+}
+
++ (void)setProgressHUDFont: (UIFont *)font
+{
+    [[self shareInstance] setProgressHUDFont:font];
+}
+
+- (void)setProgressHUDFont: (UIFont *)font
+{
+    self.labelView.font = self.shimmeringLabel.font = font;
+}
+
+
+
 - (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
     objc_setAssociatedObject(self, @selector(indicatorStyle), @(style), OBJC_ASSOCIATION_ASSIGN);
+}
+
+/// if you set WSProgressHUDIndicatorBigGray style you should set second prority indicator Style ->no use
+- (void)setSecondProrityIndicatorStyle:(WSProgressHUDIndicatorStyle)style
+{
+    objc_setAssociatedObject(self, @selector(secondProrityIndicatorStyle), @(style), OBJC_ASSOCIATION_ASSIGN);
 }
 
 #pragma mark - Draw rect
@@ -1022,6 +1208,31 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     }
 }
 
+#pragma mark - Observe
+
+- (void)registerOrientationDidChangeObserve
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarOrientationDidChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    
+}
+
+- (void)statusBarOrientationDidChange: (NSNotification *)notification {
+    if (self.superview) {
+        self.bounds = self.superview.bounds;
+        
+        if (self.hudIsShowing) {
+            //更新Frame
+            self.isRotate = YES;
+            
+            [self setMaskEdgeWithType:self.maskType];
+            
+            [self updateSubviewsPosition];
+            
+            [self setNeedsDisplay];
+        }
+    }
+    
+}
 
 #pragma mark - Init View
 - (instancetype)initWithView:(UIView *)view {
@@ -1060,6 +1271,10 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
         self.backgroundColor = [UIColor clearColor];
         
         self.userInteractionEnabled = NO;
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin        | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        
+        [self registerOrientationDidChangeObserve];
     }
     return self;
 }
@@ -1205,7 +1420,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
 {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
-- (WSProgressHUDIndicatorStyle )indicatorStyle {
+- (WSProgressHUDIndicatorStyle)indicatorStyle {
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 - (BOOL)showOnTheWindow
@@ -1213,6 +1428,16 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 30;
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
+- (WSProgressHUDIndicatorStyle)secondProrityIndicatorStyle
+{
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
+
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end
