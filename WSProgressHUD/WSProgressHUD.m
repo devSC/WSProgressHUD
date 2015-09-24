@@ -916,7 +916,6 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
                 [self startSecondProrityIndicatorAnimation:start];
             } else {
                 self.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-//                self.indicatorView.color = [UIColor lightGrayColor];
                 self.indefiniteAnimationView.hidden = YES;
                 self.spinnerView.hidden = YES;
                 if (start) {
