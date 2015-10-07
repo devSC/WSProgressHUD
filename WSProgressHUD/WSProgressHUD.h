@@ -73,7 +73,6 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 + (void)setSecondProrityIndicatorStyle: (WSProgressHUDIndicatorStyle)style; //Default is small SmallLight
 
 + (void)setProgressHUDFont: (UIFont *)font;
-+ (void)setIndicatorColor: (UIColor *)color;
 
 /*----------------------Show On the view------------------------------*/
 
@@ -113,7 +112,5 @@ typedef NS_ENUM(NSInteger, WSProgressHUDIndicatorStyle) {
 - (void)setSecondProrityIndicatorStyle: (WSProgressHUDIndicatorStyle)style; //Default is small SmallLight
 
 - (void)setProgressHUDFont: (UIFont *)font;
-- (void)setIndicatorColor: (UIColor *)color;
-
 
 @end

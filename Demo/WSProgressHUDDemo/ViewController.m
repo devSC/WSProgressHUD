@@ -44,10 +44,8 @@
 }
 - (IBAction)show:(id)sender {
 
-//    [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorGray];
     [WSProgressHUD setProgressHUDIndicatorStyle:WSProgressHUDIndicatorBigGray];
     [WSProgressHUD show];
-
     [self autoDismiss];
 }
 
@@ -58,12 +56,15 @@
     [self autoDismiss];
 }
 - (IBAction)showWithString:(id)sender {
-    [WSProgressHUD showWithStatus:@"Loading..." maskType:WSProgressHUDMaskTypeBlack maskWithout:WSProgressHUDMaskWithoutTabbar];
+    [WSProgressHUD showWithStatus:@"Loading..." maskType:WSProgressHUDMaskTypeBlack];
+    [self autoDismiss];
 
 }
 - (IBAction)showProgress:(id)sender {
     [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3f];
 }
+
+
 static float progress = 0.0f;
 
 - (void)increaseProgress {
@@ -81,12 +82,7 @@ static float progress = 0.0f;
 
 - (IBAction)showImage:(id)sender {
     
-    [WSProgressHUD showWithMaskType:WSProgressHUDMaskTypeBlack];
-    [self autoDismiss];
-    
-//    [WSProgressHUD setProgressHUDFont:[UIFont systemFontOfSize:18]];
-    
-//    [WSProgressHUD showSuccessWithStatus:@"I was not delivered unto this world in defeat, nor does failure course in my veins. I am not a sheep waiting to be prodded by my shepherd. I am a lion and I refuse to talk, to walk, to sleep with the sheep. I will hear not those who weep and complain, for their disease is contagious. Let them join the sheep. The slaughterhouse of failure is not my destiny."];
+    [WSProgressHUD showSuccessWithStatus:@"I was not delivered unto this world in defeat, nor does failure course in my veins. I am not a sheep waiting to be prodded by my shepherd. I am a lion and I refuse to talk, to walk, to sleep with the sheep. I will hear not those who weep and complain, for their disease is contagious. Let them join the sheep. The slaughterhouse of failure is not my destiny."];
 
 }
 - (IBAction)showString:(id)sender {
