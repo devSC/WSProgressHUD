@@ -140,29 +140,32 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 + (void)showSuccessWithStatus: (NSString *)string
 {
+    [[self shareInstance] addOverlayViewToWindow];
     [self showImage:WSProgressHUDSuccessImage status:string];
 }
 
 + (void)showErrorWithStatus: (NSString *)string
 {
+    [[self shareInstance] addOverlayViewToWindow];
     [self showImage:WSProgressHUDErrorImage status:string];
 }
 
 
 + (void)showImage:(UIImage *)image status:(NSString *)title
 {
+    [[self shareInstance] addOverlayViewToWindow];
     [self showImage:image status:title maskType:WSProgressHUDMaskTypeDefault];
 }
 
 + (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType
 {
+    [[self shareInstance] addOverlayViewToWindow];
     [self showImage:image status:title maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
 
 + (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
 {
-    [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showImage:image status:title maskType:maskType maskWithout:withoutType];
 }
 
