@@ -140,12 +140,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 + (void)showSuccessWithStatus: (NSString *)string
 {
-    [self showImage:WSProgressHUDSuccessImage status:string];
+    [self showImage:WSProgressHUDSuccessDefaultImage() status:string];
 }
 
 + (void)showErrorWithStatus: (NSString *)string
 {
-    [self showImage:WSProgressHUDErrorImage status:string];
+    [self showImage:WSProgressHUDErrorDefaultImage() status:string];
 }
 
 
@@ -287,11 +287,11 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 - (void)showSuccessWithString: (NSString *)string
 {
-    [self showImage:WSProgressHUDSuccessImage status:string];
+    [self showImage:WSProgressHUDSuccessDefaultImage() status:string];
 }
 - (void)showErrorWithString: (NSString *)string
 {
-    [self showImage:WSProgressHUDErrorImage status:string];
+    [self showImage:WSProgressHUDErrorDefaultImage() status:string];
 }
 
 - (void)showWithMaskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
@@ -855,8 +855,8 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
             [self.ringLayer removeFromSuperlayer];
             [self.backgroundRingLayer removeFromSuperlayer];
             
-            self.ringLayer = [self createRingLayerWithCenter:center radius:size/2 lineWidth:1 color:WSProgressHUDForeGroundColor];
-            self.backgroundRingLayer = [self createRingLayerWithCenter:center radius:size/2 lineWidth:1 color:WSProgressHUDBackGroundColor];
+            self.ringLayer = [self createRingLayerWithCenter:center radius:size/2 lineWidth:1 color:WSProgressHUDForeGroundDefaultColor()];
+            self.backgroundRingLayer = [self createRingLayerWithCenter:center radius:size/2 lineWidth:1 color:WSProgressHUDBackGroundDefaultColor()];
             self.ringLayer.strokeEnd = 0;
             self.backgroundRingLayer.strokeEnd = 1;
             [self.hudView.layer addSublayer:self.backgroundRingLayer];
@@ -1030,23 +1030,6 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
         self.bounds = rect;
     }
 }
-
-
-
-- (UIImage *)image:(UIImage *)image withTintColor:(UIColor *)color{
-    CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
-    CGContextRef c = UIGraphicsGetCurrentContext();
-    [image drawInRect:rect];
-    CGContextSetFillColorWithColor(c, [color CGColor]);
-    CGContextSetBlendMode(c, kCGBlendModeSourceAtop);
-    CGContextFillRect(c, rect);
-    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return tintedImage;
-}
-
 
 - (void)invalidateTimer
 {
@@ -1243,19 +1226,6 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     self = [super initWithFrame:frame];
     if (self) {
         
-        WSProgressHUDForeGroundColor = [UIColor whiteColor];
-        WSProgressHUDBackGroundColor = [UIColor colorWithWhite:0.3 alpha:1];
-        
-        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        NSURL *bundleUrl = [bundle URLForResource:@"WSProgressBundle" withExtension:@"bundle"];
-        NSBundle *imageBundle = [NSBundle bundleWithURL:bundleUrl];
-        
-        UIImage *successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success@2x" ofType:@"png"]];
-        UIImage *failurImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error@2x" ofType:@"png"]];
-        
-        WSProgressHUDSuccessImage = [self image:successImage withTintColor:WSProgressHUDForeGroundColor];
-        WSProgressHUDErrorImage = [self image:failurImage withTintColor:WSProgressHUDForeGroundColor];
-        
         [self addSubview:self.hudView];
         
         [self.hudView addSubview:self.indicatorView];
@@ -1278,6 +1248,65 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     return self;
 }
 
+#pragma mark - INLine Utils Method
+
+CG_INLINE UIColor * WSProgressHUDForeGroundDefaultColor()
+{
+    if (WSProgressHUDForeGroundColor == nil) {
+        WSProgressHUDForeGroundColor = [UIColor whiteColor];
+    }
+    return WSProgressHUDForeGroundColor;
+}
+
+CG_INLINE UIColor * WSProgressHUDBackGroundDefaultColor()
+{
+    if (WSProgressHUDBackGroundColor == nil) {
+        WSProgressHUDBackGroundColor = [UIColor colorWithWhite:0.3 alpha:1];
+    }
+    return WSProgressHUDBackGroundColor;
+}
+
+
+CG_INLINE UIImage * WSProgressHUDImageWithName(NSString *imageName, NSString *imageType)
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[WSProgressHUD class]];
+    NSURL *bundleUrl = [bundle URLForResource:@"WSProgressBundle" withExtension:@"bundle"];
+    NSBundle *defaultBundle = [NSBundle bundleWithURL:bundleUrl];
+    return [UIImage imageWithContentsOfFile:[defaultBundle pathForResource:imageName ofType:imageType]];
+}
+
+CG_INLINE UIImage * WSProgressHUDSuccessDefaultImage()
+{
+    if (WSProgressHUDSuccessImage == nil) {
+        UIImage *successImage = WSProgressHUDImageWithName(@"success@2x", @"png");
+        WSProgressHUDSuccessImage = WSImageByAddTintColr(successImage, WSProgressHUDForeGroundDefaultColor());
+    }
+    return WSProgressHUDSuccessImage;
+}
+
+CG_INLINE UIImage * WSProgressHUDErrorDefaultImage()
+{
+    if (WSProgressHUDErrorImage == nil) {
+        UIImage *failurImage = WSProgressHUDImageWithName(@"error@2x", @"png");
+        WSProgressHUDErrorImage = WSImageByAddTintColr(failurImage, WSProgressHUDForeGroundDefaultColor());
+    }
+    return WSProgressHUDErrorImage;
+}
+
+
+CG_INLINE UIImage * WSImageByAddTintColr(UIImage *image, UIColor *color)
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    [image drawInRect:rect];
+    CGContextSetFillColorWithColor(c, [color CGColor]);
+    CGContextSetBlendMode(c, kCGBlendModeSourceAtop);
+    CGContextFillRect(c, rect);
+    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return tintedImage;
+}
 
 - (UIView *)hudView
 {
@@ -1373,7 +1402,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 {
     if (!_indefiniteAnimationView) {
         _indefiniteAnimationView = [[WSIndefiniteAnimationView alloc] initWithFrame:CGRectZero];
-        _indefiniteAnimationView.strokeColor = WSProgressHUDForeGroundColor;
+        _indefiniteAnimationView.strokeColor = WSProgressHUDForeGroundDefaultColor();
         _indefiniteAnimationView.strokeThickness = WSProgressHUDRingThickness;
         _indefiniteAnimationView.radius = 10;
         [_indefiniteAnimationView sizeToFit];
