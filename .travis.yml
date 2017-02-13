@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode8.2
+
+script: xcodebuild clean build -project Demo/WSProgressHUD.xcodeproj -scheme WSProgressHUD -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO build | xcpretty -c
+
+
+before_install:
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+
+
+# branches:
+#   only:
+#   - master

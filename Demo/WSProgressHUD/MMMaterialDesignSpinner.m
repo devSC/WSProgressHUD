@@ -36,6 +36,8 @@ static NSString *kMMRingRotationAnimationKey = @"mmmaterialdesignspinner.rotatio
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     [self initialize];
 }
 
