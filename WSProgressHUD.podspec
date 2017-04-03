@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "WSProgressHUD"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "WSProgressHUD is a beauful hud view for iPhone & iPad."
 
   s.description  = <<-DESC
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "袁仕崇" => "xiaochong2154@163.com" }
   s.platform     = :ios, "6.0"
-  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.1.1" }
+  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.1.2" }
   s.source_files  = "WSProgressHUD/*"
   s.exclude_files = "Demo/Exclude"
 
