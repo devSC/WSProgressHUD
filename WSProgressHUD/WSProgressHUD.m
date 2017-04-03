@@ -419,7 +419,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.2, 1/1.2);
+                             self.hudView.transform = CGAffineTransformIdentity;
                              self.hudView.alpha = 1;
                          }
                          completion:^(BOOL finished){
@@ -467,24 +467,27 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     self.hudView.transform = CGAffineTransformIdentity;
     [UIView animateWithDuration:WSProgressHUDDismissDuration
                           delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut
+                        options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.hudView.transform = CGAffineTransformScale(self.hudView.transform, .8, .8);
                          self.hudView.alpha = 0;
                      }
                      completion:^(BOOL finished){
-                         self.hudView.transform = CGAffineTransformIdentity;
                          
-                         [self.overlayView removeFromSuperview];
-                         
-                         self.userInteractionEnabled = NO;
-                         
-                         [self stopIndicatorAnimation];
-                         
-                         //Call drawInRact
-                         [self setNeedsDisplay];
-                         
-                         [self setProgressHUDIndicatorStyle:self.indicatorStyle];
+                         if (self.hudView.alpha == 0) {
+                             self.hudView.transform = CGAffineTransformIdentity;
+                             
+                             [self.overlayView removeFromSuperview];
+                             
+                             self.userInteractionEnabled = NO;
+                             
+                             [self stopIndicatorAnimation];
+                             
+                             //Call drawInRact
+                             [self setNeedsDisplay];
+                             
+                             [self setProgressHUDIndicatorStyle:self.indicatorStyle];
+                         }
                      }];
 }
 
