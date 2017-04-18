@@ -9,7 +9,7 @@ This is a beauful hud view for iPhone &amp; iPad
 
 ![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/Demo.gif)
 
-#Usage
+# Usage
 To Download the project. Run the WSProgressHUD.xcodeproj in the demo directory.
 
 ``` objc
@@ -95,7 +95,7 @@ Drag the WSProgressHUD/Demo/WSProgressHUD folder into your project.
 Then take care that WSProgressHUD.bundle is added to Targets->Build Phases->Copy Bundle Resources.
 Add the QuartzCore framework to your project.
 
-##Thanks
+## Thanks
 
 @Shimmering
 @SVProgressHUD
