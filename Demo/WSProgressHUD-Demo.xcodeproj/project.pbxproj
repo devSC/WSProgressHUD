@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE52FF251B648EDD00703FB5 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF1B1B648EDD00703FB5 /* FBShimmeringLayer.m */; };
-		FE52FF261B648EDD00703FB5 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF1D1B648EDD00703FB5 /* FBShimmeringView.m */; };
-		FE52FF271B648EDD00703FB5 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF1F1B648EDD00703FB5 /* MMMaterialDesignSpinner.m */; };
-		FE52FF281B648EDD00703FB5 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF211B648EDD00703FB5 /* WSIndefiniteAnimationView.m */; };
-		FE52FF291B648EDD00703FB5 /* WSProgressBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */; };
-		FE52FF2A1B648EDD00703FB5 /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */; };
 		FE52FF2E1B649B9300703FB5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF2B1B649B9300703FB5 /* LICENSE */; };
 		FE52FF2F1B649B9300703FB5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF2C1B649B9300703FB5 /* README.md */; };
 		FE52FF301B649B9300703FB5 /* WSProgressHUD.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF2D1B649B9300703FB5 /* WSProgressHUD.podspec */; };
@@ -28,18 +22,46 @@
 		FED429261B63E2A0002A5294 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED428F31B63E262002A5294 /* LaunchScreen.xib */; };
 		FED429271B63E2A0002A5294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED428F51B63E262002A5294 /* Main.storyboard */; };
 		FED429281B63E2A0002A5294 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74B91B593589003DDB79 /* Info.plist */; };
-		FEDB74BB1B593589003DDB79 /* WSProgressHUDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */; };
+		FED85EC31EE83B680071B3A3 /* WSProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */; };
+		FED85EC41EE83B680071B3A3 /* WSProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FED85EC91EE83BC30071B3A3 /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */; };
+		FED85ECC1EE83EFE0071B3A3 /* WSProgressBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */; };
+		FED85ECD1EE83F080071B3A3 /* FBShimmering-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FE52FF181B648EDD00703FB5 /* FBShimmering-Prefix.pch */; };
+		FED85ECE1EE83F080071B3A3 /* FBShimmering.h in Headers */ = {isa = PBXBuildFile; fileRef = FE52FF191B648EDD00703FB5 /* FBShimmering.h */; };
+		FED85ECF1EE83F080071B3A3 /* FBShimmeringLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = FE52FF1A1B648EDD00703FB5 /* FBShimmeringLayer.h */; };
+		FED85ED01EE83F080071B3A3 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF1B1B648EDD00703FB5 /* FBShimmeringLayer.m */; };
+		FED85ED11EE83F080071B3A3 /* FBShimmeringView.h in Headers */ = {isa = PBXBuildFile; fileRef = FE52FF1C1B648EDD00703FB5 /* FBShimmeringView.h */; };
+		FED85ED21EE83F080071B3A3 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF1D1B648EDD00703FB5 /* FBShimmeringView.m */; };
+		FED85ED51EE83F080071B3A3 /* WSIndefiniteAnimationView.h in Headers */ = {isa = PBXBuildFile; fileRef = FE52FF201B648EDD00703FB5 /* WSIndefiniteAnimationView.h */; };
+		FED85ED61EE83F080071B3A3 /* WSIndefiniteAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF211B648EDD00703FB5 /* WSIndefiniteAnimationView.m */; };
+		FED85F071EE8444B0071B3A3 /* WSProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = FE52FF231B648EDD00703FB5 /* WSProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FED85F121EE8479E0071B3A3 /* MMMaterialDesignSpinner.h in Headers */ = {isa = PBXBuildFile; fileRef = FED85F101EE8479E0071B3A3 /* MMMaterialDesignSpinner.h */; };
+		FED85F131EE8479E0071B3A3 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = FED85F111EE8479E0071B3A3 /* MMMaterialDesignSpinner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FEDB74B51B593589003DDB79 /* PBXContainerItemProxy */ = {
+		FED85ECA1EE83EDD0071B3A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FEDB74931B593589003DDB79 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = FEDB749A1B593589003DDB79;
+			remoteGlobalIDString = FED85EBB1EE83B680071B3A3;
 			remoteInfo = WSProgressHUD;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FED85EC81EE83B680071B3A3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FED85EC41EE83B680071B3A3 /* WSProgressHUD.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FE52FF181B648EDD00703FB5 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -48,8 +70,6 @@
 		FE52FF1B1B648EDD00703FB5 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
 		FE52FF1C1B648EDD00703FB5 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
 		FE52FF1D1B648EDD00703FB5 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
-		FE52FF1E1B648EDD00703FB5 /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
-		FE52FF1F1B648EDD00703FB5 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		FE52FF201B648EDD00703FB5 /* WSIndefiniteAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIndefiniteAnimationView.h; sourceTree = "<group>"; };
 		FE52FF211B648EDD00703FB5 /* WSIndefiniteAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIndefiniteAnimationView.m; sourceTree = "<group>"; };
 		FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WSProgressBundle.bundle; sourceTree = "<group>"; };
@@ -74,24 +94,28 @@
 		FED429001B63E262002A5294 /* TabViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController2.m; sourceTree = "<group>"; };
 		FED429011B63E262002A5294 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FED429021B63E262002A5294 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FEDB749B1B593589003DDB79 /* WSProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSProgressHUDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WSProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED85EBF1EE83B680071B3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FED85F101EE8479E0071B3A3 /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		FED85F111EE8479E0071B3A3 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
+		FEDB749B1B593589003DDB79 /* WSProgressHUD-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WSProgressHUD-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDB74B91B593589003DDB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEDB74BA1B593589003DDB79 /* WSProgressHUDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSProgressHUDTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FEDB74981B593589003DDB79 /* Frameworks */ = {
+		FED85EB81EE83B680071B3A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FEDB74B11B593589003DDB79 /* Frameworks */ = {
+		FEDB74981B593589003DDB79 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED85EC31EE83B680071B3A3 /* WSProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,8 +155,8 @@
 				FE52FF1B1B648EDD00703FB5 /* FBShimmeringLayer.m */,
 				FE52FF1C1B648EDD00703FB5 /* FBShimmeringView.h */,
 				FE52FF1D1B648EDD00703FB5 /* FBShimmeringView.m */,
-				FE52FF1E1B648EDD00703FB5 /* MMMaterialDesignSpinner.h */,
-				FE52FF1F1B648EDD00703FB5 /* MMMaterialDesignSpinner.m */,
+				FED85F101EE8479E0071B3A3 /* MMMaterialDesignSpinner.h */,
+				FED85F111EE8479E0071B3A3 /* MMMaterialDesignSpinner.m */,
 				FE52FF201B648EDD00703FB5 /* WSIndefiniteAnimationView.h */,
 				FE52FF211B648EDD00703FB5 /* WSIndefiniteAnimationView.m */,
 				FE52FF221B648EDD00703FB5 /* WSProgressBundle.bundle */,
@@ -157,6 +181,14 @@
 			path = WSProgressHUDDemo;
 			sourceTree = "<group>";
 		};
+		FED85EBD1EE83B680071B3A3 /* WSProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FED85EBF1EE83B680071B3A3 /* Info.plist */,
+			);
+			path = WSProgressHUD;
+			sourceTree = "<group>";
+		};
 		FEDB74921B593589003DDB79 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +198,7 @@
 				FE52FF171B648EDD00703FB5 /* WSProgressHUD */,
 				FED428F01B63E262002A5294 /* WSProgressHUDDemo */,
 				FEDB74B71B593589003DDB79 /* WSProgressHUDTests */,
+				FED85EBD1EE83B680071B3A3 /* WSProgressHUD */,
 				FEDB749C1B593589003DDB79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -173,8 +206,8 @@
 		FEDB749C1B593589003DDB79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FEDB749B1B593589003DDB79 /* WSProgressHUD.app */,
-				FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */,
+				FEDB749B1B593589003DDB79 /* WSProgressHUD-Demo.app */,
+				FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,14 +231,32 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		FED85EB91EE83B680071B3A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FED85ECE1EE83F080071B3A3 /* FBShimmering.h in Headers */,
+				FED85ECF1EE83F080071B3A3 /* FBShimmeringLayer.h in Headers */,
+				FED85F121EE8479E0071B3A3 /* MMMaterialDesignSpinner.h in Headers */,
+				FED85ECD1EE83F080071B3A3 /* FBShimmering-Prefix.pch in Headers */,
+				FED85ED11EE83F080071B3A3 /* FBShimmeringView.h in Headers */,
+				FED85ED51EE83F080071B3A3 /* WSIndefiniteAnimationView.h in Headers */,
+				FED85F071EE8444B0071B3A3 /* WSProgressHUD.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		FEDB749A1B593589003DDB79 /* WSProgressHUD */ = {
+		FED85EBB1EE83B680071B3A3 /* WSProgressHUD */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FEDB74BE1B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUD" */;
+			buildConfigurationList = FED85EC71EE83B680071B3A3 /* Build configuration list for PBXNativeTarget "WSProgressHUD" */;
 			buildPhases = (
-				FEDB74971B593589003DDB79 /* Sources */,
-				FEDB74981B593589003DDB79 /* Frameworks */,
-				FEDB74991B593589003DDB79 /* Resources */,
+				FED85EB71EE83B680071B3A3 /* Sources */,
+				FED85EB81EE83B680071B3A3 /* Frameworks */,
+				FED85EB91EE83B680071B3A3 /* Headers */,
+				FED85EBA1EE83B680071B3A3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -213,26 +264,27 @@
 			);
 			name = WSProgressHUD;
 			productName = WSProgressHUD;
-			productReference = FEDB749B1B593589003DDB79 /* WSProgressHUD.app */;
-			productType = "com.apple.product-type.application";
+			productReference = FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		FEDB74B31B593589003DDB79 /* WSProgressHUDTests */ = {
+		FEDB749A1B593589003DDB79 /* WSProgressHUD-Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FEDB74C11B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUDTests" */;
+			buildConfigurationList = FEDB74BE1B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUD-Demo" */;
 			buildPhases = (
-				FEDB74B01B593589003DDB79 /* Sources */,
-				FEDB74B11B593589003DDB79 /* Frameworks */,
-				FEDB74B21B593589003DDB79 /* Resources */,
+				FEDB74971B593589003DDB79 /* Sources */,
+				FEDB74981B593589003DDB79 /* Frameworks */,
+				FEDB74991B593589003DDB79 /* Resources */,
+				FED85EC81EE83B680071B3A3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FEDB74B61B593589003DDB79 /* PBXTargetDependency */,
+				FED85ECB1EE83EDD0071B3A3 /* PBXTargetDependency */,
 			);
-			name = WSProgressHUDTests;
-			productName = WSProgressHUDTests;
-			productReference = FEDB74B41B593589003DDB79 /* WSProgressHUDTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = "WSProgressHUD-Demo";
+			productName = WSProgressHUD;
+			productReference = FEDB749B1B593589003DDB79 /* WSProgressHUD-Demo.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -243,16 +295,18 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "wilson-yuan";
 				TargetAttributes = {
+					FED85EBB1EE83B680071B3A3 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 7222U544JL;
+						ProvisioningStyle = Automatic;
+					};
 					FEDB749A1B593589003DDB79 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					FEDB74B31B593589003DDB79 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = FEDB749A1B593589003DDB79;
+						DevelopmentTeam = 7222U544JL;
 					};
 				};
 			};
-			buildConfigurationList = FEDB74961B593589003DDB79 /* Build configuration list for PBXProject "WSProgressHUD" */;
+			buildConfigurationList = FEDB74961B593589003DDB79 /* Build configuration list for PBXProject "WSProgressHUD-Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -265,18 +319,25 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FEDB749A1B593589003DDB79 /* WSProgressHUD */,
-				FEDB74B31B593589003DDB79 /* WSProgressHUDTests */,
+				FEDB749A1B593589003DDB79 /* WSProgressHUD-Demo */,
+				FED85EBB1EE83B680071B3A3 /* WSProgressHUD */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FED85EBA1EE83B680071B3A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FED85ECC1EE83EFE0071B3A3 /* WSProgressBundle.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FEDB74991B593589003DDB79 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE52FF291B648EDD00703FB5 /* WSProgressBundle.bundle in Resources */,
 				FED429261B63E2A0002A5294 /* LaunchScreen.xib in Resources */,
 				FED429271B63E2A0002A5294 /* Main.storyboard in Resources */,
 				FED429281B63E2A0002A5294 /* Info.plist in Resources */,
@@ -289,49 +350,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FEDB74B21B593589003DDB79 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FED85EB71EE83B680071B3A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FED85F131EE8479E0071B3A3 /* MMMaterialDesignSpinner.m in Sources */,
+				FED85ED61EE83F080071B3A3 /* WSIndefiniteAnimationView.m in Sources */,
+				FED85ED01EE83F080071B3A3 /* FBShimmeringLayer.m in Sources */,
+				FED85ED21EE83F080071B3A3 /* FBShimmeringView.m in Sources */,
+				FED85EC91EE83BC30071B3A3 /* WSProgressHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FEDB74971B593589003DDB79 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE52FF251B648EDD00703FB5 /* FBShimmeringLayer.m in Sources */,
 				FED429031B63E262002A5294 /* AppDelegate.m in Sources */,
-				FE52FF2A1B648EDD00703FB5 /* WSProgressHUD.m in Sources */,
 				FED4290E1B63E262002A5294 /* ViewController.m in Sources */,
-				FE52FF261B648EDD00703FB5 /* FBShimmeringView.m in Sources */,
 				FED4290D1B63E262002A5294 /* TabViewController2.m in Sources */,
 				FED4290B1B63E262002A5294 /* main.m in Sources */,
-				FE52FF271B648EDD00703FB5 /* MMMaterialDesignSpinner.m in Sources */,
-				FE52FF281B648EDD00703FB5 /* WSIndefiniteAnimationView.m in Sources */,
 				FE52FF2F1B649B9300703FB5 /* README.md in Sources */,
 				FED4290C1B63E262002A5294 /* TabViewController1.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FEDB74B01B593589003DDB79 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FEDB74BB1B593589003DDB79 /* WSProgressHUDTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FEDB74B61B593589003DDB79 /* PBXTargetDependency */ = {
+		FED85ECB1EE83EDD0071B3A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FEDB749A1B593589003DDB79 /* WSProgressHUD */;
-			targetProxy = FEDB74B51B593589003DDB79 /* PBXContainerItemProxy */;
+			target = FED85EBB1EE83B680071B3A3 /* WSProgressHUD */;
+			targetProxy = FED85ECA1EE83EDD0071B3A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -355,6 +408,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FED85EC51EE83B680071B3A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7222U544JL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = WSProgressHUD/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Wilson.WSProgressHUD;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FED85EC61EE83B680071B3A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7222U544JL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = WSProgressHUD/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Wilson.WSProgressHUD;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FEDB74BC1B593589003DDB79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -446,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7222U544JL;
 				INFOPLIST_FILE = "$(SRCROOT)/WSProgressHUDDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -458,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7222U544JL;
 				INFOPLIST_FILE = "$(SRCROOT)/WSProgressHUDDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -466,46 +572,19 @@
 			};
 			name = Release;
 		};
-		FEDB74C21B593589003DDB79 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = WSProgressHUDTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ysc.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSProgressHUD.app/WSProgressHUD";
-			};
-			name = Debug;
-		};
-		FEDB74C31B593589003DDB79 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = WSProgressHUDTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ysc.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSProgressHUD.app/WSProgressHUD";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FEDB74961B593589003DDB79 /* Build configuration list for PBXProject "WSProgressHUD" */ = {
+		FED85EC71EE83B680071B3A3 /* Build configuration list for PBXNativeTarget "WSProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FED85EC51EE83B680071B3A3 /* Debug */,
+				FED85EC61EE83B680071B3A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEDB74961B593589003DDB79 /* Build configuration list for PBXProject "WSProgressHUD-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FEDB74BC1B593589003DDB79 /* Debug */,
@@ -514,20 +593,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FEDB74BE1B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUD" */ = {
+		FEDB74BE1B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUD-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FEDB74BF1B593589003DDB79 /* Debug */,
 				FEDB74C01B593589003DDB79 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FEDB74C11B593589003DDB79 /* Build configuration list for PBXNativeTarget "WSProgressHUDTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FEDB74C21B593589003DDB79 /* Debug */,
-				FEDB74C31B593589003DDB79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
