@@ -5,6 +5,8 @@ This is a beauful hud view for iPhone &amp; iPad
 [![Version](https://img.shields.io/cocoapods/v/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
 [![License](https://img.shields.io/cocoapods/l/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
 [![Platform](https://img.shields.io/cocoapods/p/WSProgressHUD.svg?style=flat)](http://cocoapods.org/pods/WSProgressHUD)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/devSC/WSProgressHUD)
+
 
 
 ![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/Demo.gif)
