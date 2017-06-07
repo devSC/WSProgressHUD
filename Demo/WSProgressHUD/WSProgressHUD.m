@@ -106,12 +106,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     [self showWithMaskType:WSProgressHUDMaskTypeDefault];
 }
 
-+ (void)showWithMaskType: (WSProgressHUDMaskType)maskType
++ (void)showWithMaskType:(WSProgressHUDMaskType)maskType
 {
     [self showWithMaskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
-+ (void)showWithMaskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
++ (void)showWithMaskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showWithMaskType:maskType maskWithout:withoutType];
@@ -124,12 +124,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     [self showWithStatus:string maskType:WSProgressHUDMaskTypeDefault];
 }
 
-+ (void)showWithStatus: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
++ (void)showWithStatus:(NSString *)string maskType:(WSProgressHUDMaskType)maskType
 {
     [self showWithStatus:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
-+ (void)showWithStatus: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
++ (void)showWithStatus:(NSString *)string maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showWithString:string maskType:maskType maskWithout:withoutType];
@@ -138,12 +138,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 #pragma mark - Show image
 
-+ (void)showSuccessWithStatus: (NSString *)string
++ (void)showSuccessWithStatus:(NSString *)string
 {
     [self showImage:WSProgressHUDSuccessDefaultImage() status:string];
 }
 
-+ (void)showErrorWithStatus: (NSString *)string
++ (void)showErrorWithStatus:(NSString *)string
 {
     [self showImage:WSProgressHUDErrorDefaultImage() status:string];
 }
@@ -154,13 +154,13 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     [self showImage:image status:title maskType:WSProgressHUDMaskTypeDefault];
 }
 
-+ (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType
++ (void)showImage:(UIImage *)image status:(NSString *)title maskType:(WSProgressHUDMaskType)maskType
 {
     [self showImage:image status:title maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
 
-+ (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
++ (void)showImage:(UIImage *)image status:(NSString *)title maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showImage:image status:title maskType:maskType maskWithout:withoutType];
@@ -176,21 +176,21 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 {
     [self showProgress:progress maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
-+ (void)showProgress:(CGFloat)progress maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
++ (void)showProgress:(CGFloat)progress maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showProgress:progress status:nil maskType:maskType maskWithout:withoutType];
 }
 
-+ (void)showProgress:(CGFloat)progress status:(NSString*)string
++ (void)showProgress:(CGFloat)progress status:(NSString *)string
 {
     [self showProgress:progress status:string maskType:WSProgressHUDMaskTypeDefault];
 }
-+ (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType
++ (void)showProgress:(CGFloat)progress status:(NSString *)string maskType:(WSProgressHUDMaskType)maskType
 {
     [self showProgress:progress status:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
-+ (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
++ (void)showProgress:(CGFloat)progress status:(NSString *)string maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showProgress:progress status:string maskType:maskType maskWithout:withoutType];
@@ -198,16 +198,16 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 
 #pragma mark - Shimmering String
-+ (void)showShimmeringString: (NSString *)string
++ (void)showShimmeringString:(NSString *)string
 {
     [self showShimmeringString:string maskType:WSProgressHUDMaskTypeDefault];
 }
 
-+ (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
++ (void)showShimmeringString:(NSString *)string maskType:(WSProgressHUDMaskType)maskType
 {
     [self showShimmeringString:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
-+ (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
++ (void)showShimmeringString:(NSString *)string maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [[self shareInstance] addOverlayViewToWindow];
     [[self shareInstance] showShimmeringString:string maskType:maskType maskWithout:withoutType];
@@ -225,28 +225,28 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 {
     [self showWithMaskType:WSProgressHUDMaskTypeDefault];
 }
-- (void)showWithMaskType: (WSProgressHUDMaskType)maskType
+- (void)showWithMaskType:(WSProgressHUDMaskType)maskType
 {
     [self showWithMaskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
 
-- (void)showWithString: (NSString *)string
+- (void)showWithString:(NSString *)string
 {
     [self showWithString:string maskType:WSProgressHUDMaskTypeDefault];
 }
-- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
+- (void)showWithString:(NSString *)string maskType:(WSProgressHUDMaskType)maskType
 {
     [self showWithString:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
 
 #pragma mark - OnlyString
-- (void)showShimmeringString: (NSString *)string
+- (void)showShimmeringString:(NSString *)string
 {
     [self showShimmeringString:string maskType:WSProgressHUDMaskTypeDefault];
 }
-- (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType
+- (void)showShimmeringString:(NSString *)string maskType:(WSProgressHUDMaskType)maskType
 {
     [self showShimmeringString:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
@@ -260,17 +260,17 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 {
     [self showProgress:progress maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
-- (void)showProgress:(CGFloat)progress maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+- (void)showProgress:(CGFloat)progress maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [self showProgress:progress status:nil maskType:maskType maskWithout:withoutType];
 }
 
 
-- (void)showProgress:(CGFloat)progress status:(NSString*)string
+- (void)showProgress:(CGFloat)progress status:(NSString *)string
 {
     [self showProgress:progress status:string maskType:WSProgressHUDMaskTypeDefault];
 }
-- (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType
+- (void)showProgress:(CGFloat)progress status:(NSString *)string maskType:(WSProgressHUDMaskType)maskType
 {
     [self showProgress:progress status:string maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
@@ -280,27 +280,27 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 {
     [self showImage:image status:title maskType:WSProgressHUDMaskTypeDefault];
 }
-- (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType
+- (void)showImage:(UIImage *)image status:(NSString *)title maskType:(WSProgressHUDMaskType)maskType
 {
     [self showImage:image status:title maskType:maskType maskWithout:WSProgressHUDMaskWithoutDefault];
 }
 
-- (void)showSuccessWithString: (NSString *)string
+- (void)showSuccessWithString:(NSString *)string
 {
     [self showImage:WSProgressHUDSuccessDefaultImage() status:string];
 }
-- (void)showErrorWithString: (NSString *)string
+- (void)showErrorWithString:(NSString *)string
 {
     [self showImage:WSProgressHUDErrorDefaultImage() status:string];
 }
 
-- (void)showWithMaskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+- (void)showWithMaskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     [self showWithString:nil maskType:maskType maskWithout:withoutType];
 }
 
 
-- (void)showWithString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+- (void)showWithString:(NSString *)string maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
@@ -319,7 +319,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 }
 
 
-- (void)showShimmeringString: (NSString *)string maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+- (void)showShimmeringString:(NSString *)string maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
@@ -344,7 +344,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     
 }
 
-- (void)showProgress:(CGFloat)progress status:(NSString*)string maskType:(WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+- (void)showProgress:(CGFloat)progress status:(NSString *)string maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     if (self.hudIsShowing && self.hudType == WSProgressHUDTypeProgress) {
@@ -368,7 +368,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 }
 
 
-- (void)showImage:(UIImage *)image status:(NSString *)title maskType: (WSProgressHUDMaskType)maskType maskWithout: (WSProgressHUDMaskWithoutType)withoutType
+- (void)showImage:(UIImage *)image status:(NSString *)title maskType:(WSProgressHUDMaskType)maskType maskWithout:(WSProgressHUDMaskWithoutType)withoutType
 {
     NSAssert([NSThread isMainThread], @"WSProgressHUD show Must on main thread");
     objc_setAssociatedObject(self, @selector(maskType), @(maskType), OBJC_ASSOCIATION_ASSIGN);
@@ -547,7 +547,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     }
 }
 
-- (void)updatePositionWithString: (NSString *)string hudBounds: (CGRect)bounds
+- (void)updatePositionWithString:(NSString *)string hudBounds:(CGRect)bounds
 {
     CGFloat centerX = self.bounds.size.width / 2;
     CGFloat centerY = self.bounds.size.height / 2 - 20;
@@ -638,12 +638,12 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
             break;
     }
 }
-- (CGFloat)valueByScreenScale: (CGFloat)value
+- (CGFloat)valueByScreenScale:(CGFloat)value
 {
     return ([UIScreen mainScreen].bounds.size.width / 320 * value);
 }
 
-- (CGSize)hudSizeWithString: (NSString *)string
+- (CGSize)hudSizeWithString:(NSString *)string
 {
     
     WSProgressHUDStringRect = CGRectZero;
@@ -869,7 +869,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     
 }
 
-- (void)startIndicatorAnimation: (BOOL)start
+- (void)startIndicatorAnimation:(BOOL)start
 {
     switch (self.indicatorStyle) {
         case WSProgressHUDIndicatorSmallLight: {
@@ -934,7 +934,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     }
 }
 
-- (void)startSecondProrityIndicatorAnimation: (BOOL)start
+- (void)startSecondProrityIndicatorAnimation:(BOOL)start
 {
     switch ([self secondProrityIndicatorStyle]) {
             
@@ -987,7 +987,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 }
 
 
-- (void)setShimmeringLabelSize: (CGSize)size
+- (void)setShimmeringLabelSize:(CGSize)size
 {
     CGRect bounds = self.shimmeringLabel.bounds;
     bounds.size = size;
@@ -995,7 +995,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 }
 
 
-- (void)setMaskEdgeWithType: (WSProgressHUDMaskType)maskType
+- (void)setMaskEdgeWithType:(WSProgressHUDMaskType)maskType
 {
     
     if (maskType != WSProgressHUDMaskTypeDefault) {
@@ -1049,7 +1049,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     }
 }
 
-- (NSTimeInterval)displayDurationForString:(NSString*)string {
+- (NSTimeInterval)displayDurationForString:(NSString *)string {
     CGFloat duration = MIN((CGFloat)string.length*0.06 + 0.5, 5.0);
     if (duration < 1.0) {
         duration = 1.0;
@@ -1058,7 +1058,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 }
 
 
-- (CGFloat)shimmingSpeedWithString: (NSString *)string
+- (CGFloat)shimmingSpeedWithString:(NSString *)string
 {
     return string.length > 10 ? 100 : 50;
 }
@@ -1115,7 +1115,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 
 #pragma mark - Custom
-+ (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
++ (void)setProgressHUDIndicatorStyle:(WSProgressHUDIndicatorStyle)style {
     [[self shareInstance] setProgressHUDIndicatorStyle:style];
 }
 
@@ -1125,19 +1125,19 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     [[self shareInstance] setSecondProrityIndicatorStyle:style];
 }
 
-+ (void)setProgressHUDFont: (UIFont *)font
++ (void)setProgressHUDFont:(UIFont *)font
 {
     [[self shareInstance] setProgressHUDFont:font];
 }
 
-- (void)setProgressHUDFont: (UIFont *)font
+- (void)setProgressHUDFont:(UIFont *)font
 {
     self.labelView.font = self.shimmeringLabel.font = font;
 }
 
 
 
-- (void)setProgressHUDIndicatorStyle: (WSProgressHUDIndicatorStyle)style {
+- (void)setProgressHUDIndicatorStyle:(WSProgressHUDIndicatorStyle)style {
     objc_setAssociatedObject(self, @selector(indicatorStyle), @(style), OBJC_ASSOCIATION_ASSIGN);
 }
 
@@ -1201,7 +1201,7 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
     
 }
 
-- (void)statusBarOrientationDidChange: (NSNotification *)notification {
+- (void)statusBarOrientationDidChange:(NSNotification *)notification {
     if (self.superview) {
         self.bounds = self.superview.bounds;
         
