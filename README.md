@@ -83,6 +83,7 @@ To Download the project. Run the WSProgressHUD.xcodeproj in the demo directory.
 ```
 ## Installation
 
+### From CocoaPods
 
 WSProgressHUD is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -91,11 +92,32 @@ it, simply add the following line to your Podfile:
 pod 'WSProgressHUD'
 
 ```
-## Manually
 
-Drag the WSProgressHUD/Demo/WSProgressHUD folder into your project.
-Then take care that WSProgressHUD.bundle is added to Targets->Build Phases->Copy Bundle Resources.
+### Carthage 
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate `WSProgressHUD` into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "devSC/WSProgressHUD"
+```
+
+Run `carthage update` to build the framework and drag the built `WSProgressHUD.framework` (in Carthage/Build/iOS folder) into your Xcode project (Linked Frameworks and Libraries in `Targets`).
+
+### Manually
+
+Drag the `WSProgressHUD/Demo/WSProgressHUD` folder into your project.
+Then take care that `WSProgressHUD.bundle` is added to Targets->Build Phases->Copy Bundle Resources.
 Add the QuartzCore framework to your project.
+
+## Swift
+
+Even though `WSProgressHUD` is written in Objective-C, it can be used in Swift with no hassle. If you use [CocoaPods](http://cocoapods.org) add the following line to your [Podfile](http://guides.cocoapods.org/using/using-cocoapods.html):
+
+```ruby
+use_frameworks!
+```
+
+If you added `WSProgressHUD` manually, just add a [bridging header](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html) file to your project with the `WSProgressHUD` header included. 
 
 ## Thanks
 
