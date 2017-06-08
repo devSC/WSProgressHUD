@@ -129,7 +129,8 @@ If you added `WSProgressHUD` manually, just add a [bridging header](https://deve
 Wilson-Yuan, xiaochong2154@163.com
 
 ## License
-WSProgressHUD is available under the MIT license. See the LICENSE file for more info.
+WSProgressHUD is available under the MIT license. See the [LICENSE](https://github.com/devSC/WSProgressHUD/blob/master/LICENSE)
+ file for more info.
 
 
 
