@@ -21,7 +21,6 @@
 		FED4290E1B63E262002A5294 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED429021B63E262002A5294 /* ViewController.m */; };
 		FED429261B63E2A0002A5294 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED428F31B63E262002A5294 /* LaunchScreen.xib */; };
 		FED429271B63E2A0002A5294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED428F51B63E262002A5294 /* Main.storyboard */; };
-		FED429281B63E2A0002A5294 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEDB74B91B593589003DDB79 /* Info.plist */; };
 		FED85EC31EE83B680071B3A3 /* WSProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */; };
 		FED85EC41EE83B680071B3A3 /* WSProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FED85EBC1EE83B680071B3A3 /* WSProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FED85EC91EE83BC30071B3A3 /* WSProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FE52FF241B648EDD00703FB5 /* WSProgressHUD.m */; };
@@ -311,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -340,7 +340,6 @@
 			files = (
 				FED429261B63E2A0002A5294 /* LaunchScreen.xib in Resources */,
 				FED429271B63E2A0002A5294 /* Main.storyboard in Resources */,
-				FED429281B63E2A0002A5294 /* Info.plist in Resources */,
 				FE52FF2E1B649B9300703FB5 /* LICENSE in Resources */,
 				FE52FF301B649B9300703FB5 /* WSProgressHUD.podspec in Resources */,
 				FED429071B63E262002A5294 /* image2.png in Resources */,
