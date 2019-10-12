@@ -11,6 +11,18 @@
 
 #import "MMMaterialDesignSpinner.h"
 
+#define isIphoneX ({\
+BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+    if (!UIEdgeInsetsEqualToEdgeInsets([UIApplication sharedApplication].delegate.window.safeAreaInsets, UIEdgeInsetsZero)) {\
+    isPhoneX = YES;\
+    }\
+}\
+isPhoneX;\
+})
+
+
+
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet MMMaterialDesignSpinner *spinner;
@@ -35,7 +47,12 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [hud dismiss];
     });
-
+    
+    
+    NSLog(@"isPhoneX: %@ safeAreaInsets: %@", @(isIphoneX), NSStringFromUIEdgeInsets([UIApplication sharedApplication].delegate.window.safeAreaInsets));
+    
+    //IpHONE11 : 2019-10-12 13:47:13.977848+0800 WSProgressHUD-Demo[11856:364632] safeAreaInsets: {44, 0, 34, 0}
+    //IPhone8 2019-10-12 13:48:20.355807+0800 WSProgressHUD-Demo[12002:367684] safeAreaInsets: {0, 0, 0, 0}
 }
 
 - (void)didReceiveMemoryWarning {
