@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "WSProgressHUD"
-  s.version      = "1.1.3"
+  s.version      = "1.1.4"
   s.summary      = "WSProgressHUD is a beauful hud view for iPhone & iPad."
 
   s.description  = <<-DESC
