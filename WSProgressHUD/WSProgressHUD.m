@@ -86,6 +86,16 @@ static CGFloat const WSProgressHUDWidthEdgeOffset = 10;
 static CGFloat const WSProgressHUDHeightEdgeOffset = 8;
 static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
+#define isIphoneX ({\
+BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+    if (!UIEdgeInsetsEqualToEdgeInsets([UIApplication sharedApplication].delegate.window.safeAreaInsets, UIEdgeInsetsZero)) {\
+    isPhoneX = YES;\
+    }\
+}\
+isPhoneX;\
+})
+
 
 @implementation WSProgressHUD
 
@@ -1006,15 +1016,15 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
                 
             }break;
             case WSProgressHUDMaskWithoutNavigation: {
-                maskBottomEdge = 0;
                 maskTopEdge = [self maskTopEdge];
+                maskBottomEdge = 0;
             }break;
             case WSProgressHUDMaskWithoutTabbar: {
-                maskBottomEdge = 49;
+                maskBottomEdge = [self maskBottomEdge];
                 maskTopEdge = 0;
             }break;
             case WSProgressHUDMaskWithoutNavAndTabbar: {
-                maskBottomEdge = 49;
+                maskBottomEdge = [self maskBottomEdge];
                 maskTopEdge = [self maskTopEdge];
             }break;
                 
@@ -1106,13 +1116,29 @@ static CGFloat const WSProgressHUDImageTypeWidthEdgeOffset = 16;
 
 - (CGFloat)maskTopEdge
 {
-    if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-        return 32;
+    CGFloat topEdge = 0;
+    if (isIphoneX) {
+        if (@available(iOS 11.0, *)) {
+            topEdge = [UIApplication sharedApplication].delegate.window.safeAreaInsets.top;
+        }
     } else {
-        return 64;
+        if (!UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+            topEdge = 20;
+        }
     }
+    return topEdge + 44;
 }
 
+- (CGFloat)maskBottomEdge
+{
+    CGFloat bottomEdge = 0;
+    if (isIphoneX) {
+        if (@available(iOS 11.0, *)) {
+            bottomEdge = [UIApplication sharedApplication].delegate.window.safeAreaInsets.bottom;
+        }
+    }
+    return bottomEdge + 49;
+}
 
 #pragma mark - Custom
 + (void)setProgressHUDIndicatorStyle:(WSProgressHUDIndicatorStyle)style {
