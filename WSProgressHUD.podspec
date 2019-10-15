@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "袁仕崇" => "xiaochong2154@163.com" }
   s.platform     = :ios, "6.0"
-  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.1.3" }
+  s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.1.4" }
   s.source_files  = "WSProgressHUD/*"
   s.exclude_files = "Demo/Exclude"
 
