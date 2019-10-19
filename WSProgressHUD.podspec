@@ -35,10 +35,13 @@ Pod::Spec.new do |s|
   s.author             = { "袁仕崇" => "xiaochong2154@163.com" }
   s.platform     = :ios, "6.0"
   s.source       = { :git => "https://github.com/devSC/WSProgressHUD.git", :tag => "1.1.5" }
-  s.source_files  = "WSProgressHUD/*"
+  s.source_files = 'WSProgressHUD/Classes/**/*'
   s.exclude_files = "Demo/Exclude"
-
-  s.resources  = "WSProgressHUD/*.bundle"
+  
+  s.resource_bundles = {
+     'WSProgressHUD' => ['WSProgressHUD/Assets/*.png']
+  }
+#  s.resources  = "WSProgressHUD/*.bundle"
   s.frameworks = "UIKit", "QuartzCore","CoreGraphics","Foundation"
 
   s.requires_arc = true

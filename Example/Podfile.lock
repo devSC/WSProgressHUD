@@ -1,0 +1,31 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - Shimmer (1.0.2)
+  - WSProgressHUD (1.1.5):
+    - Shimmer
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - WSProgressHUD (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FBSnapshotTestCase
+    - Shimmer
+
+EXTERNAL SOURCES:
+  WSProgressHUD:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  WSProgressHUD: d66881ecb218926f7da320ae36b3426c2ef8d912
+
+PODFILE CHECKSUM: ab589241c2f3bd950585aebd9abd37de1a2541ed
+
+COCOAPODS: 1.5.3

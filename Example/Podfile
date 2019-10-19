@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'WSProgressHUD_Example' do
+  pod 'WSProgressHUD', :path => '../'
+
+  target 'WSProgressHUD_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end

@@ -9,7 +9,7 @@ This is a beauful hud view for iPhone &amp; iPad
 
 
 
-![Demo](https://raw.githubusercontent.com/devSC/WSProgressHUD/master/Demo/Demo.gif)
+![Example](Example/Demo.gif)
 
 # Usage
 To Download the project. Run the WSProgressHUD.xcodeproj in the demo directory.
